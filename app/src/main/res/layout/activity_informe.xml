@@ -45,7 +45,15 @@
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
 
+            >
                     <TextView
                         android:id="@+id/marca"
                         android:layout_width="196dp"
@@ -80,11 +88,6 @@
                         android:text="  - Tipo"
                         android:textSize="15dp"
                         />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/inputtipo_cemento"
                             android:layout_width="match_parent"
@@ -94,7 +97,7 @@
                             android:textStyle="bold"
                             android:hint="ingrese tipo"
                             android:textColor="#ffffff" />
-                    </com.google.android.material.textfield.TextInputLayout>
+
 
                     <TextView
                         android:id="@+id/pesoespecifico"
@@ -117,7 +120,7 @@
                         android:hint="kg/cm3"
                         android:textStyle="bold"
                         android:textColor="#ffffff" />
-
+        </LinearLayout>
                     <TextView
                         android:id="@+id/agregadofino"
                         android:layout_width="196dp"
@@ -131,6 +134,14 @@
 
                         android:background="#ffffff"
                         android:textColor="#000000"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:background="@drawable/border"
+                >
 
                     <TextView
                         android:id="@+id/peso_especifico_agregadofino"
@@ -310,7 +321,7 @@
                             android:textColor="#ffffff" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-
+        </LinearLayout>
 
                     <TextView
                         android:id="@+id/agregado_grueso"
@@ -325,7 +336,14 @@
                         android:textSize="16dp"
                         android:background="#ffffff"/>
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
 
                     <TextView
                         android:id="@+id/peso_especifico_masa"
@@ -500,7 +518,7 @@
                             android:textStyle="bold"
                             android:textColor="#ffffff"/>
                     </com.google.android.material.textfield.TextInputLayout>
-
+        </LinearLayout>
 
                     <TextView
                         android:id="@+id/TextAgua"
@@ -514,6 +532,14 @@
                         android:textStyle="bold"
                         android:background="#ffffff"
                         android:textColor="#000000" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
 
                     <TextView
                         android:id="@+id/fuente"
@@ -563,7 +589,7 @@
                             android:textStyle="bold"
                             android:textColor="#ffffff" />
                     </com.google.android.material.textfield.TextInputLayout>
-
+        </LinearLayout>
 
                     <TextView
                         android:id="@+id/Aditivo"
@@ -577,7 +603,14 @@
                         android:textSize="16dp"
                         android:background="#ffffff"
                         android:textColor="#000000"/>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
 
                     <TextView
                         android:id="@+id/aditivo"
@@ -717,7 +750,7 @@
                             android:textColor="#ffffff" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-
+        </LinearLayout>
                 <TextView
                     android:id="@+id/textView34"
                     android:layout_width="383dp"
@@ -731,7 +764,14 @@
                     android:text="Requisitos del diseño" />
 
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
                     <TextView
                         android:id="@+id/textView35"
                         android:layout_width="wrap_content"
@@ -993,7 +1033,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_weight="1" />
 
-
+        </LinearLayout>
                 <TextView
                     android:id="@+id/textView36"
                     android:layout_width="383dp"

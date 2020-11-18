@@ -19,4 +19,7 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textColorHint">#ffffff</item>
     </style>
+    <style name="colorTransparente">
+        <item name="color">@color/fondo_transparente</item>
+    </style>
 </resources>

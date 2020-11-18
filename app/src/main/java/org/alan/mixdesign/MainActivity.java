@@ -4,11 +4,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -391,4 +391,17 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
     }
 
+        public boolean onCreateOptionsMenu(Menu menu){
+            getMenuInflater().inflate(R.menu.menu_barra_superior, menu);
+            return true;
+        }
+        public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.informacion_item) {
+            Toast.makeText(this, "seleccionado", Toast.LENGTH_SHORT).show();
+            return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
 }

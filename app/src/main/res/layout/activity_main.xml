@@ -5,7 +5,7 @@
     android:id="@+id/pantalla_inicial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_t_d"
+    android:background="#3B6DE2"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -25,35 +25,64 @@
                 android:id="@+id/titulo_prop_materiales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
-                android:background="#006DD9"
+                android:gravity="center"
+                android:background="#3B6DE2"
                 android:textColor="#ffffff"
                 android:textSize="17dp"
-                android:text="Propiedades de materiales"/>
+                android:text="Propiedades de los materiales"/>
+
+                <View
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#FFFFFF"
+                    android:layout_marginBottom="-1mm"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"/>
+
 
 
             <TextView
                 android:id="@+id/cemento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="1dp"
-                android:layout_margin="20dp"
-                android:background="#ffffff"
                 android:text="Cemento"
-                android:textColor="#000000"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:background="#1BFFFFFF"
+                android:textColor="#ffffff"
                 android:textSize="16dp"
                 android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            style="@style/colorTransparente"
+            android:background="@drawable/border"
+            >
+            <!--android:background="#4BF6F6F6"-->
+
 
             <TextView
                 android:id="@+id/marca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:textSize="15dp"
@@ -65,23 +94,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:textStyle="bold"
                 android:autoSizeTextType="uniform"
                 />
-
-
-
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -89,51 +115,53 @@
                     android:id="@+id/inputtipo_cemento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:hint="Ingrese Tipo"
-                    android:textColor="#ffffff" />
+                    android:hint="ingrese Tipo"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <TextView
+                android:id="@+id/viewpeso_especifico"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:hint="kg/cm3"
+                android:textStyle="bold"
+                android:textColor="#ffffff" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/viewpeso_especifico"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Peso Específico - kg/cm3"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
-
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/agregadofino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="1dp"
-                android:layout_margin="20dp"
-                android:text="Agregado fino"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Agregado Fino"
                 android:textStyle="bold"
+                android:gravity="center"
                 android:textSize="16dp"
-                android:background="#ffffff"
-                android:textColor="#000000"/>
+                android:background="#1BFFFFFF"
+                android:textColor="#ffffff"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:background="@drawable/border"
+                >
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -156,7 +184,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -165,6 +193,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+
                     android:inputType="numberDecimal"
                     android:hint="Peso Unitario Suelto - kg/cm3"
                     android:textColor="#ffffff" />
@@ -178,7 +207,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -200,7 +229,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -221,9 +250,10 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+              <!--  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputhumedad_natural_a_F"
@@ -241,7 +271,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -254,26 +284,38 @@
                     android:hint="Modulo de Fineza"
                     android:textColor="#ffffff" />
             </com.google.android.material.textfield.TextInputLayout>
-
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/agregado_grueso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Agregado grueso"
                 android:textStyle="bold"
-                android:textColor="#000000"
+                android:gravity="center"
                 android:textSize="16dp"
-                android:background="#ffffff"
+                android:background="#1BFFFFFF"
+                android:textColor="#ffffff"
                 />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -295,7 +337,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -317,7 +359,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -338,7 +380,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -358,7 +400,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -378,7 +420,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -391,18 +433,29 @@
                     android:hint="Modulo de Fineza"
                     android:textColor="#ffffff" />
             </com.google.android.material.textfield.TextInputLayout>
-
+        </LinearLayout>
             <TextView
                 android:id="@+id/TextAgua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Agua"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:background="#ffffff"
-                android:textColor="#000000" />
-
+                android:gravity="center"
+                android:background="#1BFFFFFF"
+                android:textColor="#ffffff" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
             <TextView
                 android:id="@+id/fuente"
                 android:layout_width="wrap_content"
@@ -434,7 +487,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -447,17 +500,29 @@
                     android:hint="Peso Específico - Lts"
                     android:textColor="#ffffff" />
             </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
             <TextView
                 android:id="@+id/Aditivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Aditivo"
                 android:textStyle="bold"
                 android:textSize="16dp"
-                android:background="#ffffff"
-                android:textColor="#000000"/>
-
+                android:gravity="center"
+                android:background="#1BFFFFFF"
+                android:textColor="#ffffff"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
             <TextView
                 android:id="@+id/aditivo"
                 android:layout_width="wrap_content"
@@ -488,7 +553,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -507,7 +572,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -526,7 +591,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -547,7 +612,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -560,7 +625,7 @@
                     android:hint="Densidad - kg/l"
                     android:textColor="#ffffff" />
             </com.google.android.material.textfield.TextInputLayout>
-
+        </LinearLayout>
             <!--    <View
                 android:layout_height="2dip"
                 android:background="#000000" />
@@ -570,13 +635,33 @@
                 android:id="@+id/textView34"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
-                android:background="#006DD9"
+                android:gravity="center"
                 android:textColor="#ffffff"
                 android:textSize="17dp"
                 android:text="Requisitos del diseño" />
+           <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFFFFF"
+            android:layout_marginBottom="-1mm"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="10dp"
@@ -584,7 +669,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -604,7 +689,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -630,7 +715,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -830,18 +915,38 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"/>
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/textView36"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:background="#006DD9"
                 android:textColor="#ffffff"
                 android:textSize="17dp"
-                android:text="mezcla necesaria" />
+                android:text="Mezcla Necesaria" />
+            <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFFFFF"
+            android:layout_marginBottom="-1mm"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:background="@drawable/border"
+            >
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="10dp"
@@ -862,14 +967,33 @@
                     android:hint="Mezcla necesaria"
                     android:textColor="#ffffff" />
             </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/proceso_dosificacion"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="proceso_dosificacion"
-                android:text="Proceso De Dosificación"
-                />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/proceso_dosificacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="proceso_dosificacion"
+                    android:text="Proceso De Dosificación"
+
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/informe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="ir_a_informe"
+                    android:text="Tablas de diseño" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
@@ -880,6 +1004,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="25sp"
         android:onClick="ir_a_tablas"
+
         app:srcCompat="@drawable/icono_tabla"
         >
     </com.google.android.material.floatingactionbutton.FloatingActionButton>

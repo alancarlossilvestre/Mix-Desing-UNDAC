@@ -5,7 +5,7 @@
     android:id="@+id/pantalla_inicial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3B6DE2"
+    android:background="#ffffff"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -31,7 +31,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
+                android:background="#C5CAE9"
                 android:textColor="#ffffff"
                 android:textSize="17dp"
                 android:text="Propiedades de los materiales"/>
@@ -58,80 +58,90 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:background="#1BFFFFFF"
+                android:background="#3B6DE2"
                 android:textColor="#ffffff"
                 android:textSize="16dp"
                 android:textStyle="bold" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="20dp"
-            android:padding="20dp"
-            style="@style/colorTransparente"
-            android:background="@drawable/border"
-            >
-            <!--android:background="#4BF6F6F6"-->
-
-
-            <TextView
-                android:id="@+id/marca"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:text="  - Marca"
-                />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/border"
 
-            <Spinner
-                android:id="@+id/spinner_select_marca"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textStyle="bold"
-                android:autoSizeTextType="uniform"
-                />
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                >
+                <TextView
+                    android:id="@+id/marca"
+                    android:layout_width="196dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
 
-                <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="15dp"
+                    android:text="- Marca"
+                    />
+
+                <Spinner
+                    android:id="@+id/spinner_select_marca"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+
+
+                    />
+                <TextView
+                    android:id="@+id/pesoespecifico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:autoSizeTextType="uniform"
+                    android:text="- Peso Específico"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:id="@+id/viewpeso_especifico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="kg/cm3"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:text="- Tipo"
+                    android:textSize="15dp"
+                    />
+                <EditText
                     android:id="@+id/inputtipo_cemento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="ingrese Tipo"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:hint="ingrese tipo"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/tamaño_ingresar"/>
 
-            <TextView
-                android:id="@+id/viewpeso_especifico"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
-                android:layout_weight="1"
-                android:hint="kg/cm3"
-                android:textStyle="bold"
-                android:textColor="#ffffff" />
-
-        </LinearLayout>
-
+            </LinearLayout>
             <TextView
                 android:id="@+id/agregadofino"
                 android:layout_width="match_parent"
@@ -144,7 +154,8 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="16dp"
-                android:background="#1BFFFFFF"
+                android:background="#3B6DE2"
+
                 android:textColor="#ffffff"
                 />
             <LinearLayout
@@ -155,136 +166,158 @@
                 android:padding="20dp"
                 android:background="@drawable/border"
                 >
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputpeso_especifico_a_f"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/peso_especifico_agregadofino"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Peso Específico - kg/cm3"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="- Peso Específico" />
 
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputpeso_especifico_a_f"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="kg/m3"
+                        android:textStyle="bold"
+                        android:inputType="numberDecimal"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="@dimen/tamaño_ingresar"
+                        android:textColor="@color/colorPrimaryDark"/>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputapeso_unitario_suelto"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/peso_unitario_suelto"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="- Peso unitario Suelto"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorPrimaryDark" />
 
-                    android:inputType="numberDecimal"
-                    android:hint="Peso Unitario Suelto - kg/cm3"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputapeso_unitario_suelto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="kg/m3"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/tamaño_ingresar"
+                        android:inputType="numberDecimal"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"  />
 
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputpe_unitario_compactado"
-                    android:layout_width="match_parent"
+                     <TextView
+                    android:id="@+id/peso_unitario_compactado"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Peso Unitario Compactado - kg/cm3"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:text="- Peso Unitario Compactado"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorPrimaryDark" />
 
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputpe_unitario_compactado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="kg/m3"
+                        android:textStyle="bold"
+                        android:inputType="numberDecimal"
+                        android:textSize="@dimen/tamaño_ingresar"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"  />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputabsorcion_ag_fino"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/absorcion"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:hint="Absorción - A %"
-                    android:inputType="numberDecimal"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:text="- Absorción"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorPrimaryDark" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-              <!--  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputabsorcion_ag_fino"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="A%"
+                        android:textSize="@dimen/tamaño_ingresar"
+                        android:textStyle="bold"
+                        android:inputType="numberDecimal"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"  />
 
+                    <TextView
+                        android:id="@+id/contenido_humedad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="- Humedad Natural" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputhumedad_natural_a_F"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Humedad Natural - H %"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputhumedad_natural_a_F"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="H%"
+                        android:textSize="@dimen/tamaño_ingresar"
+                        android:textStyle="bold"
+                        android:inputType="numberDecimal"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"  />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                    <TextView
+                        android:id="@+id/modulo_finura"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="- Modulo de Fineza (MF)"
+                        android:textColor="@color/colorPrimaryDark" />
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputmodulo_finura_a_f"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/tamaño_ingresar"
+                        android:inputType="numberDecimal"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"  />
+            </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputmodulo_finura_a_f"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Modulo de Fineza"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
 
             <TextView
                 android:id="@+id/agregado_grueso"
@@ -301,139 +334,168 @@
                 android:background="#1BFFFFFF"
                 android:textColor="#ffffff"
                 />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="20dp"
-            android:padding="20dp"
-            android:background="@drawable/border"
-            >
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:background="@drawable/border"
+                >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputpeso_especifico_agregado_grueso"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/peso_especifico_masa"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Peso Específico - km/m3"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:text="- Peso Específico"
+                    android:textColor="@color/colorPrimaryDark" />
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputpeso_especifico_agregado_grueso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="kg/m3"
+                        android:inputType="numberDecimal"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/tamaño_ingresar"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"  />
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputapeso_unitario_suelto_agregado_grueso"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/peso_unitario_suelto_agrgado_grueso"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Peso Unitario Suelto - km/m3"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="- Peso Unitario Suelto"
+                    android:textColor="@color/colorPrimaryDark"  />
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputapeso_unitario_suelto_agregado_grueso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="kg/m3"
+                        android:inputType="numberDecimal"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"  />
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputpe_unitario_compactado_agregado_grueso"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/peso_unitario_compactado_agregado_grueso"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Peso Unitario Compactado - km/m3"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="10dp"
+                    android:textSize="15dp"
+                    android:text="- Peso Unitario Compactado"
+                    android:textColor="@color/colorPrimaryDark"  />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputpe_unitario_compactado_agregado_grueso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="kg/m3"
+                        android:inputType="numberDecimal"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"/>
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputpabsorcion_agregado_grueso"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/peso_especifico_agregadogrueso"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Absorción - A %"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="- Absorción" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputpabsorcion_agregado_grueso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="A%"
+                        android:inputType="numberDecimal"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"/>
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputhumedad_natural_agregado_grueso"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/humendad_natural"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Humendad Natural - H %"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="- Humedad Natural" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputhumedad_natural_agregado_grueso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="H%"
+                        android:inputType="numberDecimal"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputmodulo_finura_agregagdo_grueso"
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:id="@+id/modulo_finura_agregado_grueso"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Modulo de Fineza"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="- Modulo de Fineza (MF)"
+                    android:textColor="@color/colorPrimaryDark"  />
+
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputmodulo_finura_agregagdo_grueso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+
+                        android:textColor="@color/colorPrimaryDark"/>
+            </LinearLayout>
             <TextView
                 android:id="@+id/TextAgua"
                 android:layout_width="match_parent"
@@ -460,15 +522,12 @@
                 android:id="@+id/fuente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
-                android:text="  - Fuente"
+                android:text="- Fuente"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#ffffff"/>
 
+                android:textColor="@color/colorPrimaryDark" />
 
             <Spinner
                 android:id="@+id/spinner_agua"
@@ -480,16 +539,17 @@
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+            <TextView
+                android:id="@+id/peso_especifico_agua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:textSize="15dp"
+                android:text="- Peso Específico"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark" />
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputpeso_especifico_agua"
@@ -498,8 +558,10 @@
                     android:textStyle="bold"
                     android:inputType="numberDecimal"
                     android:hint="Peso Específico - Lts"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
             <TextView
                 android:id="@+id/Aditivo"
@@ -515,117 +577,125 @@
                 android:gravity="center"
                 android:background="#1BFFFFFF"
                 android:textColor="#ffffff"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="20dp"
-            android:padding="20dp"
-            android:background="@drawable/border"
-            >
-            <TextView
-                android:id="@+id/aditivo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:textSize="15dp"
-                android:text="  - Se usara aditivo"
-                android:textStyle="bold"
-                android:textColor="#ffffff" />
-
-            <Spinner
-                android:id="@+id/spinner_uso_aditivo"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:background="@drawable/border"
+                >
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                <TextView
+                    android:id="@+id/aditivo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:textSize="15dp"
+                    android:text="- Se Usará Aditivo"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark" />
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputmarca_aditivo"
+                <Spinner
+                    android:id="@+id/spinner_uso_aditivo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:textStyle="bold"
-                    android:hint="Marca "
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ffffff"/>
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputtipo_aditivo"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/uso_aditivo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold"
-                    android:hint="Tipo "
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:text="- Marca"
+                    android:textColor="@color/colorPrimaryDark"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputmarca"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="Ingrese la marca"
+                        android:inputType="text"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"/>
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputdosis_aditivo"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tipo_aditivo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Dosis - ml x bls de Cemento"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15dp"
+                    android:text="- Tipo"
+                    android:textColor="@color/colorPrimaryDark"/>
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputtipo_aditivo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="Ingrese el tipo"
+                        android:inputType="text"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputdensidad_aditivo"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/dosis_aditivo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold"
-                    android:inputType="numberDecimal"
-                    android:hint="Densidad - kg/l"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    android:textSize="15dp"
+                    android:text="- Dosis"
+                    android:textColor="@color/colorPrimaryDark" />
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputdosis_aditivo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="ml X bls de cemento"
+                        android:inputType="numberDecimal"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                <TextView
+                    android:id="@+id/densidad_aditivo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="- Densidad"
+                    android:textColor="@color/colorPrimaryDark"/>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputdensidad_aditivo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:hint="kg/l"
+                        android:inputType="numberDecimal"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorPrimaryDark"/>
+            </LinearLayout>
             <!--    <View
                 android:layout_height="2dip"
                 android:background="#000000" />
@@ -643,7 +713,7 @@
                 android:gravity="center"
                 android:textColor="#ffffff"
                 android:textSize="17dp"
-                android:text="Requisitos del diseño" />
+                android:text="Requisítos Del Diseño" />
            <View
 
             android:layout_width="match_parent"
@@ -662,16 +732,16 @@
             android:padding="20dp"
             android:background="@drawable/border"
             >
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="1dp"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Resistencia del Diseño" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputresistencia_del_diseño"
@@ -680,18 +750,20 @@
                     android:textStyle="bold"
                     android:inputType="numberDecimal"
                     android:hint="Resistencia Del Diseño - kg/cm2"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorPrimaryDark"/>
 
-            <com.google.android.material.textfield.TextInputLayout
+
+            <TextView
+                android:id="@+id/resistencia_del_diseño"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Nº de Ensayos Previos Realizados" />
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputnumerode_ensayos"
@@ -700,24 +772,23 @@
                     android:inputType="numberDecimal"
                     android:textStyle="bold"
                     android:hint="N° De Ensayos"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
-
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorPrimaryDark"/>
             <!--- <Spinner
                  android:id="@+id/spinner_ensayos_previos"
                  android:layout_width="match_parent"
                  android:layout_height="match_parent"
                  android:layout_weight="1" />
                  -->
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:id="@+id/desviacionestandar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Desviación Estándar" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inpudesviacion_estandar"
@@ -726,29 +797,25 @@
                     android:inputType="numberDecimal"
                     android:textStyle="bold"
                     android:hint="Desviación Estandar"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
-
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorPrimaryDark"/>
             <TextView
                 android:id="@+id/textView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="15dp"
-                android:text="  - Tipo de diseño"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:text="- Tipo De Diseño"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"/>
+                android:textColor="@color/colorPrimaryDark"/>
 
             <Spinner
                 android:id="@+id/spinner_tipo_de_diseño"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
                 android:paddingLeft="10dp"
                 android:layout_weight="1" />
 
@@ -757,22 +824,19 @@
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#ffffff"
-                android:text="  - Asentamiento" />
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Asentamiento" />
 
             <Spinner
                 android:id="@+id/spinner_asentamiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
                 android:paddingLeft="10dp" />
 
 
@@ -781,22 +845,20 @@
                 android:id="@+id/tipo_de_estructura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#ffffff"
-                android:text="  - Especifique tipo de estructura" />
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Especifíque tipo de estructura" />
 
             <Spinner
                 android:id="@+id/spinner_tipo_de_estructura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+
                 android:paddingLeft="10dp" />
 
 
@@ -806,13 +868,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#ffffff"
-                android:text="- Asentamiento de preferencia   " />
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Asentamiento De Preferencia   " />
 
             <TextView
                 android:id="@+id/viewasentamiento_de_preferencia"
@@ -820,8 +880,8 @@
                 android:layout_height="wrap_content"
                 android:hint="kg/cm3"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff" />
@@ -832,88 +892,80 @@
                 android:id="@+id/textView45"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#ffffff"
-                android:text="- Consolidación por vibración   " />
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Consolidación Por Vibración   " />
 
             <Spinner
                 android:id="@+id/spinner_consolidacion_por_vibracion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+
                 android:paddingLeft="10dp" />
 
             <TextView
                 android:id="@+id/tamaño_max_del_agregado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#ffffff"
-                android:text=" - Tamaño maximo del agregado" />
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Tamaño Maximo del Agregado" />
 
             <Spinner
                 android:id="@+id/spinner_tamaño_max_del_agregado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+
                 android:paddingLeft="10dp" />
 
             <TextView
                 android:id="@+id/tipo_de_exposicion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#ffffff"
-                android:text="  - Tipo de exposición" />
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Tipo De Exposición" />
 
             <Spinner
                 android:id="@+id/spinner_tipo_de_exposicion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+
                 android:paddingLeft="10dp" />
 
             <TextView
                 android:id="@+id/tipo_de_exposicion_especifique"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#ffffff"
-                android:text="  - Especifique" />
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Especifíque" />
 
             <Spinner
                 android:id="@+id/spinner_tipo_de_exposicion_especifique"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+
                 android:paddingLeft="10dp"/>
         </LinearLayout>
 
@@ -947,16 +999,15 @@
             android:padding="20dp"
             android:background="@drawable/border"
             >
+            <TextView
+                android:id="@+id/text_mezcla_necesaria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="- Mezcla Necesaria" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputmezcla_necesaria"
@@ -964,9 +1015,10 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:textStyle="bold"
-                    android:hint="Mezcla necesaria"
-                    android:textColor="#ffffff" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="10dp"
+                    android:hint="Mezcla Necesaria"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
 
             <LinearLayout
@@ -982,9 +1034,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="proceso_dosificacion"
-                    android:text="Proceso De Dosificación"
-
-                    />
+                    android:text="Proceso De Dosificación"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/informe"
@@ -996,18 +1046,6 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/boton_flotante"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="25sp"
-        android:onClick="ir_a_tablas"
-
-        app:srcCompat="@drawable/icono_tabla"
-        >
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
 

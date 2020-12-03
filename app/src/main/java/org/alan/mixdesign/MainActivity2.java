@@ -1067,7 +1067,7 @@ public class MainActivity2 extends AppCompatActivity {
         //----------------------agua cemento de diseño y paso 7-----------------------//
         if(aire.equals("Sin aire")){
             String s_ac_resistencia = mostrar_fcr_agua_cemento_por_resistencia.getText().toString();
-            double d_ac_resistencia_sinaire =   Double.parseDouble(s_ac_resistencia);
+            double d_ac_resistencia_sinaire  =   Double.parseDouble(s_ac_resistencia);
             mostrar_factor_cemento_v.setText(String.format("%.2f", fcr_a_c));
             double r_ac_diseño_paso6 = valor/ d_ac_resistencia_sinaire;
 

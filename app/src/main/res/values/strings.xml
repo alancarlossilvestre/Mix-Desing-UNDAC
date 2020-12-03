@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Diseño De Mezcla</string>
     <string name="Ok">Ok</string>
+    <string name="kgcm3">kg/cm3</string>
+    <string name="kgcm2">kg/cm2</string>
+    <string name="kg">kg</string>
 </resources>

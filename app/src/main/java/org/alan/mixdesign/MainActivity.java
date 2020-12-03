@@ -246,6 +246,20 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false).show();
 
     }
+    public void alerta_dato_vacio(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
+        builder.setTitle("Alerta");
+        builder.setMessage("Por favor compruebe que este rellenado todos los datos que son" +
+                " fundamentales para el correcto cálculo")
+                .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setCancelable(false).show();
+
+    }
 
     public void alerta_aditivo(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
@@ -259,12 +273,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setCancelable(false).show();
-
     }
 
     public void proceso_dosificacion (View view) {
-                Intent  ir = new Intent(this, MainActivity2.class);
-                double gravedad = 9.81;
+        Intent  ir = new Intent(this, MainActivity2.class);
+        double gravedad = 9.81;
+        if ( "".equals(resistencia_del_diseño) || "".equals(desviacion_estandar)
+                || numero_de_ensayos.getText().toString().isEmpty() || modulo_ag_grueso.getText().toString().isEmpty()
+                || peso_sc_agre_gru.getText().toString().isEmpty() || humedad_a_f.getText().toString().isEmpty()
+                ||peso_e_a_f.getText().toString().isEmpty()||  absorcion_ag_grueso.getText().toString().isEmpty()
+                || humendad_ag_grueso.getText().toString().isEmpty() || absorcion_ag_fino.getText().toString().isEmpty()
+                || densidad_aditivo.getText().toString().isEmpty()|| mezcla_necesaria.getText().toString().isEmpty()
+                || peso_e_a_g.getText().toString().isEmpty() || desviacion_estandar.getText().toString().isEmpty()){
+                    alerta_dato_vacio();
+        }else{
+
 
                 String str_des_est = desviacion_estandar.getText().toString();
                 double d_des_est = Double.parseDouble(str_des_est);
@@ -325,6 +348,7 @@ public class MainActivity extends AppCompatActivity {
                 double d_p_c = Double.parseDouble(s_p_c);
 
 
+
                 if ("Baja permeabilidad".equals(seleccion_expo) && d_resis_dis<260) {
                    alerta_tipo_expo();
                 }
@@ -377,6 +401,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(ir);
                 overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
         }
+            }
     }
 
      public void ir_a_informe (View view) {

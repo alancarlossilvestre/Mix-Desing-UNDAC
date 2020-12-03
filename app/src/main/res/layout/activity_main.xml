@@ -5,7 +5,7 @@
     android:id="@+id/pantalla_inicial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@drawable/fondo_t_d"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -331,7 +331,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="16dp"
-                android:background="#1BFFFFFF"
+                android:background="#3B6DE2"
                 android:textColor="#ffffff"
                 />
             <LinearLayout
@@ -508,7 +508,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#1BFFFFFF"
+                android:background="#3B6DE2"
                 android:textColor="#ffffff" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -575,7 +575,7 @@
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:gravity="center"
-                android:background="#1BFFFFFF"
+                android:background="#3B6DE2"
                 android:textColor="#ffffff"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -712,6 +712,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="#ffffff"
+                android:background="#3B6DE2"
                 android:textSize="17dp"
                 android:text="Requisítos Del Diseño" />
            <View
@@ -980,6 +981,7 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
+                android:background="#3B6DE2"
                 android:textSize="17dp"
                 android:text="Mezcla Necesaria" />
             <View
@@ -1043,10 +1045,6 @@
                     android:onClick="ir_a_informe"
                     android:text="Tablas de diseño" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

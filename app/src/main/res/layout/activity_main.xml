@@ -31,7 +31,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#C5CAE9"
+
                 android:textColor="#ffffff"
                 android:textSize="17dp"
                 android:text="Propiedades de los materiales"/>
@@ -58,7 +58,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:background="#3B6DE2"
+
                 android:textColor="#ffffff"
                 android:textSize="16dp"
                 android:textStyle="bold" />
@@ -68,7 +68,6 @@
                 android:orientation="vertical"
                 android:layout_margin="20dp"
                 android:padding="20dp"
-                android:layout_marginTop="0dp"
                 android:background="@drawable/border"
 
                 >
@@ -149,12 +148,12 @@
                 android:layout_marginBottom="-1mm"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:text="Agregado Fino"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="16dp"
-                android:background="#3B6DE2"
+
 
                 android:textColor="#ffffff"
                 />
@@ -331,7 +330,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="16dp"
-                android:background="#3B6DE2"
+
                 android:textColor="#ffffff"
                 />
             <LinearLayout
@@ -508,7 +507,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
+
                 android:textColor="#ffffff" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -575,7 +574,7 @@
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:gravity="center"
-                android:background="#3B6DE2"
+
                 android:textColor="#ffffff"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -712,7 +711,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:background="#3B6DE2"
+
                 android:textSize="17dp"
                 android:text="Requisítos Del Diseño" />
            <View
@@ -981,7 +980,7 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:background="#3B6DE2"
+
                 android:textSize="17dp"
                 android:text="Mezcla Necesaria" />
             <View
@@ -1023,28 +1022,19 @@
                     android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                >
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/proceso_dosificacion"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="proceso_dosificacion"
-                    android:text="Proceso De Dosificación"/>
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:background="#3E4147"
+                    android:layout_margin="20dp"
+                    android:text="Ir al Proceso De Dosificación"/>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/informe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="ir_a_informe"
-                    android:text="Tablas de diseño" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

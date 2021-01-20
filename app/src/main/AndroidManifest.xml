@@ -10,8 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".informe" />
-        <activity android:name=".MainActivity2" />
-        <activity android:name=".tables_design" />
+        <activity android:name=".MainActivity2"
+            android:label="@string/titulo_activity_2"
+            android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity">
+
+            </meta-data>
+        </activity>
+        <activity android:name=".tables_design"
+            android:label="@string/titulo_activity_tablas"
+            android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity">
+
+            </meta-data>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">

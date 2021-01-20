@@ -116,7 +116,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        double valor_des_est = intent.getDoubleExtra("desviacion estandar", 0);
+       double valor_des_est = intent.getDoubleExtra("desviacion estandar", 0);
         double valor_num_ensayos = intent.getDoubleExtra("nº de ensayos", 0);
         double valor_resis_dis = intent.getDoubleExtra("resis diseño", 0);
         String TMN = intent.getStringExtra("TMN");

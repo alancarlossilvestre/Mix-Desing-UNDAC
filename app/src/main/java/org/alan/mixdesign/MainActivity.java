@@ -410,12 +410,6 @@ public class MainActivity extends AppCompatActivity {
          overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
      }
 
-    public void ir_a_tablas(View view){
-        Intent ir_a_tablas_de_diseno =new Intent(this, tables_design.class);
-        startActivity(ir_a_tablas_de_diseno);
-        overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
-    }
-
         public boolean onCreateOptionsMenu(Menu menu){
             getMenuInflater().inflate(R.menu.menu_barra_superior, menu);
             return true;
@@ -427,6 +421,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "seleccionado", Toast.LENGTH_SHORT).show();
             return true;
             }
+        if (id == R.id.tabla_item)
+        {
+            Intent ir_a_tablas_de_diseno =new Intent(this, tables_design.class);
+            startActivity(ir_a_tablas_de_diseno);
+            overridePendingTransition(R.anim.zoom_out, R.anim.static_animation);
+        }
             return super.onOptionsItemSelected(item);
         }
 }

@@ -1,41 +1,76 @@
 package org.alan.mixdesign;
 //-----------------------Dosificacion----------------------------
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Html;
+import android.text.Layout;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class MainActivity2 extends AppCompatActivity {
 
-   TextView mostrar_fact_modifi , mostrar_desviacion_estandar, mostrar_resistencia_promedio_requerida,valor_asentamiento,
+    TextView titulo_1, titulo_2, titulo_3, titulo_4, titulo_5, titulo_6, titulo_7,titulo_8, titulo_9, titulo_10, titulo_11, titulo_12,
+    titulo_13, titulo_14, titulo_15,
+    //-----------------------------------------------
+      view_1_1, view_2_1, view_3_1, view_4_1, view_5_1, view_6_1,
+            mostrar_fact_modifi, mostrar_desviacion_estandar, mostrar_resistencia_promedio_requerida, valor_asentamiento,
             mostrar_resistencia_promedio_requerida_especificada, mostrar_ressi_prom_mod, mostrar_TMN_agre_gru, mostrar_peso_sec_comp_agre_gr,
             mostrar_volumen_unitario_de_agua, mostrar_aire_atrapado, mostrar_factor_cemento, mostrar_TMN_agre_gru_k, mostrar_cantidad_agregado_grueso,
             mostrar_fcr_agua_cemento_por_resistencia, mostrar_fcr_agua_cemento_por_durabilidad,
             mostrar_ac_de_diseño, mostrar_factor_cemento_v, mostrar_correccion_de_agua,
             mostrar_agua_paso9, mostrar_cemento_paso9, mostrar_aire_paso9, mostrar_v_a_g_paso9, mostrar_suma_paso9, mostrar_estado_paso9, mostrar_aditivo_paso9,
             mostrar_vol_a_f_paso9, mostrar_agua_paso11, mostrar_cemento_paso11, mostrar_aire_paso11, mostrar_v_a_g_paso11, mostrar_v_a_f_paso11, mostrar_aditivo11,
-            mostrar_vol_paso10, mostrar_peso_paso10, mostrar_a_f_paso12, mostrar_a_g_paso12,  mostrar_a_f_paso122, mostrar_agua_efectiva,
+            mostrar_vol_paso10, mostrar_peso_paso10, mostrar_a_f_paso12, mostrar_a_g_paso12, mostrar_a_f_paso122, mostrar_agua_efectiva,
             mostrar_a_g_paso122, mostrar_a_f_paso123, mostrar_a_g_paso123, mostrar_cemento_paso12_4, mostrar_agua_paso12_4, mostrar_aire_paso12_4,
             mostrar_aditivo_paso_12_4, mostrar_a_f_paso12_4, mostrar_a_g_paso12_4, mostrar_cemento_paso13, mostrar_a_f_paso13, mostrar_a_g_paso13,
-            mostrar_agua_paso13, mostrar_aditivo_paso13,  mostrar_cemento_paso14, mostrar_a_f_paso14, mostrar_a_g_paso14,
+            mostrar_agua_paso13, mostrar_aditivo_paso13, mostrar_cemento_paso14, mostrar_a_f_paso14, mostrar_a_g_paso14,
             mostrar_agua_paso14, mostrar_aditivo_paso14, mostrar_cemento_paso15, mostrar_a_f_paso15, mostrar_a_g_paso15,
             mostrar_agua_paso15, mostrar_aditivo_paso15, mostrar_aire_paso15, mostrar_mezcla_necesaria_paso15, mostrar_bolsas;
-    double  valor_resis_dis1,valor_resis_dis2, d_valor_resis_dis1_F,fcr_a_c;
+    double valor_resis_dis1, valor_resis_dis2, d_valor_resis_dis1_F, fcr_a_c;
     double valor, aire_atrapado, d_cantidad_agre_grueso, v_f_c;
+
+    String nombre_directorio = "Diseño de Mezcla";
+    String nombre_documento = "informe.pdf";
+    Button btngenerar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        btngenerar = (Button) findViewById(R.id.generar_pdf);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,},
+                    1000);
+        }
+
+
+        ;
         mostrar_fact_modifi = (TextView) findViewById(R.id.viewrfactor_de_modificacion);
         mostrar_desviacion_estandar = (TextView) findViewById(R.id.viewrdsde_la_constrtructora);
         mostrar_resistencia_promedio_requerida = (TextView) findViewById(R.id.viewresistencia_promedio_requerida);
@@ -113,10 +148,47 @@ public class MainActivity2 extends AppCompatActivity {
         mostrar_bolsas = (TextView) findViewById(R.id.viewbolsas);
 
         mostrar_mezcla_necesaria_paso15 = (TextView) findViewById(R.id.view_mezcla_necearia_paso15);
+//---------------------------------------------------------------------------------------------------
+                titulo_1 = (TextView)findViewById(R.id.textView34);
+                view_1_1 = (TextView)findViewById(R.id.textresistencia_promedio);
+                view_2_1 = (TextView)findViewById(R.id.resistencia_del_diseño) ;
+                view_3_1= (TextView)findViewById(R.id.desviacionestandar) ;
+                view_4_1= (TextView)findViewById(R.id.view_1_4);
+                view_5_1= (TextView)findViewById(R.id.view_5_1);
+                view_6_1= (TextView)findViewById(R.id.view_6_1);
+
+//---------------------------------------------------------------------------------------------------
+                titulo_2 = (TextView)findViewById(R.id.tituloporceso_2);
+//---------------------------------------------------------------------------------------------------
+                titulo_3 = (TextView)findViewById(R.id.tituloporceso_3);
+//---------------------------------------------------------------------------------------------------
+                titulo_4 = (TextView)findViewById(R.id.tituloporceso);
+//---------------------------------------------------------------------------------------------------
+                titulo_5 = (TextView)findViewById(R.id.titulocontenido_aire);
+//---------------------------------------------------------------------------------------------------
+                titulo_6 = (TextView)findViewById(R.id.titulorelacionaAC);
+//---------------------------------------------------------------------------------------------------
+                titulo_7 = (TextView)findViewById(R.id.titulofactor_cemento);
+//---------------------------------------------------------------------------------------------------
+                titulo_8 = (TextView)findViewById(R.id.titulo_selec_agreg_grueso);
+//---------------------------------------------------------------------------------------------------
+                titulo_9 = (TextView)findViewById(R.id.titulo_paso9);
+//---------------------------------------------------------------------------------------------------
+                titulo_10 = (TextView)findViewById(R.id.titulo_paso10);
+//---------------------------------------------------------------------------------------------------
+                titulo_11= (TextView)findViewById(R.id.titulo_paso11);
+//---------------------------------------------------------------------------------------------------
+                titulo_12 = (TextView)findViewById(R.id.titulo_paso12);
+//---------------------------------------------------------------------------------------------------
+                titulo_13 = (TextView)findViewById(R.id.titulo_paso13);
+//---------------------------------------------------------------------------------------------------
+                titulo_14 = (TextView)findViewById(R.id.titulo_paso14);
+//---------------------------------------------------------------------------------------------------
+                titulo_15 = (TextView)findViewById(R.id.titulo_paso15);
 
         Intent intent = getIntent();
 
-       double valor_des_est = intent.getDoubleExtra("desviacion estandar", 0);
+        double valor_des_est = intent.getDoubleExtra("desviacion estandar", 0);
         double valor_num_ensayos = intent.getDoubleExtra("nº de ensayos", 0);
         double valor_resis_dis = intent.getDoubleExtra("resis diseño", 0);
         String TMN = intent.getStringExtra("TMN");
@@ -137,9 +209,9 @@ public class MainActivity2 extends AppCompatActivity {
         double p_e_aditivo = intent.getDoubleExtra("p_e_aditivo", 0);
         double mezcla_necesaria = intent.getDoubleExtra("mezcla_necesaria", 0);
 
-        double p_e_a_g = intent.getDoubleExtra("d_peso_e_a_g",0);
+        double p_e_a_g = intent.getDoubleExtra("d_peso_e_a_g", 0);
 
-        double d_p_c = intent.getDoubleExtra("d_p_c",0);
+        double d_p_c = intent.getDoubleExtra("d_p_c", 0);
         //  Toast.makeText(this, " pasa  " +  mezcla_necesaria, Toast.LENGTH_LONG).show();
 
         //----------escribir desviacion estandar--------------------//
@@ -965,22 +1037,22 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_fcr_agua_cemento_por_resistencia.setText("0.3");
 
         }
-        if (aire.equals("Con aire")){
-            String s_fcr_a_c =  mostrar_fcr_agua_cemento_por_resistencia.getText().toString();
+        if (aire.equals("Con aire")) {
+            String s_fcr_a_c = mostrar_fcr_agua_cemento_por_resistencia.getText().toString();
             double n_fcr_a_c = Double.parseDouble(s_fcr_a_c);
             // Toast.makeText(this, " valor " + fcr_a_c + ac_durabildiad, Toast.LENGTH_LONG).show();
-            if(fcr_a_c<ac_durabildiad){
+            if (fcr_a_c < ac_durabildiad) {
                 double seleccion_ac = n_fcr_a_c;
                 mostrar_ac_de_diseño.setText(String.format("%.2f", seleccion_ac));
-                double a_c = (valor/seleccion_ac);
+                double a_c = (valor / seleccion_ac);
                 String s_a_c = String.valueOf(a_c);
                 mostrar_ac_de_diseño.setText(String.format("%.2f", a_c));
                 //    Toast.makeText(this, " seleccion  " + a_c, Toast.LENGTH_LONG).show();
 
-            }else if(fcr_a_c>ac_durabildiad) {
+            } else if (fcr_a_c > ac_durabildiad) {
                 double seleccion_ac = ac_durabildiad;
                 mostrar_ac_de_diseño.setText(String.format("%.2f", seleccion_ac));
-                double a_c = (valor/seleccion_ac);
+                double a_c = (valor / seleccion_ac);
                 mostrar_ac_de_diseño.setText(String.format("%.2f", a_c));
                 //  Toast.makeText(this, " seleccion  " + a_c, Toast.LENGTH_LONG).show();
 
@@ -1065,29 +1137,29 @@ public class MainActivity2 extends AppCompatActivity {
         mostrar_fcr_agua_cemento_por_durabilidad.setText((String.format("%.2f", ac_durabildiad)));
 
         //----------------------agua cemento de diseño y paso 7-----------------------//
-        if(aire.equals("Sin aire")){
+        if (aire.equals("Sin aire")) {
             String s_ac_resistencia = mostrar_fcr_agua_cemento_por_resistencia.getText().toString();
-            double d_ac_resistencia_sinaire  =   Double.parseDouble(s_ac_resistencia);
+            double d_ac_resistencia_sinaire = Double.parseDouble(s_ac_resistencia);
             mostrar_factor_cemento_v.setText(String.format("%.2f", fcr_a_c));
-            double r_ac_diseño_paso6 = valor/ d_ac_resistencia_sinaire;
+            double r_ac_diseño_paso6 = valor / d_ac_resistencia_sinaire;
 
             mostrar_factor_cemento_v.setText(String.format("%.2f", r_ac_diseño_paso6));
             mostrar_ac_de_diseño.setText(String.format("%.2f", fcr_a_c));
 
-          }
+        }
         String s_paso7 = mostrar_factor_cemento_v.getText().toString();
         Double d_paso7 = Double.parseDouble(s_paso7);
 
 
-        double r_paso_7 = d_paso7/42.5;
-        int redondeo_bolsa_paso7 =(int)Math.round(r_paso_7);
+        double r_paso_7 = d_paso7 / 42.5;
+        int redondeo_bolsa_paso7 = (int) Math.round(r_paso_7);
 
-        mostrar_bolsas.setText(""+redondeo_bolsa_paso7);
+        mostrar_bolsas.setText("" + redondeo_bolsa_paso7);
 
 //------------------------------------------------------------------------------------------------//
 //----------------------------K G-----------------------------------------------------------------//
         //agregado grueo------------------------------------------------------------------------//
-        if (TMN.equals("3/8''") && modulo_ag_grueso<= 2.40) {
+        if (TMN.equals("3/8''") && modulo_ag_grueso <= 2.40) {
             v_f_c = 0.50;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
@@ -1096,16 +1168,17 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
 
         }
-        if (TMN.equals("3/8''") && modulo_ag_grueso> 2.40 && modulo_ag_grueso < 2.60) {
-            v_f_c = 0.50 + ( modulo_ag_grueso- 2.40 ) / (2.60-2.40) * ( 0.48-0.50);
+        if (TMN.equals("3/8''") && modulo_ag_grueso > 2.40 && modulo_ag_grueso < 2.60) {
+            v_f_c = 0.50 + (modulo_ag_grueso - 2.40) / (2.60 - 2.40) * (0.48 - 0.50);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
@@ -1119,19 +1192,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
         if (TMN.equals("3/8''") && modulo_ag_grueso > 2.60 && modulo_ag_grueso < 2.80) {
-            v_f_c = 0.48 + ( modulo_ag_grueso- 2.60 ) / (2.80-2.60) * (0.46-0.48);
+            v_f_c = 0.48 + (modulo_ag_grueso - 2.60) / (2.80 - 2.60) * (0.46 - 0.48);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3/8''") && modulo_ag_grueso == 2.80) {
-            v_f_c =0.46;
+            v_f_c = 0.46;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.46 * d_peso_sc_agre_grueso;
@@ -1139,19 +1213,20 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3/8''") && modulo_ag_grueso > 2.80 && modulo_ag_grueso < 3.00) {
-            v_f_c = 0.46 + ( modulo_ag_grueso- 2.80 ) / (3.00-2.80) * ( 0.44-0.46);
+            v_f_c = 0.46 + (modulo_ag_grueso - 2.80) / (3.00 - 2.80) * (0.44 - 0.46);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3/8''") && modulo_ag_grueso >= 3.0) {
-            v_f_c =0.44;
+            v_f_c = 0.44;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.44 * d_peso_sc_agre_grueso;
@@ -1160,7 +1235,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         }
         if (TMN.equals("1/2''") && modulo_ag_grueso <= 2.40) {
-            v_f_c =0.59;
+            v_f_c = 0.59;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.59 * d_peso_sc_agre_grueso;
@@ -1168,19 +1243,20 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1/2''''") && modulo_ag_grueso > 2.40 && modulo_ag_grueso < 2.60) {
-            v_f_c = 0.59 + ( modulo_ag_grueso- 2.40 ) / (2.60-2.40) * ( 0.57-0.59);
+            v_f_c = 0.59 + (modulo_ag_grueso - 2.40) / (2.60 - 2.40) * (0.57 - 0.59);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1/2''") && modulo_ag_grueso == 2.60) {
-            v_f_c =0.57;
+            v_f_c = 0.57;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.57 * d_peso_sc_agre_grueso;
@@ -1188,19 +1264,20 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1/2''") && modulo_ag_grueso > 2.60 && modulo_ag_grueso < 2.80) {
-            v_f_c = 0.57 + ( modulo_ag_grueso- 2.60 ) / (2.80-2.60) * ( 0.55-0.57);
+            v_f_c = 0.57 + (modulo_ag_grueso - 2.60) / (2.80 - 2.60) * (0.55 - 0.57);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1/2''") && modulo_ag_grueso == 2.80) {
-            v_f_c =0.55;
+            v_f_c = 0.55;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.55 * d_peso_sc_agre_grueso;
@@ -1208,19 +1285,20 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1/2''") && modulo_ag_grueso > 2.80 && modulo_ag_grueso < 3.00) {
-            v_f_c = 0.55 + ( modulo_ag_grueso- 2.80 ) / (3.00 - 2.80) * (0.53 - 0.55);
+            v_f_c = 0.55 + (modulo_ag_grueso - 2.80) / (3.00 - 2.80) * (0.53 - 0.55);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1/2''") && modulo_ag_grueso >= 3.00) {
-            v_f_c =0.53;
+            v_f_c = 0.53;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.53 * d_peso_sc_agre_grueso;
@@ -1229,7 +1307,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
         if (TMN.equals("3/4''") && modulo_ag_grueso <= 2.40) {
-            v_f_c =0.66;
+            v_f_c = 0.66;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.66 * d_peso_sc_agre_grueso;
@@ -1238,20 +1316,21 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("3/4''") && modulo_ag_grueso > 2.40 && modulo_ag_grueso < 2.60) {
 
-            v_f_c = 0.66 + ( modulo_ag_grueso- 2.40 ) / (2.60 - 2.40) * (0.64 - 0.66);
+            v_f_c = 0.66 + (modulo_ag_grueso - 2.40) / (2.60 - 2.40) * (0.64 - 0.66);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3/4''") && modulo_ag_grueso == 2.60) {
-            v_f_c =0.64;
+            v_f_c = 0.64;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.64 * d_peso_sc_agre_grueso;
@@ -1260,19 +1339,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("3/4''") && modulo_ag_grueso > 2.60 && modulo_ag_grueso < 2.80) {
 
-            v_f_c = 0.64 + ( modulo_ag_grueso- 2.60 ) / (2.80 - 2.60) * (0.62 - 0.64);
+            v_f_c = 0.64 + (modulo_ag_grueso - 2.60) / (2.80 - 2.60) * (0.62 - 0.64);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3/4''") && modulo_ag_grueso == 2.80) {
-            v_f_c =0.62;
+            v_f_c = 0.62;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.62 * d_peso_sc_agre_grueso;
@@ -1281,19 +1361,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("3/4''") && modulo_ag_grueso > 2.80 && modulo_ag_grueso < 3.00) {
 
-            v_f_c = 0.62 + ( modulo_ag_grueso- 2.80 ) / (3.00 - 2.80) * (0.60 - 0.62);
+            v_f_c = 0.62 + (modulo_ag_grueso - 2.80) / (3.00 - 2.80) * (0.60 - 0.62);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3/4''") && modulo_ag_grueso >= 3.00) {
-            v_f_c =0.60;
+            v_f_c = 0.60;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.60 * d_peso_sc_agre_grueso;
@@ -1302,7 +1383,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
         if (TMN.equals("1''") && modulo_ag_grueso <= 2.40) {
-            v_f_c =0.71;
+            v_f_c = 0.71;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.71 * d_peso_sc_agre_grueso;
@@ -1311,19 +1392,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("1''") && modulo_ag_grueso > 2.40 && modulo_ag_grueso < 2.60) {
 
-            v_f_c = 0.71 + ( modulo_ag_grueso- 2.40 ) / (2.60 - 2.40) * (0.69 - 0.71);
+            v_f_c = 0.71 + (modulo_ag_grueso - 2.40) / (2.60 - 2.40) * (0.69 - 0.71);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1''") && modulo_ag_grueso == 2.60) {
-            v_f_c =0.69;
+            v_f_c = 0.69;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.69 * d_peso_sc_agre_grueso;
@@ -1332,19 +1414,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("1''") && modulo_ag_grueso > 2.60 && modulo_ag_grueso < 2.80) {
 
-            v_f_c = 0.69 + ( modulo_ag_grueso- 2.60 ) / (2.80 - 2.60) * (0.67- 0.69);
+            v_f_c = 0.69 + (modulo_ag_grueso - 2.60) / (2.80 - 2.60) * (0.67 - 0.69);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1''") && modulo_ag_grueso == 2.80) {
-            v_f_c =0.67;
+            v_f_c = 0.67;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.67 * d_peso_sc_agre_grueso;
@@ -1352,19 +1435,20 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1''") && modulo_ag_grueso > 2.80 && modulo_ag_grueso < 3.00) {
-            v_f_c = 0.67 + ( modulo_ag_grueso- 2.80 ) / (3.00 - 2.80) * (0.65- 0.67);
+            v_f_c = 0.67 + (modulo_ag_grueso - 2.80) / (3.00 - 2.80) * (0.65 - 0.67);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1''") && modulo_ag_grueso >= 3.00) {
-            v_f_c =0.65;
+            v_f_c = 0.65;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.65 * d_peso_sc_agre_grueso;
@@ -1374,27 +1458,27 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         if (TMN.equals("1 1/2''") && modulo_ag_grueso <= 2.40) {
-            v_f_c =0.76;
+            v_f_c = 0.76;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.76 * d_peso_sc_agre_grueso;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
-        if (TMN.equals("1 1/2''") && modulo_ag_grueso> 2.40 && modulo_ag_grueso < 2.60) {
-            v_f_c = 0.76 + ( modulo_ag_grueso- 2.40 ) / (2.60- 2.40) * (0.74- 0.76);
+        if (TMN.equals("1 1/2''") && modulo_ag_grueso > 2.40 && modulo_ag_grueso < 2.60) {
+            v_f_c = 0.76 + (modulo_ag_grueso - 2.40) / (2.60 - 2.40) * (0.74 - 0.76);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
             d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1 1/2''") && modulo_ag_grueso == 2.60) {
-            v_f_c =0.74;
+            v_f_c = 0.74;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.74 * d_peso_sc_agre_grueso;
@@ -1403,19 +1487,19 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("1 1/2''") && modulo_ag_grueso > 2.60 && modulo_ag_grueso < 2.80) {
             //v_f_c = 0.73 + (2.80 - modulo_ag_grueso) / (modulo_ag_grueso - 2.60) * (modulo_ag_grueso - 2.60);
-            v_f_c = 0.74 + ( modulo_ag_grueso-2.60 ) / (2.80-2.60) * (0.72- 0.74);
+            v_f_c = 0.74 + (modulo_ag_grueso - 2.60) / (2.80 - 2.60) * (0.72 - 0.74);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
             d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1 1/2''") && modulo_ag_grueso == 2.80) {
-            v_f_c =0.72;
+            v_f_c = 0.72;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.72 * d_peso_sc_agre_grueso;
@@ -1424,31 +1508,32 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("1 1/2''") && modulo_ag_grueso > 2.80 && modulo_ag_grueso < 3.00) {
             //v_f_c = 0.71 + (3.00 - modulo_ag_grueso) / (modulo_ag_grueso - 2.80) * (modulo_ag_grueso - 2.80);
-            v_f_c = 0.72 + ( modulo_ag_grueso- 2.80 ) / (3.00-2.80) * (0.70-0.72);
+            v_f_c = 0.72 + (modulo_ag_grueso - 2.80) / (3.00 - 2.80) * (0.70 - 0.72);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.3f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
             d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("1 1/2''") && modulo_ag_grueso >= 3.00) {
-            v_f_c =0.70;
+            v_f_c = 0.70;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
 
         if (TMN.equals("2''") && modulo_ag_grueso <= 2.40) {
-            v_f_c =0.78;
+            v_f_c = 0.78;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.78 * d_peso_sc_agre_grueso;
@@ -1457,20 +1542,21 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("2''") && modulo_ag_grueso > 2.40 && modulo_ag_grueso < 2.60) {
             //v_f_c = 0.78 + (2.60 - modulo_ag_grueso) / (modulo_ag_grueso - 2.40) * (modulo_ag_grueso - 2.40);
-            v_f_c = 0.78 + ( modulo_ag_grueso- 2.40 ) / ( 2.60-2.40) * (0.76- 0.78);
+            v_f_c = 0.78 + (modulo_ag_grueso - 2.40) / (2.60 - 2.40) * (0.76 - 0.78);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
             d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("2''") && modulo_ag_grueso == 2.60) {
-            v_f_c =0.76;
-            mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));;
+            v_f_c = 0.76;
+            mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
+            ;
 
             d_cantidad_agre_grueso = 0.76 * d_peso_sc_agre_grueso;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
@@ -1479,19 +1565,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("2''") && modulo_ag_grueso > 2.60 && modulo_ag_grueso < 2.80) {
             //v_f_c = 0.76 + (2.80 - modulo_ag_grueso) / (modulo_ag_grueso - 2.60) * (modulo_ag_grueso - 2.60);
-            v_f_c = 0.76 + ( modulo_ag_grueso- 2.60 ) / ( 2.80-2.60) * (0.74- 0.76);
+            v_f_c = 0.76 + (modulo_ag_grueso - 2.60) / (2.80 - 2.60) * (0.74 - 0.76);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(str_cantidad_agreg_grueso);
         }
         if (TMN.equals("2''") && modulo_ag_grueso == 2.80) {
-            v_f_c =0.74;
+            v_f_c = 0.74;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.74 * d_peso_sc_agre_grueso;
@@ -1500,19 +1587,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("2''") && modulo_ag_grueso > 2.80 && modulo_ag_grueso < 3.00) {
             //v_f_c = 0.74 + (3.00 - modulo_ag_grueso) / (modulo_ag_grueso - 2.80) * (modulo_ag_grueso - 2.80);
-            v_f_c = 0.74 + ( modulo_ag_grueso- 2.80 ) / ( 3.00-2.80) * (0.72- 0.74);
+            v_f_c = 0.74 + (modulo_ag_grueso - 2.80) / (3.00 - 2.80) * (0.72 - 0.74);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("2''") && modulo_ag_grueso >= 3.00) {
-            v_f_c =0.72;
+            v_f_c = 0.72;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.72 * d_peso_sc_agre_grueso;
@@ -1521,28 +1609,29 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
         if (TMN.equals("3''") && modulo_ag_grueso <= 2.40) {
-            v_f_c =0.82;
+            v_f_c = 0.82;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.82 * d_peso_sc_agre_grueso;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
-        if (TMN.equals("3''") && modulo_ag_grueso> 2.40 && modulo_ag_grueso < 2.60) {
+        if (TMN.equals("3''") && modulo_ag_grueso > 2.40 && modulo_ag_grueso < 2.60) {
             //v_f_c = 0.82 + (2.60 - modulo_ag_grueso) / (modulo_ag_grueso - 2.40) * (modulo_ag_grueso - 2.40);
-            v_f_c = 0.82 + ( modulo_ag_grueso- 2.40 ) / ( 2.60-2.40) * (0.80- 0.82);
+            v_f_c = 0.82 + (modulo_ag_grueso - 2.40) / (2.60 - 2.40) * (0.80 - 0.82);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3''") && modulo_ag_grueso == 2.60) {
-            v_f_c =0.80;
+            v_f_c = 0.80;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.80 * d_peso_sc_agre_grueso;
@@ -1551,19 +1640,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("3''") && modulo_ag_grueso > 2.60 && modulo_ag_grueso < 2.80) {
             //v_f_c = 0.80 + (2.80 - modulo_ag_grueso) / (modulo_ag_grueso - 2.60) * (modulo_ag_grueso - 2.60);
-            v_f_c = 0.80 + ( modulo_ag_grueso- 2.60 ) / ( 2.80-2.60) * (0.78- 0.80);
+            v_f_c = 0.80 + (modulo_ag_grueso - 2.60) / (2.80 - 2.60) * (0.78 - 0.80);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3''") && modulo_ag_grueso == 2.80) {
-            v_f_c =0.78;
+            v_f_c = 0.78;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.78 * d_peso_sc_agre_grueso;
@@ -1572,19 +1662,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("3''") && modulo_ag_grueso > 2.80 && modulo_ag_grueso < 3.00) {
             //v_f_c = 0.78 + (3.00 -modulo_ag_grueso) / (modulo_ag_grueso - 2.80) * (modulo_ag_grueso - 2.80);
-            v_f_c = 0.78 + ( modulo_ag_grueso- 2.80 ) / ( 3.00-2.80) * (0.76- 0.78);
+            v_f_c = 0.78 + (modulo_ag_grueso - 2.80) / (3.00 - 2.80) * (0.76 - 0.78);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("3''") && modulo_ag_grueso >= 3.00) {
-            v_f_c =0.76;
+            v_f_c = 0.76;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.76 * d_peso_sc_agre_grueso;
@@ -1593,7 +1684,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
         if (TMN.equals("6''") && modulo_ag_grueso <= 2.40) {
-            v_f_c =0.87;
+            v_f_c = 0.87;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.87 * d_peso_sc_agre_grueso;
@@ -1602,19 +1693,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("6''") && modulo_ag_grueso > 2.40 && modulo_ag_grueso < 2.60) {
             //v_f_c = 0.87 + (2.60 - modulo_ag_grueso) / (modulo_ag_grueso - 2.40) * (modulo_ag_grueso - 2.40);
-            v_f_c = 0.87 + ( modulo_ag_grueso- 2.40 ) / ( 2.60-2.40) * (0.85- 0.87);
+            v_f_c = 0.87 + (modulo_ag_grueso - 2.40) / (2.60 - 2.40) * (0.85 - 0.87);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("6''") && modulo_ag_grueso == 2.60) {
-            v_f_c =0.85;
+            v_f_c = 0.85;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.85 * d_peso_sc_agre_grueso;
@@ -1623,19 +1715,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("6''") && modulo_ag_grueso > 2.60 && modulo_ag_grueso < 2.80) {
             //v_f_c = 0.85 + (2.80 - modulo_ag_grueso) / (modulo_ag_grueso - 2.60) * (modulo_ag_grueso - 2.60);
-            v_f_c = 0.85 + ( modulo_ag_grueso- 2.60 ) / ( 2.80-2.60) * (0.83- 0.85);
+            v_f_c = 0.85 + (modulo_ag_grueso - 2.60) / (2.80 - 2.60) * (0.83 - 0.85);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("6''") && modulo_ag_grueso == 2.80) {
-            v_f_c =0.83;
+            v_f_c = 0.83;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.83 * d_peso_sc_agre_grueso;
@@ -1644,19 +1737,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if (TMN.equals("6''") && modulo_ag_grueso > 2.80 && modulo_ag_grueso < 3.00) {
             //v_f_c = 0.80 + (3.00 - modulo_ag_grueso) / (modulo_ag_grueso - 2.80) * (modulo_ag_grueso - 2.80);
-            v_f_c = 0.80 + ( modulo_ag_grueso- 2.80 ) / ( 3.00-2.80) * (0.81- 0.83);
+            v_f_c = 0.80 + (modulo_ag_grueso - 2.80) / (3.00 - 2.80) * (0.81 - 0.83);
             String s_v_f_c = String.valueOf(v_f_c);
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             String s_vfc = mostrar_factor_cemento.getText().toString();
-            Double d_vfc= Double.parseDouble(s_vfc);
+            Double d_vfc = Double.parseDouble(s_vfc);
 
-            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;;
+            d_cantidad_agre_grueso = d_vfc * d_peso_sc_agre_grueso;
+            ;
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
         if (TMN.equals("6''") && modulo_ag_grueso >= 3.00) {
-            v_f_c =0.81;
+            v_f_c = 0.81;
             mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
             d_cantidad_agre_grueso = 0.81 * d_peso_sc_agre_grueso;
@@ -1671,35 +1765,35 @@ public class MainActivity2 extends AppCompatActivity {
 
         String s_cemento_paso7 = mostrar_factor_cemento_v.getText().toString();
         double d_cemento_paso7 = Double.parseDouble(s_cemento_paso7);
-        double cemento =  d_cemento_paso7/d_p_c;
+        double cemento = d_cemento_paso7 / d_p_c;
         mostrar_cemento_paso9.setText(String.format("%.3f", cemento));
         double agua_paso_9 = valor / 1000;
         mostrar_agua_paso9.setText(String.format("%.3f", agua_paso_9));
-        double aire_paso9 = aire_atrapado/100;
+        double aire_paso9 = aire_atrapado / 100;
 
         String s_a_g_paso8 = mostrar_cantidad_agregado_grueso.getText().toString();
         double d_a_g_paso8 = Double.parseDouble(s_a_g_paso8);
 
         mostrar_aire_paso9.setText(String.format("%.3f", aire_paso9));
-        double v_a_g_paso9 = d_a_g_paso8/p_e_a_g;
+        double v_a_g_paso9 = d_a_g_paso8 / p_e_a_g;
         mostrar_v_a_g_paso9.setText(String.format("%.3f", v_a_g_paso9));
 
-       // Toast.makeText(this, " pasa  " +  d_a_g_paso8 + p_e_a_g, Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, " pasa  " +  d_a_g_paso8 + p_e_a_g, Toast.LENGTH_LONG).show();
         String s_f_c = mostrar_factor_cemento_v.getText().toString();
         double d_f_c = Double.parseDouble(s_f_c);
-        double aditivo = (d_f_c*aditivoxbls)/1000000;
+        double aditivo = (d_f_c * aditivoxbls) / 1000000;
         mostrar_aditivo_paso9.setText(String.format("%.3f", aditivo));
         double suma = cemento + agua_paso_9 + aire_paso9 + v_a_g_paso9 + aditivo;
 
         mostrar_suma_paso9.setText(String.format("%.3f", suma));
 
-        if(suma<1.0){
+        if (suma < 1.0) {
             String no_aceptado = "<font color='#EE0000'>sumatoria insuficiente</font>";
-            mostrar_estado_paso9.setText(Html.fromHtml(no_aceptado ));
+            mostrar_estado_paso9.setText(Html.fromHtml(no_aceptado));
 
-        }else if(suma>=1.0){
+        } else if (suma >= 1.0) {
             String aceptado = "<font color='#FFFFFF'>sumatoria suficiente</font>";
-            mostrar_estado_paso9.setText(Html.fromHtml(aceptado ));
+            mostrar_estado_paso9.setText(Html.fromHtml(aceptado));
         }
 
 
@@ -1708,18 +1802,18 @@ public class MainActivity2 extends AppCompatActivity {
         mostrar_vol_paso10.setText(String.format("%.3f", v_a_F));
         String s_v_a_f = mostrar_vol_paso10.getText().toString();
         double d_v_a_f = Double.parseDouble(s_v_a_f);
-        double peso_paso10 = d_v_a_f*p_e_a_f;
+        double peso_paso10 = d_v_a_f * p_e_a_f;
         mostrar_peso_paso10.setText(String.format("%.2f", peso_paso10));
 
         //------------paso11--------------------------//
-        String c_11= mostrar_factor_cemento_v.getText().toString();
+        String c_11 = mostrar_factor_cemento_v.getText().toString();
         //double cemento_11 =  valor /0.557;
-        double agua_paso_11 = valor ;
+        double agua_paso_11 = valor;
         double aire_paso11 = aire_atrapado;
-        double v_a_g_paso11 = (d_peso_sc_agre_grueso*v_f_c);
+        double v_a_g_paso11 = (d_peso_sc_agre_grueso * v_f_c);
         String adtivo_paso9 = mostrar_aditivo_paso9.getText().toString();
         double d_aditivo_paso9 = Double.parseDouble(adtivo_paso9);
-        double aditivo_paso11 = d_aditivo_paso9*p_e_aditivo;
+        double aditivo_paso11 = d_aditivo_paso9 * p_e_aditivo;
 
         mostrar_cemento_paso11.setText(c_11);
         mostrar_agua_paso11.setText(String.format("%.2f", agua_paso_11));
@@ -1729,39 +1823,39 @@ public class MainActivity2 extends AppCompatActivity {
         mostrar_aditivo11.setText(String.format("%.2f", aditivo_paso11));
 
         //------------paso12--------------------------------//
-        double a_f_paso12 = peso_paso10*(1+(h_a_f/100));
+        double a_f_paso12 = peso_paso10 * (1 + (h_a_f / 100));
         mostrar_a_f_paso12.setText(String.format("%.2f", a_f_paso12));
 
-        String s_a_g_paso11 =  mostrar_v_a_g_paso11.getText().toString();
+        String s_a_g_paso11 = mostrar_v_a_g_paso11.getText().toString();
         double d_a_g_paso11 = Double.parseDouble(s_a_g_paso11);
-        double a_g_paso12 = d_a_g_paso11*(1+(h_a_g/100));
+        double a_g_paso12 = d_a_g_paso11 * (1 + (h_a_g / 100));
         mostrar_a_g_paso12.setText(String.format("%.2f", a_g_paso12));
 
         //------------paso12.2--------------------------------//
 
-        double a_f_paso122= h_a_f-ab_a_f;
+        double a_f_paso122 = h_a_f - ab_a_f;
         mostrar_a_f_paso122.setText(String.format("%.2f", a_f_paso122));
 
         double a_g_paso12_2 = h_a_g - ab_a_g;
         mostrar_a_g_paso122.setText(String.format("%.2f", a_g_paso12_2));
 
         //------------paso12.3--------------------------------//
-        String s_peso_paso10 =  mostrar_v_a_f_paso11.getText().toString();
-        double  n_peso_paso10 = Double.parseDouble(s_peso_paso10);
+        String s_peso_paso10 = mostrar_v_a_f_paso11.getText().toString();
+        double n_peso_paso10 = Double.parseDouble(s_peso_paso10);
 
         String s_a_f_paso122 = mostrar_a_f_paso122.getText().toString();
         double n_a_f_paso122 = Double.parseDouble(s_a_f_paso122);
 
-        double a_f_paso12_3=  (n_peso_paso10*n_a_f_paso122)/100;
+        double a_f_paso12_3 = (n_peso_paso10 * n_a_f_paso122) / 100;
         mostrar_a_f_paso123.setText(String.format("%.2f", a_f_paso12_3));
 
-        String s_v_a_g_paso11 =   mostrar_v_a_g_paso11.getText().toString();
-        double  n_v_a_g_paso11 = Double.parseDouble(s_v_a_g_paso11);
+        String s_v_a_g_paso11 = mostrar_v_a_g_paso11.getText().toString();
+        double n_v_a_g_paso11 = Double.parseDouble(s_v_a_g_paso11);
 
-        String s_a_g_paso122 =mostrar_a_g_paso122.getText().toString();
+        String s_a_g_paso122 = mostrar_a_g_paso122.getText().toString();
         double n_a_g_paso122 = Double.parseDouble(s_a_g_paso122);
 
-        double a_g_paso12_3 =  (n_a_g_paso122* n_v_a_g_paso11)/100;
+        double a_g_paso12_3 = (n_a_g_paso122 * n_v_a_g_paso11) / 100;
         mostrar_a_g_paso123.setText(String.format("%.2f", a_g_paso12_3));
         //-------mostarr correccion de agua---------//
 
@@ -1777,14 +1871,14 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         //----------mostarar agua efectiva ----//
-        String s_correccion_agua_= mostrar_correccion_de_agua.getText().toString();
+        String s_correccion_agua_ = mostrar_correccion_de_agua.getText().toString();
         double d_correccion_agua = Double.parseDouble(s_correccion_agua_);
 
-        if (d_correccion_agua>0.0){
-            double a_f= valor - d_correccion_agua;
+        if (d_correccion_agua > 0.0) {
+            double a_f = valor - d_correccion_agua;
             mostrar_agua_efectiva.setText(String.format("%.2f", a_f));
-        } else if(d_correccion_agua<0.0){
-            double a_f = valor - d_correccion_agua  ;
+        } else if (d_correccion_agua < 0.0) {
+            double a_f = valor - d_correccion_agua;
             mostrar_agua_efectiva.setText(String.format("%.2f", a_f));
         }
 
@@ -1792,37 +1886,37 @@ public class MainActivity2 extends AppCompatActivity {
 
         //valores corregidos por humedad
 
-        String cemento_correc_huem =mostrar_factor_cemento_v.getText().toString();
+        String cemento_correc_huem = mostrar_factor_cemento_v.getText().toString();
         double d_cemento_correc_huem = Double.parseDouble(cemento_correc_huem);
         mostrar_cemento_paso12_4.setText(String.format("%.2f", d_cemento_correc_huem));
 
         String agua_efec = mostrar_agua_efectiva.getText().toString();
         double d_agua_efec = Double.parseDouble(agua_efec);
-        int redondeo_agua_paso12_4 = (int)Math.round(d_agua_efec);
+        int redondeo_agua_paso12_4 = (int) Math.round(d_agua_efec);
 //        mostrar_agua_paso12_4.setText(String.format("%.2f", d_agua_efec));
-        mostrar_agua_paso12_4.setText(""+redondeo_agua_paso12_4);
+        mostrar_agua_paso12_4.setText("" + redondeo_agua_paso12_4);
 
         //String aire_12_4 = mostrar_aire_atrapado.getText().toString();
         //double d_aire_12_4 = Double.parseDouble(aire_12_4);
-        int redondeo_aire_paso12_4 = (int)Math.round(aire_atrapado);
+        int redondeo_aire_paso12_4 = (int) Math.round(aire_atrapado);
         //mostrar_aire_paso12_4.setText(String.format("%.2f",aire_atrapado));
-        mostrar_aire_paso12_4.setText(""+redondeo_aire_paso12_4);
+        mostrar_aire_paso12_4.setText("" + redondeo_aire_paso12_4);
 
         String s_a_g_12_4 = mostrar_a_g_paso12.getText().toString();
         double d_a_g_12_4 = Double.parseDouble(s_a_g_12_4);
-        int redondeo_a_g_paso12_4 = (int)Math.round(d_a_g_12_4);
+        int redondeo_a_g_paso12_4 = (int) Math.round(d_a_g_12_4);
         //mostrar_a_g_paso12_4.setText(String.format("%.2f",d_a_g_12_4));
-        mostrar_a_g_paso12_4.setText(""+redondeo_a_g_paso12_4);
+        mostrar_a_g_paso12_4.setText("" + redondeo_a_g_paso12_4);
 
         String s_a_f_12_4 = mostrar_a_f_paso12.getText().toString();
         double d_a_f_12_4 = Double.parseDouble(s_a_f_12_4);
-        int redondeo_a_f_paso12_4 = (int)Math.round(d_a_f_12_4);
+        int redondeo_a_f_paso12_4 = (int) Math.round(d_a_f_12_4);
         //mostrar_a_f_paso12_4.setText(String.format("%.2f",d_a_f_12_4));
-        mostrar_a_f_paso12_4.setText(""+redondeo_a_f_paso12_4);
+        mostrar_a_f_paso12_4.setText("" + redondeo_a_f_paso12_4);
 
-        int redondeo_aditivo_paso12_4 = (int)Math.round(aditivo_paso11);
+        int redondeo_aditivo_paso12_4 = (int) Math.round(aditivo_paso11);
         //mostrar_aditivo_paso_12_4.setText(String.format("%.2f", aditivo_paso11));
-        mostrar_aditivo_paso_12_4.setText(""+redondeo_aditivo_paso12_4);
+        mostrar_aditivo_paso_12_4.setText("" + redondeo_aditivo_paso12_4);
 
         //------------------------------paso13--------------------------//
         double cemento_paso13 = 1.00;
@@ -1833,83 +1927,191 @@ public class MainActivity2 extends AppCompatActivity {
         String s_a_f_paso_12_4 = mostrar_a_f_paso12_4.getText().toString();
         double d_a_f_paso_12_4 = Double.parseDouble(s_a_f_paso_12_4);
 
-        double a_f_paso_13 = d_a_f_paso_12_4/d_cemento_paso12_4;
-        mostrar_a_f_paso13.setText(String.format("%.2f",a_f_paso_13));
+        double a_f_paso_13 = d_a_f_paso_12_4 / d_cemento_paso12_4;
+        mostrar_a_f_paso13.setText(String.format("%.2f", a_f_paso_13));
 
         String s_a_g_paso12_4 = mostrar_a_g_paso12_4.getText().toString();
-        double  d_a_g_paso12_4 = Double.parseDouble(s_a_g_paso12_4);
-        double  d_a_g_paso13 = d_a_g_paso12_4/d_cemento_paso12_4;
-        mostrar_a_g_paso13.setText(String.format("%.2f",d_a_g_paso13));
+        double d_a_g_paso12_4 = Double.parseDouble(s_a_g_paso12_4);
+        double d_a_g_paso13 = d_a_g_paso12_4 / d_cemento_paso12_4;
+        mostrar_a_g_paso13.setText(String.format("%.2f", d_a_g_paso13));
 
         String f_c_paso7 = mostrar_factor_cemento_v.getText().toString();
         double d_f_c_paso7 = Double.parseDouble(f_c_paso7);
-        double bolsas_paso7 = d_f_c_paso7/42.5;
+        double bolsas_paso7 = d_f_c_paso7 / 42.5;
 
         String s_agua_paso12_4 = mostrar_agua_paso12_4.getText().toString();
         double d_agua_paso12_4 = Double.parseDouble(s_agua_paso12_4);
-        double agua_paso13 = d_agua_paso12_4/bolsas_paso7;
-        int redondeo_agua_paso13= (int) Math.round(agua_paso13);
+        double agua_paso13 = d_agua_paso12_4 / bolsas_paso7;
+        int redondeo_agua_paso13 = (int) Math.round(agua_paso13);
         //mostrar_agua_paso13.setText(String.format("%.2f",agua_paso13));
-        mostrar_agua_paso13.setText(""+redondeo_agua_paso13);
+        mostrar_agua_paso13.setText("" + redondeo_agua_paso13);
 
         mostrar_aditivo_paso13.setText(String.format("%.2f", aditivo_paso11));
 
 
         //------------------paso14-------------------//
 
-        double cemento_paso14 = cemento_paso13*42.5;
-        mostrar_cemento_paso14.setText(String.format("%.2f",cemento_paso14));
+        double cemento_paso14 = cemento_paso13 * 42.5;
+        mostrar_cemento_paso14.setText(String.format("%.2f", cemento_paso14));
 
-        int redondeo_agua_paso14 = (int)Math.round(agua_paso13);
+        int redondeo_agua_paso14 = (int) Math.round(agua_paso13);
         //mostrar_agua_paso14.setText(String.format("%.2f",agua_paso13));
-        mostrar_agua_paso14.setText(""+redondeo_agua_paso14);
+        mostrar_agua_paso14.setText("" + redondeo_agua_paso14);
 
         String s_a_g_paso13 = mostrar_a_g_paso13.getText().toString();
         double d_a_g_paso13_paso14 = Double.parseDouble(s_a_g_paso13);
-        double a_g_paso14 = d_a_g_paso13_paso14*42.5;
-        int redondeo_a_g_paso14 = (int)Math.round(a_g_paso14);
+        double a_g_paso14 = d_a_g_paso13_paso14 * 42.5;
+        int redondeo_a_g_paso14 = (int) Math.round(a_g_paso14);
         //mostrar_a_g_paso14.setText(String.format("%.2f",a_g_paso14));
-        mostrar_a_g_paso14.setText(""+redondeo_a_g_paso14);
+        mostrar_a_g_paso14.setText("" + redondeo_a_g_paso14);
 
         String s_a_f_paso13 = mostrar_a_f_paso13.getText().toString();
         double d_a_f_paso13_paso14 = Double.parseDouble(s_a_f_paso13);
-        double a_f_paso14 = d_a_f_paso13_paso14*42.5;
-        int redondeo_a_f_paso14 = (int)Math.round(a_f_paso14);
-     //   mostrar_a_f_paso14.setText(String.format("%.2f",a_f_paso14));
-        mostrar_a_f_paso14.setText(""+redondeo_a_f_paso14);
+        double a_f_paso14 = d_a_f_paso13_paso14 * 42.5;
+        int redondeo_a_f_paso14 = (int) Math.round(a_f_paso14);
+        //   mostrar_a_f_paso14.setText(String.format("%.2f",a_f_paso14));
+        mostrar_a_f_paso14.setText("" + redondeo_a_f_paso14);
 
 
-        int redondeo_aditivo_paso14 = (int)Math.round(aditivo_paso11);
+        int redondeo_aditivo_paso14 = (int) Math.round(aditivo_paso11);
         //mostrar_aditivo_paso_12_4.setText(String.format("%.2f", aditivo_paso11));
-        mostrar_aditivo_paso14.setText(""+redondeo_aditivo_paso14);
+        mostrar_aditivo_paso14.setText("" + redondeo_aditivo_paso14);
 
         //----------------paso 15-----------------------//
 
         mostrar_mezcla_necesaria_paso15.setText(String.format("%.2f", mezcla_necesaria));
 
-        double cemento_paso15 = mezcla_necesaria*1;
+        double cemento_paso15 = mezcla_necesaria * 1;
         mostrar_cemento_paso15.setText(String.format("%.2f", cemento_paso15));
 
         String s_agua_paso15 = mostrar_agua_paso13.getText().toString();
         double d_agua_agua_paso15 = Double.parseDouble(s_agua_paso15);
-        double agua_paso15 = d_agua_agua_paso15*mezcla_necesaria;
+        double agua_paso15 = d_agua_agua_paso15 * mezcla_necesaria;
         mostrar_agua_paso15.setText(String.format("%.2f", agua_paso15));
 
         String s_a_g_paso15 = mostrar_a_g_paso13.getText().toString();
         double d_a_g_paso15 = Double.parseDouble(s_a_g_paso15);
-        double a_g_paso15 = d_a_g_paso15*mezcla_necesaria;
+        double a_g_paso15 = d_a_g_paso15 * mezcla_necesaria;
         mostrar_a_g_paso15.setText(String.format("%.2f", a_g_paso15));
 
         String s_a_f_paso15 = mostrar_a_f_paso13.getText().toString();
         double d_a_f_paso15 = Double.parseDouble(s_a_f_paso15);
-        double a_f_paso15 = d_a_f_paso15*mezcla_necesaria;
+        double a_f_paso15 = d_a_f_paso15 * mezcla_necesaria;
         mostrar_a_f_paso15.setText(String.format("%.2f", a_f_paso15));
 
         String s_aire_paso15 = mostrar_aire_paso12_4.getText().toString();
         double d_aire_paso15 = Double.parseDouble(s_aire_paso15);
         mostrar_aire_paso15.setText(String.format("%.2f", d_aire_paso15));
 
-        mostrar_aditivo_paso15.setText(String.format("%.2f",aditivo_paso11));
+        mostrar_aditivo_paso15.setText(String.format("%.2f", aditivo_paso11));
 
-}
+        btngenerar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                crearPDF();
+                Toast.makeText(MainActivity2.this, "PDF creado", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    public void crearPDF() {
+        Document documento = new Document();
+
+        try {
+            File file = crearfichero(nombre_documento);
+            FileOutputStream ficheroPDF = new FileOutputStream(file.getAbsolutePath());
+
+            PdfWriter writer = PdfWriter.getInstance(documento, ficheroPDF);
+
+            documento.open();
+            String espacio = ":\t ";
+
+            //añadir
+            documento.add(new Paragraph("\tINFORME"));
+            /*
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("Determinacios de la resistencia promedio\n "+ " Norma E-060 de concreto armado "));
+            documento.add(new Paragraph(view_1_1.getText().toString() + espacio + mostrar_resistencia_promedio_requerida_especificada.getText().toString() + " " ));
+            documento.add(new Paragraph(view_2_1.getText().toString() +  espacio +  mostrar_fact_modifi.getText().toString()));
+            documento.add(new Paragraph(view_3_1.getText().toString() + espacio + mostrar_desviacion_estandar.getText().toString()));
+            documento.add(new Paragraph(view_4_1.getText().toString() + espacio +  mostrar_ressi_prom_mod.getText().toString() ));
+            documento.add(new Paragraph("\t\t\t\t\t\t\t\t\t" +view_5_1.getText().toString()  ));
+            documento.add(new Paragraph(view_6_1.getText().toString() + "  " +mostrar_resistencia_promedio_requerida.getText().toString() ));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_2.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_3.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_4.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_5.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_6.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_7.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_8.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_9.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_10.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_11.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_12.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_13.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_14.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph("-------------------------------------------------"));
+            documento.add(new Paragraph(titulo_15.getText().toString()));
+            documento.add(new Paragraph("-------------------------------------------------"));
+
+*/
+        } catch (DocumentException e) {
+        } catch (IOException e) {
+        } finally {
+            documento.close();
+        }
+    }
+
+    public File crearfichero(String nombrefichero) {
+
+        File ruta = getRuta();
+        File fichero = null;
+        if (ruta != null) {
+            fichero = new File(ruta, nombrefichero);
+        }
+        return fichero;
+    }
+
+    public File getRuta(){
+        File ruta = null;
+        if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
+            ruta = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nombre_directorio);
+             if(ruta != null ){
+                 if(!ruta.mkdirs()){
+                     if(!ruta.exists()){
+                            return null;
+                     }
+                 }
+             }
+        }
+        return ruta;
+    }
 }

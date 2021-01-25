@@ -418,8 +418,28 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.informacion_item) {
-            Toast.makeText(this, "seleccionado", Toast.LENGTH_SHORT).show();
-            return true;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
+            builder.setTitle("Información");
+            builder.setMessage("Bienvenido! a continuación te muestro los pasos  para el correcto funcionamiento de la app: \n" +
+                    "1. Se completa los datos requeridos de los materiales: \n\n" +
+                    "  -  Cemento.\n" +
+                    "  -  Agregado grueso.\n" +
+                    "  -  Agregado fino .\n" +
+                    "  -  Aditivo.\n\n" +
+                    "2. Se Completa las características del concreto deseado.\n\n" +
+                    "3. Puedes acceder al proceso de dosificación obtenida por el método del comité 211 del ACI una vez " +
+                    "rellenado todos los datos correctamente presionando el botón " +
+                    "Ir al proceso de dosificación.\n\n" +
+                    "4. En el proceso de dosificación podrás exportar los resultados a un formato PDF" +
+                    " el cual se guradará en la memoria externa de tu celular en la ubicación: \n\n\t  download/Diseño de mezcla/informe.pdf \n\n" +
+                    "5. Puedes ver las tablas de diseño dando click en el ícono de tablas en la parte superior de esta ventana.")
+                    .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .setCancelable(false).show();
             }
         if (id == R.id.tabla_item)
         {

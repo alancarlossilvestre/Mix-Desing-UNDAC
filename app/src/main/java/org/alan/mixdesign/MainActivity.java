@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void especifique_baja_permeabilidad(){
-        String[] opciones_2 = {"Expuesto a agua dulces", "Expuesto a agua dulce o solubles", "Expuesto a aguas cloacales"};
+        String[] opciones_2 = {"Expuesto a agua dulce", "Expuesto a agua de mar o aguas solubles", "Expuesto a la acción de aguas cloacales"};
         ArrayAdapter<String> adaptader = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, opciones_2);
         especifique_tipo_expo_concreto.setAdapter(adaptader);
     }
@@ -226,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adaptader = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, opciones_2);
         especifique_tipo_expo_concreto.setAdapter(adaptader);
     }
-
     public void especifique_proceso_contra_la_corrosión_del_concreto(){
         String[] opciones_2 = {"Recubrimiento mínimo incrementado a 15mm", "Recubrimiento mínimo no incrementado a 15mm", "Severa"};
         ArrayAdapter<String> adaptader = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, opciones_2);
@@ -236,7 +235,62 @@ public class MainActivity extends AppCompatActivity {
     public void alerta_tipo_expo(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
         builder.setTitle("Alerta");
-        builder.setMessage("resistencia del diseño muy bajo para el tipo de exposicion")
+        builder.setMessage("La resistencia del diseño es muy bajo para el tipo de exposición, tiene que ser mayor a 260")
+                .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setCancelable(false).show();
+
+    }
+
+    public void alerta_tipo_expo_2(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
+        builder.setTitle("Alerta");
+        builder.setMessage("La resistencia del diseño es muy bajo para el tipo de exposición, tiene que ser mayor a 280")
+                .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setCancelable(false).show();
+
+    }
+
+    public void alerta_tipo_expo_3(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
+        builder.setTitle("Alerta");
+        builder.setMessage("La resistencia del diseño es muy bajo para el tipo de exposición, tiene que ser mayor a 300")
+                .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setCancelable(false).show();
+
+    }
+    public void alerta_tipo_expo_4(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
+        builder.setTitle("Alerta");
+        builder.setMessage("La resistencia del diseño es muy bajo para el tipo de exposición, tiene que ser mayor a 325")
+                .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setCancelable(false).show();
+
+    }
+
+    public void alerta_tipo_expo_5(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
+        builder.setTitle("Alerta");
+        builder.setMessage("La resistencia del diseño es muy bajo para el tipo de exposición, tiene que ser mayor a 175")
                 .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -348,25 +402,25 @@ public class MainActivity extends AppCompatActivity {
                 double d_p_c = Double.parseDouble(s_p_c);
 
 
-
                 if ("Baja permeabilidad".equals(seleccion_expo) && d_resis_dis<260) {
                    alerta_tipo_expo();
                 }
-                else if ("Exposición al ataque de sulfatos".equals(seleccion_expo) && d_resis_dis<10) {
-                    alerta_tipo_expo();
+                else if ("Exposición al ataque de sulfatos".equals(seleccion_expo) && d_resis_dis<280) {
+                    alerta_tipo_expo_2();
                 }
                 else if ("Proceso de congelamiento de deshielo".equals(seleccion_expo) && d_resis_dis<300) {
-                    alerta_tipo_expo();
+                    alerta_tipo_expo_3();
                 }
                 else if ("Proceso contra la corrosión del concreto".equals(seleccion_expo) && d_resis_dis<325) {
-                    alerta_tipo_expo();
-                }else if("Niguno".equals(seleccion_expo)&& d_resis_dis<245)
-                    alerta_tipo_expo();
-               else  {
+                    alerta_tipo_expo_4();
+                }else if("Niguno".equals(seleccion_expo)&& d_resis_dis<175)
+                    alerta_tipo_expo_5();
+               else   {
 
                 if ("Baja permeabilidad".equals(seleccion_expo)|| "Exposición al ataque de sulfatos".equals(seleccion_expo)||
                         "Proceso de congelamiento de deshielo".equals(seleccion_expo) ){
                             Double a_c= 0.45;
+
                             ir.putExtra("valor_ac",a_c);
                 }
                 if ("Proceso contra la corrosión del concreto".equals(seleccion_expo) ){
@@ -427,7 +481,7 @@ public class MainActivity extends AppCompatActivity {
                     "  -  Agregado fino .\n" +
                     "  -  Aditivo.\n\n" +
                     "2. Se Completa las características del concreto deseado.\n\n" +
-                    "3. Puedes acceder al proceso de dosificación obtenida por el método del comité 211 del ACI una vez " +
+                    "3. Puedes acceder al proceso de dosificación obtenida por el método del comité ACI 211 una vez " +
                     "rellenado todos los datos correctamente presionando el botón " +
                     "Ir al proceso de dosificación.\n\n" +
                     "4. En el proceso de dosificación podrás exportar los resultados a un formato PDF" +

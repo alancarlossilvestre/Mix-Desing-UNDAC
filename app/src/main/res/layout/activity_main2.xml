@@ -25,8 +25,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="1. Determinacion de la resistencia promedio
-                             Norma E-060 de concreto armado"
+                android:text="1. Determinación de la Resistencia Promedio
+                                 Norma E-060 de Concreto Armado"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Resistencia  promedio especificada (kg/cm2) "
+                        android:text="- Resistencia  Promedio Especificada (kg/cm2) "
                         android:textColor="#000000"
                         android:textSize="15dp"
                          />
@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Factor de modificación de la SD "
+                        android:text="- Factor de Modificación de la SD "
                         android:textColor="#000000"
                         android:textSize="15dp"
                          />
@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- DS de la constructora (kg/cm2)"
+                        android:text="- DS de la Constructora (kg/cm2)"
                         android:textColor="#000000"
                         android:textSize="15dp"
                        />
@@ -139,7 +139,7 @@
 
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Resistencia promedio modificado  (kg/cm2)"
+                        android:text="- Resistencia Promedio Modificado  (kg/cm2)"
                         android:textColor="#000000"
                         android:textSize="15dp"
                          />
@@ -164,7 +164,7 @@
                     android:layout_marginBottom="1dp"
                     android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:text="Resistencia promedio requerida "
+                    android:text="Resistencia Promedio Requerida "
                     android:textColor="#000000"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -181,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- F'CR (kg/cm2)"
+                        android:text="- f'cr (kg/cm2)"
                         android:textColor="#000000"
                         android:textSize="15dp"
                         />
@@ -204,7 +204,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="2. Selección del tamaño maximo nominal"
+                android:text="2. Selección del Tamaño Máximo Nominal"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -257,7 +257,7 @@
                 android:layout_margin="10dp"
                 android:gravity="left"
 
-                android:text="3. Selección de asentamiento"
+                android:text="3. Selección de Asentamiento"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -304,7 +304,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="4. Volumen unitario de agua"
+                android:text="4. Volumen Unitario de Agua"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -354,7 +354,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="5. Contenido de aire atrapado"
+                android:text="5. Contenido de Aire Atrapado"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -382,7 +382,7 @@
 
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Volumen del aire atrapado  "
+                        android:text="- Porcentaje del Aire atrapado  "
                         android:textColor="#000000"
                         android:textSize="15dp"
                         />
@@ -405,7 +405,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="6. Relacion agua cemento (28 días)"
+                android:text="6. Relacion Agua Cemento (28 días)"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -430,7 +430,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Por resistencia "
+                        android:text="- Por Resistencia "
                         android:textColor="#000000"
                         android:textSize="15dp"
                        />
@@ -457,7 +457,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Por durabilidad "
+                        android:text="- Por Durabilidad "
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -484,7 +484,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Relacion a/c de diseño"
+                        android:text="- Relación a/c de Diseño"
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -506,7 +506,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="7. Factor cemento"
+                android:text="7. Factor Cemento"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -533,7 +533,7 @@
 
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Factor cemento (kg)  "
+                        android:text="- Factor Cemento (kg)  "
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -583,7 +583,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="8. seleccion del contenido del agregado grueso"
+                android:text="8. Selección del Contenido del Agregado Grueso"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -634,7 +634,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Volumen del agregado grueso"
+                        android:text="- Volumen del Agregado Grueso"
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -661,7 +661,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Peso unitario seco y compactado (kg/cm3)"
+                        android:text="- Peso Unitario Compactado (kg/m3)"
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -687,9 +687,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Cantidad de agregado grueso (k/g)"
+                        android:text="- Cantidad de Agregado Grueso (kg)"
                         android:textColor="#000000"
-                        android:textSize="15dp"/>
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/viewcantidad_del_agregado_grueso"
@@ -702,12 +702,13 @@
                 </LinearLayout>
             </LinearLayout>
             <TextView
+                android:id="@+id/titulo9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="9. Metodo de los volumenes absolutos"
+                android:text="9. Método de los Volumenes Absolutos"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -896,7 +897,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="10. Calculo del volumen y peso del agregado fino"
+                android:text="10. Cálculo del Volumen y Peso del Agregado Fino"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -969,7 +970,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="11. Valores de diseño en estado seco"
+                android:text="11. Valores de Diseño en Estado Seco"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -1146,7 +1147,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="12. Corrección por humedad del agregado "
+                android:text="12. Corrección por Humedad del Agregado "
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -1183,7 +1184,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado fino (kg)"
+                        android:text="- Agregado Fino (kg)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1210,7 +1211,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado grueso (kg)"
+                        android:text="- Agregado Grueso (kg)"
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -1233,7 +1234,7 @@
                     android:layout_marginRight="1dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Húmedad superficial"
+                    android:text="Humedad Superficial"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
@@ -1249,7 +1250,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado fino (%)"
+                        android:text="- Agregado Fino (%)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1276,7 +1277,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado grueso (%)"
+                        android:text="- Agregado Grueso (%)"
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -1315,7 +1316,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado fino (lts)"
+                        android:text="- Agregado Fino (lts)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1342,7 +1343,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado grueso (lts)"
+                        android:text="- Agregado Grueso (lts)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1370,7 +1371,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- correccion de agua (lts)"
+                        android:text="- Corrección de Agua (lts)"
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -1398,7 +1399,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agua efectiva (lts)"
+                        android:text="- Agua Efectiva (lts)"
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -1421,7 +1422,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="valores corregidos por humedad"
+                    android:text="valores Corregidos por Humedad"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
@@ -1437,7 +1438,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- cemento (kg)"
+                        android:text="- Cemento (kg)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1541,7 +1542,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado grueso (kg)"
+                        android:text="- Agregado Grueso (kg)"
                         android:textColor="#000000"
                         android:textSize="15dp" />
 
@@ -1567,7 +1568,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado fino (kg)"
+                        android:text="- Agregado Fino (kg)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1588,7 +1589,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="13. valores del diseño en proporcion de peso"
+                android:text="13. Valores del Diseño en Proporción de Peso"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -1638,7 +1639,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado fino "
+                        android:text="- Agregado Fino "
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1665,7 +1666,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado grueso "
+                        android:text="- Agregado Grueso "
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1738,7 +1739,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="14. valores del diseño en peso por tanda  de una bolsa"
+                android:text="14. Valores del diseño en peso por tanda  de una bolsa"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -1790,7 +1791,7 @@
 
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado fino (kg)"
+                        android:text="- Agregado Fino (kg)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1816,7 +1817,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado grueso (kg)"
+                        android:text="- Agregado Grueso (kg)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1889,7 +1890,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:gravity="left"
-                android:text="15. Dosificación en obra"
+                android:text="15. Dosificación en Obra"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/titulos_porceso_de_dosificacion"
                 android:textStyle="bold" />
@@ -1913,7 +1914,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Mezcla necesaria (m3)"
+                        android:text="- Mezcla Necesaria (m3)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1966,7 +1967,7 @@
 
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado fino (m3)"
+                        android:text="- Agregado Fino (m3)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -1992,7 +1993,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Agregado grueso (m3)"
+                        android:text="- Agregado Grueso (m3)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -2044,7 +2045,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
-                        android:text="- Aire (m3)"
+                        android:text="- Aire (%)"
                         android:textColor="#000000"
                         android:textSize="15dp"/>
 
@@ -2092,7 +2093,7 @@
                 android:textColor="#ffffff"
                 android:background="#3E4147"
                 android:layout_margin="20dp"
-                android:text="Generar pdf"/>
+                android:text="Generar PDF"/>
         </LinearLayout>
     </ScrollView>
     

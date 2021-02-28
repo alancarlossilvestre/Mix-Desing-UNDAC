@@ -1,5 +1,7 @@
 package org.alan.mixdesign;
 //-----------------------Dosificacion----------------------------
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -7,33 +9,50 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.fonts.Font;
+import android.graphics.pdf.PdfDocument;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Html;
 import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class MainActivity2 extends AppCompatActivity {
+
+    private static final int STORAGE_CODE =  1000;
 
     TextView titulo_1, titulo_2, titulo_3, titulo_4, titulo_5, titulo_6, titulo_7,titulo_8, titulo_9, titulo_10, titulo_11, titulo_12,
     titulo_13, titulo_14, titulo_15,
     //-----------------------------------------------
-      view_1_1, view_2_1, view_3_1, view_4_1, view_5_1, view_6_1,
+            view_1_1, view_1_2, view_1_3, view_1_4, view_1_5, view_1_6, view_2_1, view_3_1, view_4_1, view_5_1, view_6_1, view_7_1, view_7_2,
+            view_8_1, view_8_2, view_8_3, view_8_4, view_9_1, view_9_2, view_9_3, view_9_4, view_9_5, view_9_6, view_10_1, view_10_2, view_11_1,
+            view_11_2, view_11_3, view_11_4, view_11_5, view_11_6, view_12_1_0, view_12_1_1,view_12_1_2,view_12_2_0,view_12_2_1,view_12_2_2,
+            view_12_3_0, view_12_3_1,view_12_3_2,view_12_3_3,view_12_3_4,view_12_4_0, view_12_4_1, view_12_4_2, view_12_4_3, view_12_4_5, view_12_4_6, view_12_4_4,
+            view_13_1,view_13_2,view_13_3,view_13_4,view_13_5, view_14_1,view_14_2,view_14_3,view_14_4,view_14_5,
+            view_15_1,view_15_2,view_15_3,view_15_4,view_15_5, view_15_6,view_15_7,
+
             mostrar_fact_modifi, mostrar_desviacion_estandar, mostrar_resistencia_promedio_requerida, valor_asentamiento,
             mostrar_resistencia_promedio_requerida_especificada, mostrar_ressi_prom_mod, mostrar_TMN_agre_gru, mostrar_peso_sec_comp_agre_gr,
             mostrar_volumen_unitario_de_agua, mostrar_aire_atrapado, mostrar_factor_cemento, mostrar_TMN_agre_gru_k, mostrar_cantidad_agregado_grueso,
@@ -62,15 +81,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         btngenerar = (Button) findViewById(R.id.generar_pdf);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,},
-                    1000);
-        }
 
-
-        ;
         mostrar_fact_modifi = (TextView) findViewById(R.id.viewrfactor_de_modificacion);
         mostrar_desviacion_estandar = (TextView) findViewById(R.id.viewrdsde_la_constrtructora);
         mostrar_resistencia_promedio_requerida = (TextView) findViewById(R.id.viewresistencia_promedio_requerida);
@@ -151,40 +162,108 @@ public class MainActivity2 extends AppCompatActivity {
 //---------------------------------------------------------------------------------------------------
                 titulo_1 = (TextView)findViewById(R.id.textView34);
                 view_1_1 = (TextView)findViewById(R.id.textresistencia_promedio);
-                view_2_1 = (TextView)findViewById(R.id.resistencia_del_diseño) ;
-                view_3_1= (TextView)findViewById(R.id.desviacionestandar) ;
-                view_4_1= (TextView)findViewById(R.id.view_1_4);
-                view_5_1= (TextView)findViewById(R.id.view_5_1);
-                view_6_1= (TextView)findViewById(R.id.view_6_1);
+                view_1_2 = (TextView)findViewById(R.id.resistencia_del_diseño) ;
+                view_1_3= (TextView)findViewById(R.id.desviacionestandar) ;
+                view_1_4= (TextView)findViewById(R.id.view_1_4);
+                view_1_5= (TextView)findViewById(R.id.view_5_1);
+                view_1_6= (TextView)findViewById(R.id.view_6_1);
 
 //---------------------------------------------------------------------------------------------------
                 titulo_2 = (TextView)findViewById(R.id.tituloporceso_2);
+                view_2_1 = (TextView)findViewById(R.id.textViewTMN);
+
 //---------------------------------------------------------------------------------------------------
                 titulo_3 = (TextView)findViewById(R.id.tituloporceso_3);
+                view_3_1 = (TextView)findViewById(R.id.textViewasentamiento);
 //---------------------------------------------------------------------------------------------------
                 titulo_4 = (TextView)findViewById(R.id.tituloporceso);
+                view_4_1 = (TextView)findViewById(R.id.textavolumenunitarioagua);
 //---------------------------------------------------------------------------------------------------
                 titulo_5 = (TextView)findViewById(R.id.titulocontenido_aire);
+                view_5_1 = (TextView)findViewById(R.id.textaireatrapado);
 //---------------------------------------------------------------------------------------------------
                 titulo_6 = (TextView)findViewById(R.id.titulorelacionaAC);
+                view_6_1 = (TextView)findViewById(R.id.textrelacionAC_diseño);
 //---------------------------------------------------------------------------------------------------
                 titulo_7 = (TextView)findViewById(R.id.titulofactor_cemento);
+                view_7_1 =  (TextView)findViewById(R.id.textafactor_cemento);
+                view_7_2 = (TextView)findViewById(R.id.bolsas);
 //---------------------------------------------------------------------------------------------------
                 titulo_8 = (TextView)findViewById(R.id.titulo_selec_agreg_grueso);
+                view_8_1 = (TextView)findViewById(R.id.textfactor_cemento);
+                view_8_2 = (TextView)findViewById(R.id.textvolumen_del_agregado_grueso);
+                view_8_3  = (TextView)findViewById(R.id.peso_unitario_seco_y_compactado);
+                view_8_4 = (TextView)findViewById(R.id.cantidad_del_agregado_grueso);
 //---------------------------------------------------------------------------------------------------
-                titulo_9 = (TextView)findViewById(R.id.titulo_paso9);
+                titulo_9 = (TextView)findViewById(R.id.titulo9);
+                view_9_1 = (TextView)findViewById(R.id.textvalor_cemento);
+                view_9_2 = (TextView)findViewById(R.id.textagua_paso9);
+                view_9_3 = (TextView)findViewById(R.id.textaire_paso9);
+                view_9_4 = (TextView)findViewById(R.id.agregado_grueso_paso9);
+                view_9_5 = (TextView)findViewById(R.id.otro_aditivo);
+                view_9_6 = (TextView)findViewById(R.id.suma);
 //---------------------------------------------------------------------------------------------------
                 titulo_10 = (TextView)findViewById(R.id.titulo_paso10);
+                view_10_1 = (TextView)findViewById(R.id.volumen_paso9);
+                view_10_2 = (TextView)findViewById(R.id.peso_paso10);
 //---------------------------------------------------------------------------------------------------
                 titulo_11= (TextView)findViewById(R.id.titulo_paso11);
+                view_11_1 = (TextView)findViewById(R.id.textvalor_cemento);
+                view_11_2 = (TextView)findViewById(R.id.textagua_paso9);
+                view_11_3 = (TextView)findViewById(R.id.textaire_paso9);
+                view_11_4 = (TextView)findViewById(R.id.agregado_grueso_paso9);
+                view_11_5 = (TextView)findViewById(R.id.otro_aditivo);
+                view_11_6 = (TextView)findViewById(R.id.otro_aditivo_11);
 //---------------------------------------------------------------------------------------------------
                 titulo_12 = (TextView)findViewById(R.id.titulo_paso12);
+                view_12_1_0 = (TextView)findViewById(R.id.titulo_paso_12_1);
+                view_12_1_1= (TextView)findViewById(R.id.a_f_paso12);
+                view_12_1_2= (TextView)findViewById(R.id.text_a_g_paso12);
+                view_12_2_0= (TextView)findViewById(R.id.titulo_paso_12_2);
+                view_12_2_1= (TextView)findViewById(R.id.a_f_paso12_2);
+                view_12_2_2= (TextView)findViewById(R.id.text_a_g_paso12_2);
+                view_12_3_0= (TextView)findViewById(R.id.titulo_paso_12_3);
+                view_12_3_1= (TextView)findViewById(R.id.a_f_paso12_3);
+                view_12_3_2= (TextView)findViewById(R.id.text_a_g_paso12_3);
+                view_12_3_3= (TextView)findViewById(R.id.text_correccion_de_agua);
+                view_12_3_4= (TextView)findViewById(R.id.text_agua_efectiva);
+                view_12_4_0 = (TextView)findViewById(R.id.titulo_paso_12_4);
+                view_12_4_1 = (TextView)findViewById(R.id.a_cemento_paso12_4);
+                view_12_4_2 = (TextView)findViewById(R.id.a_agua_paso12_4);
+                view_12_4_3= (TextView)findViewById(R.id.a_aire_paso12_4);
+                view_12_4_4 = (TextView)findViewById(R.id.a_aditivo_paso12_4);
+                view_12_4_5= (TextView)findViewById(R.id.a_g_paso12_4);
+                view_12_4_6= (TextView)findViewById(R.id.a_f_paso12_4);
+
 //---------------------------------------------------------------------------------------------------
                 titulo_13 = (TextView)findViewById(R.id.titulo_paso13);
+                view_13_1= (TextView)findViewById(R.id.textvalor_cemento_13);
+                view_13_2= (TextView)findViewById(R.id.texta_f_paso13);
+                view_13_3= (TextView)findViewById(R.id.text_a_g_paso13);
+                view_13_4= (TextView)findViewById(R.id.agua_paso13);
+                view_13_5 = (TextView)findViewById(R.id.aditivo_paso13);
 //---------------------------------------------------------------------------------------------------
                 titulo_14 = (TextView)findViewById(R.id.titulo_paso14);
+                view_14_1= (TextView)findViewById(R.id.textvalor_cemento_14);
+                view_14_2= (TextView)findViewById(R.id.texta_f_paso14);
+                view_14_3= (TextView)findViewById(R.id.text_a_g_paso14);
+                view_14_4= (TextView)findViewById(R.id.agua_paso14);
+                view_14_5 = (TextView)findViewById(R.id.aditivo_paso14);
 //---------------------------------------------------------------------------------------------------
-                titulo_15 = (TextView)findViewById(R.id.titulo_paso15);
+            titulo_15 = (TextView)findViewById(R.id.titulo_paso15);
+            view_15_1= (TextView)findViewById(R.id.textvalor_mezcla_necesaria);
+            view_15_2= (TextView)findViewById(R.id.textvalor_cemento_15);
+            view_15_3= (TextView)findViewById(R.id.texta_f_paso15);
+            view_15_4= (TextView)findViewById(R.id.text_a_g_paso15);
+            view_15_5 = (TextView)findViewById(R.id.agua_paso15);
+            view_15_6 = (TextView)findViewById(R.id.ire_paso15);
+            view_15_7 = (TextView)findViewById(R.id.aditivo_paso15);
+
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE},PackageManager.PERMISSION_GRANTED);
+
+        createPDF();
+
 
         Intent intent = getIntent();
 
@@ -1045,16 +1124,18 @@ public class MainActivity2 extends AppCompatActivity {
                 double seleccion_ac = n_fcr_a_c;
                 mostrar_ac_de_diseño.setText(String.format("%.2f", seleccion_ac));
                 double a_c = (valor / seleccion_ac);
+                mostrar_factor_cemento_v.setText(String.format("%.2f", a_c));
                 String s_a_c = String.valueOf(a_c);
-                mostrar_ac_de_diseño.setText(String.format("%.2f", a_c));
-                //    Toast.makeText(this, " seleccion  " + a_c, Toast.LENGTH_LONG).show();
+                mostrar_ac_de_diseño.setText(String.format("%.2f", seleccion_ac));
+                mostrar_factor_cemento_v.setText(String.format("%.2f", a_c));
+                  // Toast.makeText(this, " seleccion  " + a_c, Toast.LENGTH_LONG).show();
 
-            } else if (fcr_a_c > ac_durabildiad) {
+            }  else if (fcr_a_c > ac_durabildiad) {
                 double seleccion_ac = ac_durabildiad;
                 mostrar_ac_de_diseño.setText(String.format("%.2f", seleccion_ac));
                 double a_c = (valor / seleccion_ac);
-                mostrar_ac_de_diseño.setText(String.format("%.2f", a_c));
-                //  Toast.makeText(this, " seleccion  " + a_c, Toast.LENGTH_LONG).show();
+                mostrar_ac_de_diseño.setText(String.format("%.2f", ac_durabildiad));
+                 //Toast.makeText(this, " seleccion  " + a_c, Toast.LENGTH_LONG).show();
 
             }
         }
@@ -1081,6 +1162,7 @@ public class MainActivity2 extends AppCompatActivity {
         if (d_valor_resis_dis1_F > 200 && d_valor_resis_dis1_F < 250 && aire.equals("Sin aire")) {
             fcr_a_c = 0.70 + ((0.62 - 0.7) / (250 - 200)) * (d_valor_resis_dis1_F - 200);
             String str_fcr_a_c = String.valueOf(fcr_a_c);
+
             mostrar_fcr_agua_cemento_por_resistencia.setText(String.format("%.2f", fcr_a_c));
         }
 
@@ -1147,8 +1229,13 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_ac_de_diseño.setText(String.format("%.2f", fcr_a_c));
 
         }
+
+
+
         String s_paso7 = mostrar_factor_cemento_v.getText().toString();
         Double d_paso7 = Double.parseDouble(s_paso7);
+
+
 
 
         double r_paso_7 = d_paso7 / 42.5;
@@ -1781,18 +1868,18 @@ public class MainActivity2 extends AppCompatActivity {
         // Toast.makeText(this, " pasa  " +  d_a_g_paso8 + p_e_a_g, Toast.LENGTH_LONG).show();
         String s_f_c = mostrar_factor_cemento_v.getText().toString();
         double d_f_c = Double.parseDouble(s_f_c);
-        double aditivo = (d_f_c * aditivoxbls) / 1000000;
-        mostrar_aditivo_paso9.setText(String.format("%.3f", aditivo));
+        double aditivo = (redondeo_bolsa_paso7 * aditivoxbls) / 1000000;
+        mostrar_aditivo_paso9.setText(String.format("%.5f", aditivo));
         double suma = cemento + agua_paso_9 + aire_paso9 + v_a_g_paso9 + aditivo;
 
         mostrar_suma_paso9.setText(String.format("%.3f", suma));
 
         if (suma < 1.0) {
-            String no_aceptado = "<font color='#EE0000'>sumatoria insuficiente</font>";
+            String no_aceptado = "<font color='#EE0000'> </font>";
             mostrar_estado_paso9.setText(Html.fromHtml(no_aceptado));
 
         } else if (suma >= 1.0) {
-            String aceptado = "<font color='#FFFFFF'>sumatoria suficiente</font>";
+            String aceptado = "<font color='#FFFFFF'> </font>";
             mostrar_estado_paso9.setText(Html.fromHtml(aceptado));
         }
 
@@ -1946,7 +2033,7 @@ public class MainActivity2 extends AppCompatActivity {
         //mostrar_agua_paso13.setText(String.format("%.2f",agua_paso13));
         mostrar_agua_paso13.setText("" + redondeo_agua_paso13);
 
-        mostrar_aditivo_paso13.setText(String.format("%.2f", aditivo_paso11));
+        mostrar_aditivo_paso13.setText(String.format("%.3f", aditivo_paso11));
 
 
         //------------------paso14-------------------//
@@ -2003,115 +2090,223 @@ public class MainActivity2 extends AppCompatActivity {
         double d_aire_paso15 = Double.parseDouble(s_aire_paso15);
         mostrar_aire_paso15.setText(String.format("%.2f", d_aire_paso15));
 
-        mostrar_aditivo_paso15.setText(String.format("%.2f", aditivo_paso11));
+        mostrar_aditivo_paso15.setText(String.format("%.3f", aditivo_paso11));
+
+    }
+        public void createPDF(){
 
         btngenerar.setOnClickListener(new View.OnClickListener() {
-
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                crearPDF();
-                Toast.makeText(MainActivity2.this, "PDF creado", Toast.LENGTH_LONG).show();
+                PdfDocument myPdfDocument = new PdfDocument();
+                Paint TituloPrincipal = new Paint();
+                Paint Titulos = new Paint();
+                Paint items = new Paint();
+
+                PdfDocument.PageInfo myPageInfo1 = new PdfDocument.PageInfo.Builder(500, 800, 1).create();
+
+                PdfDocument.Page myPage1 =myPdfDocument.startPage(myPageInfo1);
+                Canvas canvas = myPage1.getCanvas();
+
+
+                TituloPrincipal.setTextSize(15);
+                //TituloPrincipal.setTextAlign(Paint.Align.CENTER);
+
+                Titulos.setTextSize(10);
+
+                items.setTextSize(8);
+
+                canvas.drawText("Informe del Proceso de dosificación",145,40 ,TituloPrincipal);
+                canvas.drawText("1. Determinacion de la resistencia promedio - Norma E-060 de concreto armado",20,60, Titulos);
+
+                canvas.drawText(view_1_1.getText().toString(),30, 75,items);
+                canvas.drawText(mostrar_resistencia_promedio_requerida_especificada.getText().toString(),300,75,items);
+
+                canvas.drawText(view_1_2.getText().toString(),30, 90,items);
+                canvas.drawText( mostrar_fact_modifi.getText().toString(),300,90,items );
+
+                canvas.drawText(view_1_3.getText().toString(),30, 105,items);
+                canvas.drawText(mostrar_desviacion_estandar.getText().toString(),300,105,items);
+
+                canvas.drawText(view_1_4.getText().toString(),30, 120,items);
+                canvas.drawText(mostrar_ressi_prom_mod.getText().toString(),300,120,items);
+
+                canvas.drawText(view_1_5.getText().toString(),30, 135,Titulos);
+
+
+                canvas.drawText(view_1_6.getText().toString(),30, 150,items);
+                canvas.drawText(mostrar_resistencia_promedio_requerida.getText().toString(),300,150,items);
+
+
+
+                canvas.drawText(titulo_2.getText().toString(),20,170,Titulos);
+                canvas.drawText(view_2_1.getText().toString(),30,185,items);
+                canvas.drawText(mostrar_TMN_agre_gru.getText().toString(),300,185,items);
+
+                canvas.drawText(titulo_3.getText().toString(),20,205,Titulos);
+                canvas.drawText(view_3_1.getText().toString(),30,220,items);
+                canvas.drawText(valor_asentamiento.getText().toString(),300,220,items);
+
+                canvas.drawText(titulo_4.getText().toString(),20,240,Titulos);
+                canvas.drawText(view_4_1.getText().toString(),30,255,items);
+                canvas.drawText(mostrar_volumen_unitario_de_agua.getText().toString(),300,255,items);
+
+                canvas.drawText(titulo_5.getText().toString(),20,275,Titulos);
+                canvas.drawText(view_5_1.getText().toString(),30,290,items);
+                canvas.drawText(mostrar_aire_atrapado.getText().toString(),300,290,items);
+
+                canvas.drawText(titulo_6.getText().toString(),20,310,Titulos);
+                canvas.drawText(view_6_1.getText().toString(),30,325,items);
+                canvas.drawText(mostrar_ac_de_diseño .getText().toString(),300,325,items);
+
+                canvas.drawText(titulo_7.getText().toString(),20,345,Titulos);
+                canvas.drawText(view_7_1.getText().toString(),30,360,items);
+                canvas.drawText(mostrar_factor_cemento_v.getText().toString(),300,360,items);
+                canvas.drawText(view_7_2.getText().toString(),30,375,items);
+                canvas.drawText(mostrar_bolsas.getText().toString(),300,375,items);
+
+                canvas.drawText(titulo_8.getText().toString(),20,395,Titulos);
+                canvas.drawText(view_8_1.getText().toString(),30,410,items);
+                canvas.drawText(mostrar_TMN_agre_gru_k.getText().toString(),300,410,items);
+                canvas.drawText(view_8_2.getText().toString(),30,425,items);
+                canvas.drawText(mostrar_factor_cemento.getText().toString(),300,425,items);
+                canvas.drawText(view_8_3.getText().toString(),30,440,items);
+                canvas.drawText(mostrar_peso_sec_comp_agre_gr.getText().toString(),300,440,items);
+                canvas.drawText(view_8_4.getText().toString(),30,455,items);
+                canvas.drawText(mostrar_cantidad_agregado_grueso.getText().toString(),300,455,items);
+
+                canvas.drawText(titulo_9.getText().toString(),20,475,Titulos);
+                canvas.drawText(view_9_1.getText().toString(),30,490,items);
+                canvas.drawText(mostrar_cemento_paso9.getText().toString(),300,490,items);
+                canvas.drawText(view_9_2.getText().toString(),30,505,items);
+                canvas.drawText(mostrar_agua_paso9.getText().toString(),300,505,items);
+                canvas.drawText(view_9_3.getText().toString(),30,520,items);
+                canvas.drawText(mostrar_aire_paso9.getText().toString(),300,520,items);
+                canvas.drawText(view_9_4.getText().toString(),30,535,items);
+                canvas.drawText(mostrar_v_a_g_paso9.getText().toString(),300,535,items);
+                canvas.drawText(view_9_5.getText().toString(),30,550,items);
+                canvas.drawText(mostrar_aditivo_paso9.getText().toString(),300,550,items);
+                canvas.drawText(view_9_6.getText().toString(),30,565,items);
+                canvas.drawText(mostrar_suma_paso9.getText().toString(),300,565,items);
+
+                canvas.drawText(titulo_10.getText().toString(),20,585,Titulos);
+                canvas.drawText(view_10_1.getText().toString(),30,600,items);
+                canvas.drawText( mostrar_vol_paso10.getText().toString(),300,600,items);
+                canvas.drawText(view_10_2.getText().toString(),30,615,items);
+                canvas.drawText(mostrar_peso_paso10.getText().toString(),300,615,items);
+
+                canvas.drawText(titulo_11.getText().toString(),20,635,Titulos);
+                canvas.drawText(view_11_1.getText().toString(),30,650,items);
+                canvas.drawText(mostrar_cemento_paso11.getText().toString(),300,650,items);
+                canvas.drawText(view_11_2.getText().toString(),30,665,items);
+                canvas.drawText(mostrar_agua_paso11.getText().toString(),300,665,items);
+                canvas.drawText(view_11_3.getText().toString(),30,680,items);
+                canvas.drawText(mostrar_aire_paso11.getText().toString(),300,680,items);
+                canvas.drawText(view_11_4.getText().toString(),30,695,items);
+                canvas.drawText(mostrar_v_a_f_paso11.getText().toString(),300,695,items);
+                canvas.drawText(view_11_5.getText().toString(),30,710,items);
+                canvas.drawText(mostrar_v_a_g_paso11.getText().toString(),300,710,items);
+                canvas.drawText(view_11_6.getText().toString(),30,725,items);
+                canvas.drawText(mostrar_aditivo11.getText().toString(),300,725,items);
+
+                myPdfDocument.finishPage(myPage1);
+
+                PdfDocument.PageInfo myPageInfo2 = new PdfDocument.PageInfo.Builder(500, 800, 1).create();
+
+                PdfDocument.Page myPage2 =myPdfDocument.startPage(myPageInfo2);
+                Canvas canvas2 = myPage2.getCanvas();
+
+                canvas2.drawText(titulo_12.getText().toString(),20,40,Titulos);
+                canvas2.drawText(view_12_1_0.getText().toString(),30,55,items);
+                canvas2.drawText(view_12_1_1.getText().toString(),30,70,items);
+                canvas2.drawText(mostrar_a_f_paso12.getText().toString(),300,70,items);
+                canvas2.drawText(view_12_1_2.getText().toString(),30,85,items);
+                canvas2.drawText(mostrar_a_g_paso12.getText().toString(),300,85,items);
+
+                canvas2.drawText(view_12_2_0.getText().toString(),30,105,items);
+                canvas2.drawText(view_12_2_1.getText().toString(),30,120,items);
+                canvas2.drawText(mostrar_a_f_paso122.getText().toString(),300,120,items);
+                canvas2.drawText(view_12_2_2.getText().toString(),30,135,items);
+                canvas2.drawText(mostrar_a_g_paso122.getText().toString(),300,135,items);
+
+                canvas2.drawText(view_12_3_0.getText().toString(),30,155,items);
+                canvas2.drawText(view_12_3_1.getText().toString(),30,170,items);
+                canvas2.drawText(mostrar_a_f_paso123.getText().toString(),300,170,items);
+                canvas2.drawText(view_12_3_2.getText().toString(),30,185,items);
+                canvas2.drawText(mostrar_a_g_paso123.getText().toString(),300,185,items);
+                canvas2.drawText(view_12_3_3.getText().toString(),30,200,items);
+                canvas2.drawText(mostrar_correccion_de_agua.getText().toString(),300,200,items);
+                canvas2.drawText(view_12_3_4.getText().toString(),30,215,items);
+                canvas2.drawText(mostrar_agua_efectiva.getText().toString(),300,215,items);
+
+                canvas2.drawText(view_12_4_0.getText().toString(),30,235,items);
+                canvas2.drawText(view_12_4_1.getText().toString(),30,250,items);
+                canvas2.drawText(mostrar_cemento_paso12_4 .getText().toString(),300,250,items);
+                canvas2.drawText(view_12_4_2.getText().toString(),30,265,items);
+                canvas2.drawText(mostrar_agua_paso12_4.getText().toString(),300,265,items);
+                canvas2.drawText(view_12_4_3.getText().toString(),30,280,items);
+                canvas2.drawText(mostrar_aire_paso12_4.getText().toString(),300,280,items);
+                canvas2.drawText(view_12_4_4.getText().toString(),30,295,items);
+                canvas2.drawText(mostrar_aditivo_paso_12_4.getText().toString(),300,295,items);
+                canvas2.drawText(view_12_4_5.getText().toString(),30,310,items);
+                canvas2.drawText(mostrar_a_g_paso12_4.getText().toString(),300,310,items);
+                canvas2.drawText(view_12_4_6.getText().toString(),30,325,items);
+                canvas2.drawText(mostrar_a_f_paso12_4.getText().toString(),300,325,items);
+
+
+                canvas2.drawText(titulo_13.getText().toString(),30,345,items);
+                canvas2.drawText(view_13_1.getText().toString(),30,360,items);
+                canvas2.drawText(mostrar_cemento_paso13.getText().toString(),300,360,items);
+                canvas2.drawText(view_13_2.getText().toString(),30,375,items);
+                canvas2.drawText(mostrar_a_f_paso13.getText().toString(),300,375,items);
+                canvas2.drawText(view_13_3.getText().toString(),30,390,items);
+                canvas2.drawText(mostrar_a_g_paso13 .getText().toString(),300,390,items);
+                canvas2.drawText(view_13_4.getText().toString(),30,405,items);
+                canvas2.drawText(mostrar_agua_paso13.getText().toString(),300,405,items);
+                canvas2.drawText(view_13_5.getText().toString(),30,420,items);
+                canvas2.drawText(mostrar_aditivo_paso13.getText().toString(),300,420,items);
+
+                canvas2.drawText(titulo_14.getText().toString(),30,440,items);
+                canvas2.drawText(view_14_1.getText().toString(),30,455,items);
+                canvas2.drawText(mostrar_cemento_paso14.getText().toString(),300,455,items);
+                canvas2.drawText(view_14_2.getText().toString(),30,470,items);
+                canvas2.drawText(mostrar_a_f_paso14.getText().toString(),300,470,items);
+                canvas2.drawText(view_14_3.getText().toString(),30,485,items);
+                canvas2.drawText(mostrar_a_g_paso14.getText().toString(),300,485,items);
+                canvas2.drawText(view_14_4.getText().toString(),30,500,items);
+                canvas2.drawText(mostrar_agua_paso14.getText().toString(),300,500,items);
+                canvas2.drawText(view_14_5.getText().toString(),30,515,items);
+                canvas2.drawText(mostrar_aditivo_paso14.getText().toString(),300,515,items);
+
+                canvas2.drawText(titulo_15.getText().toString(),30,535,items);
+                canvas2.drawText(view_15_1.getText().toString(),30,550,items);
+                canvas2.drawText(mostrar_mezcla_necesaria_paso15.getText().toString(),300,550,items);
+                canvas2.drawText(view_15_2.getText().toString(),30,565,items);
+                canvas2.drawText(mostrar_cemento_paso15.getText().toString(),300,565,items);
+                canvas2.drawText(view_15_3.getText().toString(),30,580,items);
+                canvas2.drawText(mostrar_a_f_paso15.getText().toString(),300,580,items);
+                canvas2.drawText(view_15_4.getText().toString(),30,595,items);
+                canvas2.drawText(mostrar_a_g_paso15.getText().toString(),300,595,items);
+                canvas2.drawText(view_15_5.getText().toString(),30,610,items);
+                canvas2.drawText(mostrar_agua_paso15.getText().toString(),300,610,items);
+                canvas2.drawText(view_15_6.getText().toString(),30,625,items);
+                canvas2.drawText(mostrar_aire_paso15.getText().toString(),300,625,items);
+                canvas2.drawText(view_15_7.getText().toString(),30,640,items);
+                canvas2.drawText(mostrar_aditivo_paso15.getText().toString(),300,640,items);
+
+                myPdfDocument.finishPage(myPage2);
+
+                File file = new File(Environment.getExternalStorageDirectory(),"/FirstPDF.pdf");
+                try{
+                    myPdfDocument.writeTo(new FileOutputStream(file));
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+                myPdfDocument.close();
             }
         });
 
-    }
-
-    public void crearPDF() {
-        Document documento = new Document();
-
-        try {
-            File file = crearfichero(nombre_documento);
-            FileOutputStream ficheroPDF = new FileOutputStream(file.getAbsolutePath());
-
-            PdfWriter writer = PdfWriter.getInstance(documento, ficheroPDF);
-
-            documento.open();
-            String espacio = ":\t ";
-
-            //añadir
-            documento.add(new Paragraph("\tINFORME"));
-            /*
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("Determinacios de la resistencia promedio\n "+ " Norma E-060 de concreto armado "));
-            documento.add(new Paragraph(view_1_1.getText().toString() + espacio + mostrar_resistencia_promedio_requerida_especificada.getText().toString() + " " ));
-            documento.add(new Paragraph(view_2_1.getText().toString() +  espacio +  mostrar_fact_modifi.getText().toString()));
-            documento.add(new Paragraph(view_3_1.getText().toString() + espacio + mostrar_desviacion_estandar.getText().toString()));
-            documento.add(new Paragraph(view_4_1.getText().toString() + espacio +  mostrar_ressi_prom_mod.getText().toString() ));
-            documento.add(new Paragraph("\t\t\t\t\t\t\t\t\t" +view_5_1.getText().toString()  ));
-            documento.add(new Paragraph(view_6_1.getText().toString() + "  " +mostrar_resistencia_promedio_requerida.getText().toString() ));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_2.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_3.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_4.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_5.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_6.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_7.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_8.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_9.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_10.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_11.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_12.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_13.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_14.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph("-------------------------------------------------"));
-            documento.add(new Paragraph(titulo_15.getText().toString()));
-            documento.add(new Paragraph("-------------------------------------------------"));
-
-*/
-        } catch (DocumentException e) {
-        } catch (IOException e) {
-        } finally {
-            documento.close();
         }
-    }
 
-    public File crearfichero(String nombrefichero) {
-
-        File ruta = getRuta();
-        File fichero = null;
-        if (ruta != null) {
-            fichero = new File(ruta, nombrefichero);
-        }
-        return fichero;
-    }
-
-    public File getRuta(){
-        File ruta = null;
-        if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
-            ruta = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nombre_directorio);
-             if(ruta != null ){
-                 if(!ruta.mkdirs()){
-                     if(!ruta.exists()){
-                            return null;
-                     }
-                 }
-             }
-        }
-        return ruta;
-    }
 }

@@ -104,8 +104,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:textSize="15dp"
                 android:text="Tabla 04" />
             <TextView
@@ -116,8 +115,7 @@
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:text="Si cuenta con menos de  30 ensayos"/>
 
 
@@ -136,8 +134,8 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
+
                 android:textSize="15dp"
                 android:text="Tabla 05" />
             <TextView
@@ -148,8 +146,7 @@
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:text="Concretos según su vonsistencia"/>
 
 
@@ -168,8 +165,8 @@
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="#3B6DE2"
-            android:textColor="#ffffff"
+
+            android:textColor="#000000"
             android:textSize="15dp"
             android:text="Tabla 06" />
             <TextView
@@ -180,8 +177,7 @@
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:text="Asentamientos de concretos consolidados por vibración" />
 
 
@@ -200,8 +196,8 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+
+                android:textColor="#000000"
                 android:textSize="15dp"
                 android:text="Tabla 07" />
             <TextView
@@ -212,8 +208,7 @@
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:text="Volumen de aire atrapdo" />
 
 
@@ -232,8 +227,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:textSize="15dp"
                 android:text="Tabla 08" />
             <TextView
@@ -244,8 +238,7 @@
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:text="Contenido de aire atrapado" />
 
 
@@ -266,8 +259,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:textSize="15dp"
                 android:text="Tabla 09" />
             <TextView
@@ -278,8 +270,7 @@
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:text="Contenido de aire incrporado y total" />
 
 
@@ -299,8 +290,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:textSize="15dp"
                 android:text="Tabla 10" />
             <TextView
@@ -311,8 +301,7 @@
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:text="Relación agua/cemento por resistecia" >
             </TextView>
 
@@ -331,8 +320,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:textSize="15dp"
                 android:text="Tabla 11" />
             <TextView
@@ -343,8 +331,7 @@
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#3B6DE2"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:text="Si hay desviación estándar (RNE E-060)" />
 
             <ImageView

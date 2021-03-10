@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +22,16 @@ import com.google.android.material.textfield.TextInputEditText;
 public class MainActivity extends AppCompatActivity {
      Spinner select_marca, uso_aditivo, ensayos_previos, tipo_de_diseño,
      tipo_de_exposicion, asentamiento, especifique_tipo_estructura, consolidacion_vibracion,
-     tam_max_agregado, especifique_tipo_expo_concreto, spinner_fuente_agua;
+     tam_max_agregado, especifique_tipo_expo_concreto, spinner_fuente_agua, spinner_tipo_de_exposicion;
 
      TextView peso_especifico_cemento, asentamiento_preferencia;
 
      TextInputEditText resistencia_del_diseño, desviacion_estandar, numero_de_ensayos, modulo_ag_grueso, peso_sc_agre_gru,humedad_a_f,
-       peso_e_a_f, absorcion_ag_grueso, humendad_ag_grueso, absorcion_ag_fino, aditivo, densidad_aditivo, mezcla_necesaria, peso_e_a_g;
+       peso_e_a_f, absorcion_ag_grueso, humendad_ag_grueso, absorcion_ag_fino, aditivo, densidad_aditivo, mezcla_necesaria, peso_e_a_g,
+    marca_de_aditivo, inputtipo_aditivo, peso_unitario_compactado_a_f, modulo_finura_agregagdo_grueso_v,
+             inputapeso_unitario_suelto_agregado_grueso, inputapeso_unitario_suelto_agregado_fino;
+
+     EditText tipo_cemento;
     double d_rel_agua_ceme_durabilidad;
 
     @Override
@@ -35,7 +40,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //-------cemento------------
+        tipo_cemento = (EditText)findViewById(R.id.inputtipo_cemento);
         select_marca = (Spinner)findViewById(R.id.spinner_select_marca);
+        //---------------------------
+
+        //--------Aditivo--------
+        marca_de_aditivo= (TextInputEditText)findViewById(R.id.inputmarca_aditivo);
+        inputtipo_aditivo = (TextInputEditText)findViewById((R.id.inputtipo_aditivo));
+
         uso_aditivo = (Spinner)findViewById(R.id.spinner_uso_aditivo);
         tipo_de_diseño = (Spinner)findViewById(R.id.spinner_tipo_de_diseño);
         asentamiento =(Spinner)findViewById(R.id.spinner_asentamiento);
@@ -46,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         especifique_tipo_expo_concreto =(Spinner)findViewById(R.id.spinner_tipo_de_exposicion_especifique);
         spinner_fuente_agua = (Spinner)findViewById(R.id.spinner_agua) ;
 
+        spinner_tipo_de_exposicion = (Spinner)findViewById(R.id.spinner_tipo_de_exposicion);
+
         peso_especifico_cemento = (TextView)findViewById(R.id.viewpeso_especifico);
         asentamiento_preferencia = (TextView)findViewById(R.id.viewasentamiento_de_preferencia);
 
@@ -53,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         desviacion_estandar =(TextInputEditText)findViewById(R.id.inpudesviacion_estandar);
         numero_de_ensayos = (TextInputEditText)findViewById(R.id.inputnumerode_ensayos);
         modulo_ag_grueso = (TextInputEditText)findViewById(R.id.inputmodulo_finura_a_f);
+        peso_unitario_compactado_a_f =  (TextInputEditText)findViewById(R.id.inputpe_unitario_compactado);
         peso_sc_agre_gru= (TextInputEditText)findViewById(R.id.inputpe_unitario_compactado_agregado_grueso);
         peso_e_a_f = (TextInputEditText)findViewById(R.id.inputpeso_especifico_a_f);
         humedad_a_f = (TextInputEditText)findViewById(R.id.inputhumedad_natural_a_F);
@@ -66,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
 
         mezcla_necesaria = (TextInputEditText)findViewById(R.id.inputmezcla_necesaria);
         peso_e_a_g = (TextInputEditText)findViewById(R.id.inputpeso_especifico_agregado_grueso);
+
+        modulo_finura_agregagdo_grueso_v = (TextInputEditText)findViewById(R.id. inputmodulo_finura_agregagdo_grueso);
+
+        inputapeso_unitario_suelto_agregado_fino = (TextInputEditText)findViewById(R.id.inputapeso_unitario_suelto_agregado_fino);
+
+        inputapeso_unitario_suelto_agregado_grueso  = (TextInputEditText)findViewById(R.id.inputapeso_unitario_suelto_agregado_grueso);
+
         String [] opciones_marca = {"Andino","Sol","Lima","Pacasmayo","Yura", "Selva", "Quisqueya", "Sur"};
         ArrayAdapter <String> adaptder1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,  opciones_marca);
         select_marca.setAdapter(adaptder1);
@@ -338,10 +361,33 @@ public class MainActivity extends AppCompatActivity {
                 ||peso_e_a_f.getText().toString().isEmpty()||  absorcion_ag_grueso.getText().toString().isEmpty()
                 || humendad_ag_grueso.getText().toString().isEmpty() || absorcion_ag_fino.getText().toString().isEmpty()
                 || densidad_aditivo.getText().toString().isEmpty()|| mezcla_necesaria.getText().toString().isEmpty()
-                || peso_e_a_g.getText().toString().isEmpty() || desviacion_estandar.getText().toString().isEmpty()){
+                || peso_e_a_g.getText().toString().isEmpty() || desviacion_estandar.getText().toString().isEmpty()
+                || inputapeso_unitario_suelto_agregado_grueso.getText().toString().isEmpty()
+                || inputapeso_unitario_suelto_agregado_fino.getText().toString().isEmpty()
+                || tipo_cemento.getText().toString().isEmpty()
+                || marca_de_aditivo.getText().toString().isEmpty()
+                || inputtipo_aditivo.getText().toString().isEmpty()
+
+        ){
                     alerta_dato_vacio();
         }else{
 
+            //---------cemento
+            String tipo_de_cemento = tipo_cemento.getText().toString();
+            String marca_de_cemento = select_marca.getSelectedItem().toString();
+            //----------------------------------------
+
+            //----------Aditivo-----------
+            String text_marca_de_aditivo = marca_de_aditivo.getText().toString();
+            String tipo_de_aditivo = inputtipo_aditivo.getText().toString();
+
+            //------------agua-----------
+            String tipo_de_agua = spinner_fuente_agua.getSelectedItem().toString();
+
+            //---------------peso unitario suelto
+
+             String p_u_s_a_g = inputapeso_unitario_suelto_agregado_grueso.getText().toString();
+             String p_u_s_a_f = inputapeso_unitario_suelto_agregado_fino.getText().toString();
 
                 String str_des_est = desviacion_estandar.getText().toString();
                 double d_des_est = Double.parseDouble(str_des_est);
@@ -357,7 +403,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String aire = tipo_de_diseño.getSelectedItem().toString();
 
-                String tipo_expo= especifique_tipo_expo_concreto.getSelectedItem().toString();
+                String tipo_expo= spinner_tipo_de_exposicion.getSelectedItem().toString();
 
                 String str_modulo_ag_grueso = modulo_ag_grueso.getText().toString();
                 double d_modulo_ag_grueso = Double.parseDouble(str_modulo_ag_grueso);
@@ -368,6 +414,9 @@ public class MainActivity extends AppCompatActivity {
                 String Especificacion = especifique_tipo_expo_concreto.getSelectedItem().toString();
 
                 String seleccion_expo = tipo_de_exposicion.getSelectedItem().toString();
+
+            String peso_u_c_a_f = peso_unitario_compactado_a_f.getText().toString();
+
 
                 String s_p_e_a_f = peso_e_a_f.getText().toString();
                 double p_e_a_f = Double.parseDouble(s_p_e_a_f);
@@ -400,6 +449,8 @@ public class MainActivity extends AppCompatActivity {
 
                 String s_p_c = peso_especifico_cemento.getText().toString();
                 double d_p_c = Double.parseDouble(s_p_c);
+
+                 String m_d_f_a_g =   modulo_finura_agregagdo_grueso_v.getText().toString();
 
 
                 if ("Baja permeabilidad".equals(seleccion_expo) && d_resis_dis<260) {
@@ -452,6 +503,16 @@ public class MainActivity extends AppCompatActivity {
                 ir.putExtra("mezcla_necesaria", d_mezcla_necesaria);
                 ir.putExtra("d_peso_e_a_g",d_peso_e_a_g);
                 ir.putExtra("d_p_c", d_p_c);
+                ir.putExtra("tipo_de_cemento", tipo_de_cemento);
+                ir.putExtra("marca_de_cemento", marca_de_cemento);
+                ir.putExtra("marca_de_aditivo",text_marca_de_aditivo);
+                ir.putExtra("tipo_de_aditivo",tipo_de_aditivo);
+                ir.putExtra("tipo_de_agua",tipo_de_agua);
+                ir.putExtra("p_u_c_a_f",peso_u_c_a_f);
+                ir.putExtra("m_d_f_a_g",m_d_f_a_g);
+                ir.putExtra("p_u_s_a_g",p_u_s_a_g);
+                ir.putExtra("p_u_s_a_f",p_u_s_a_f);
+
                 startActivity(ir);
                 overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
         }

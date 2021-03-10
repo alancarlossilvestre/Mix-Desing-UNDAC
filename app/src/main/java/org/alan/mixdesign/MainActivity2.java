@@ -1237,7 +1237,6 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-
         double r_paso_7 = d_paso7 / 42.5;
         int redondeo_bolsa_paso7 = (int) Math.round(r_paso_7);
 
@@ -2096,6 +2095,10 @@ public class MainActivity2 extends AppCompatActivity {
         public void createPDF(){
 
         btngenerar.setOnClickListener(new View.OnClickListener() {
+
+            Intent intent = getIntent();
+            double valor_resis_dis = intent.getDoubleExtra("resis diseño", 0);
+            double valor_des_est = intent.getDoubleExtra("desviacion estandar", 0);
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
@@ -2117,98 +2120,175 @@ public class MainActivity2 extends AppCompatActivity {
 
                 items.setTextSize(8);
 
-                canvas.drawText("Informe del Proceso de dosificación",145,40 ,TituloPrincipal);
-                canvas.drawText("1. Determinacion de la resistencia promedio - Norma E-060 de concreto armado",20,60, Titulos);
+                canvas.drawText("MÉTODO DEDISEÑO DE MEZCLA COMITÉ ACI 211 Y RNE",55,40 ,TituloPrincipal);
+                canvas.drawText("Información",50,60, Titulos);
 
-                canvas.drawText(view_1_1.getText().toString(),30, 75,items);
-                canvas.drawText(mostrar_resistencia_promedio_requerida_especificada.getText().toString(),300,75,items);
+                canvas.drawText("Soliccitante:",60, 75,items);
+                canvas.drawText(mostrar_resistencia_promedio_requerida_especificada.getText().toString(),200,75,items);
 
-                canvas.drawText(view_1_2.getText().toString(),30, 90,items);
-                canvas.drawText( mostrar_fact_modifi.getText().toString(),300,90,items );
+                canvas.drawText("Obra:",60, 90,items);
+                canvas.drawText( mostrar_fact_modifi.getText().toString(),200,90,items );
 
-                canvas.drawText(view_1_3.getText().toString(),30, 105,items);
-                canvas.drawText(mostrar_desviacion_estandar.getText().toString(),300,105,items);
+                canvas.drawText("Ubicación:",60, 105,items);
+                canvas.drawText(mostrar_desviacion_estandar.getText().toString(),200,105,items);
 
-                canvas.drawText(view_1_4.getText().toString(),30, 120,items);
-                canvas.drawText(mostrar_ressi_prom_mod.getText().toString(),300,120,items);
-
-                canvas.drawText(view_1_5.getText().toString(),30, 135,Titulos);
-
-
-                canvas.drawText(view_1_6.getText().toString(),30, 150,items);
-                canvas.drawText(mostrar_resistencia_promedio_requerida.getText().toString(),300,150,items);
+                canvas.drawText("Diseño de Mezcla",100, 120,items);
+                //double resistencia_de_diseño = valor_resis_dis;
+                String resistencia_de_diseño_string = String.valueOf(valor_resis_dis);
+                canvas.drawText( resistencia_de_diseño_string,230,120,items);
 
 
+                canvas.drawText("Requerimientos",50, 135,Titulos);
 
-                canvas.drawText(titulo_2.getText().toString(),20,170,Titulos);
-                canvas.drawText(view_2_1.getText().toString(),30,185,items);
-                canvas.drawText(mostrar_TMN_agre_gru.getText().toString(),300,185,items);
+                canvas.drawText("Desviación estándar",60, 150,items);
+                //double desviacion_standar = valor_des_est;
+                String desviacion_standar = String.valueOf(valor_des_est);
+                canvas.drawText(desviacion_standar,200,150,items);
 
-                canvas.drawText(titulo_3.getText().toString(),20,205,Titulos);
-                canvas.drawText(view_3_1.getText().toString(),30,220,items);
-                canvas.drawText(valor_asentamiento.getText().toString(),300,220,items);
+                canvas.drawText("Tipo de diseño",60,165,items);
+                String aire = intent.getStringExtra("selec_aire");
+                canvas.drawText(aire,200,165,items);
 
-                canvas.drawText(titulo_4.getText().toString(),20,240,Titulos);
-                canvas.drawText(view_4_1.getText().toString(),30,255,items);
-                canvas.drawText(mostrar_volumen_unitario_de_agua.getText().toString(),300,255,items);
+                canvas.drawText("Asentamiento",60,180,items);
+                String paso_valor_asentamiento = intent.getStringExtra("asentamiento");
+                canvas.drawText(paso_valor_asentamiento,200,180,items);
 
-                canvas.drawText(titulo_5.getText().toString(),20,275,Titulos);
-                canvas.drawText(view_5_1.getText().toString(),30,290,items);
-                canvas.drawText(mostrar_aire_atrapado.getText().toString(),300,290,items);
+                canvas.drawText("Tamaño maximo del agregado",60,195,items);
+                String TMN = intent.getStringExtra("TMN");
+                canvas.drawText(TMN,200,195,items);
 
-                canvas.drawText(titulo_6.getText().toString(),20,310,Titulos);
-                canvas.drawText(view_6_1.getText().toString(),30,325,items);
-                canvas.drawText(mostrar_ac_de_diseño .getText().toString(),300,325,items);
+                canvas.drawText("Exposición",60,210,items);
+                String tipo_expo = intent.getStringExtra("tipo_expo");
+                canvas.drawText(tipo_expo,200,210,items);
 
-                canvas.drawText(titulo_7.getText().toString(),20,345,Titulos);
-                canvas.drawText(view_7_1.getText().toString(),30,360,items);
-                canvas.drawText(mostrar_factor_cemento_v.getText().toString(),300,360,items);
-                canvas.drawText(view_7_2.getText().toString(),30,375,items);
-                canvas.drawText(mostrar_bolsas.getText().toString(),300,375,items);
+                canvas.drawText("CEMENTO",100,225,items);
+                canvas.drawText("Tipo",60,240,items);
+                String tipo_de_cemento = intent.getStringExtra("tipo_de_cemento");
+                canvas.drawText(tipo_de_cemento,200,240,items);
 
-                canvas.drawText(titulo_8.getText().toString(),20,395,Titulos);
-                canvas.drawText(view_8_1.getText().toString(),30,410,items);
-                canvas.drawText(mostrar_TMN_agre_gru_k.getText().toString(),300,410,items);
-                canvas.drawText(view_8_2.getText().toString(),30,425,items);
-                canvas.drawText(mostrar_factor_cemento.getText().toString(),300,425,items);
-                canvas.drawText(view_8_3.getText().toString(),30,440,items);
-                canvas.drawText(mostrar_peso_sec_comp_agre_gr.getText().toString(),300,440,items);
-                canvas.drawText(view_8_4.getText().toString(),30,455,items);
-                canvas.drawText(mostrar_cantidad_agregado_grueso.getText().toString(),300,455,items);
+                canvas.drawText("Marca",60,255,items);
+                String marca_de_cemento = intent.getStringExtra("marca_de_cemento");
+                canvas.drawText(marca_de_cemento,200,255,items);
 
-                canvas.drawText(titulo_9.getText().toString(),20,475,Titulos);
-                canvas.drawText(view_9_1.getText().toString(),30,490,items);
-                canvas.drawText(mostrar_cemento_paso9.getText().toString(),300,490,items);
-                canvas.drawText(view_9_2.getText().toString(),30,505,items);
-                canvas.drawText(mostrar_agua_paso9.getText().toString(),300,505,items);
-                canvas.drawText(view_9_3.getText().toString(),30,520,items);
-                canvas.drawText(mostrar_aire_paso9.getText().toString(),300,520,items);
-                canvas.drawText(view_9_4.getText().toString(),30,535,items);
-                canvas.drawText(mostrar_v_a_g_paso9.getText().toString(),300,535,items);
-                canvas.drawText(view_9_5.getText().toString(),30,550,items);
-                canvas.drawText(mostrar_aditivo_paso9.getText().toString(),300,550,items);
-                canvas.drawText(view_9_6.getText().toString(),30,565,items);
-                canvas.drawText(mostrar_suma_paso9.getText().toString(),300,565,items);
+                canvas.drawText("ADITIVO",100,270,items);
+                canvas.drawText("Tipo",60,285,items);
+                String tipo_de_aditivo = intent.getStringExtra("tipo_de_aditivo");
+                canvas.drawText(tipo_de_aditivo,200,285,items);
 
-                canvas.drawText(titulo_10.getText().toString(),20,585,Titulos);
-                canvas.drawText(view_10_1.getText().toString(),30,600,items);
-                canvas.drawText( mostrar_vol_paso10.getText().toString(),300,600,items);
-                canvas.drawText(view_10_2.getText().toString(),30,615,items);
-                canvas.drawText(mostrar_peso_paso10.getText().toString(),300,615,items);
+                canvas.drawText("Marca",60,300,items);
+                String marca_de_aditivo = intent.getStringExtra("marca_de_aditivo");
+                canvas.drawText(marca_de_aditivo,200,300,items);
 
-                canvas.drawText(titulo_11.getText().toString(),20,635,Titulos);
-                canvas.drawText(view_11_1.getText().toString(),30,650,items);
-                canvas.drawText(mostrar_cemento_paso11.getText().toString(),300,650,items);
-                canvas.drawText(view_11_2.getText().toString(),30,665,items);
-                canvas.drawText(mostrar_agua_paso11.getText().toString(),300,665,items);
-                canvas.drawText(view_11_3.getText().toString(),30,680,items);
-                canvas.drawText(mostrar_aire_paso11.getText().toString(),300,680,items);
-                canvas.drawText(view_11_4.getText().toString(),30,695,items);
-                canvas.drawText(mostrar_v_a_f_paso11.getText().toString(),300,695,items);
-                canvas.drawText(view_11_5.getText().toString(),30,710,items);
-                canvas.drawText(mostrar_v_a_g_paso11.getText().toString(),300,710,items);
-                canvas.drawText(view_11_6.getText().toString(),30,725,items);
-                canvas.drawText(mostrar_aditivo11.getText().toString(),300,725,items);
+                canvas.drawText("AGUA",100,315,items);
+                String tipo_de_agua = intent.getStringExtra("tipo_de_agua");
+                canvas.drawText(tipo_de_agua,95,330,items);
+
+                canvas.drawText("Parámetros Físico",50,345,Titulos);
+
+                canvas.drawText("Descripción",60,360,items);
+                canvas.drawText("Unidad",185,360,items);
+                canvas.drawText("A. Fino",265,360,items);
+                canvas.drawText("A. Grueso",365,360,items);
+
+                canvas.drawText("Peso Específico",60,375,items);
+                canvas.drawText("Kg/m3",180,375,items);
+                double p_e_a_f = intent.getDoubleExtra("p_e_a_f", 0);
+                String s_p_e_a_f = String.valueOf(p_e_a_f);
+                canvas.drawText(s_p_e_a_f,260,375,items);
+
+                double p_e_a_g = intent.getDoubleExtra("d_peso_e_a_g", 0);
+                String s_p_e_a_g = String.valueOf(p_e_a_g);
+                canvas.drawText(s_p_e_a_g,360,375,items);
+
+                canvas.drawText("Peso Unitario Suelto",60,390,items);
+                canvas.drawText("Kg/m3",180,390,items);
+                String p_u_s_a_f = intent.getStringExtra("p_u_s_a_f");
+                canvas.drawText(p_u_s_a_f,260,390,items);
+
+                String p_u_s_a_g = intent.getStringExtra("p_u_s_a_g");
+                canvas.drawText(p_u_s_a_g,360,390,items);
+
+                canvas.drawText("Peso Unitario Compactado",60,405,items);
+                canvas.drawText("Kg/m3",180,405,items);
+                String peso_unit_com_agre_fino = intent.getStringExtra("p_u_c_a_f");
+                canvas.drawText(peso_unit_com_agre_fino,260,405,items);
+
+                String peso_unit_com_agre_grueso = intent.getStringExtra("peso_sc_agre_grueso");
+                canvas.drawText(peso_unit_com_agre_grueso,360,405,items);
+
+                canvas.drawText("Absorción",60,420,items);
+                canvas.drawText("A%",180,420,items);
+                double ab_a_f = intent.getDoubleExtra("ab_a_f", 0);
+                String s_ab_a_f = String.valueOf(ab_a_f);
+                canvas.drawText(s_ab_a_f,260,420,items);
+
+                double ab_a_g = intent.getDoubleExtra("ab_a_g", 0);
+                String s_ab_a_g = String.valueOf(ab_a_g);
+                canvas.drawText(s_ab_a_g,360,420,items);
+
+                canvas.drawText("Humedad Natural",60,435,items);
+                canvas.drawText("H%",180,435,items);
+                double h_a_f = intent.getDoubleExtra("h_a_f", 0);
+                String s_h_a_f = String.valueOf(h_a_f);
+                canvas.drawText(s_h_a_f,260,435,items);
+
+                double h_a_g = intent.getDoubleExtra("h_a_g", 0);
+                String s_h_a_g = String.valueOf(h_a_g);
+                canvas.drawText(s_h_a_g,360,435,items);
+
+                canvas.drawText("Módulo de Fineza",60,450,items);
+                canvas.drawText("H%",180,450,items);
+                double modulo_ag_grueso = intent.getDoubleExtra("modulo_ag_grueso", 0);
+                String s_modulo_ag_fino_ = String.valueOf(modulo_ag_grueso);
+                canvas.drawText(s_modulo_ag_fino_,260,450,items);
+
+                String m_d_f_a_g = intent.getStringExtra("m_d_f_a_g");
+                canvas.drawText(m_d_f_a_g,360,450,items);
+
+                canvas.drawText("Datos Obtenidos",50,470, Titulos);
+
+                canvas.drawText("Resistencia promedio requerida",60,485,items);
+                canvas.drawText(mostrar_resistencia_promedio_requerida.getText().toString(),210,485,items);
+
+                canvas.drawText("Contenido de agua",60,500,items);
+                canvas.drawText(mostrar_volumen_unitario_de_agua.getText().toString(),210,500,items);
+
+                canvas.drawText("Contenido de aire",60,515,items);
+                canvas.drawText(mostrar_aire_atrapado.getText().toString(),210,515,items);
+
+                canvas.drawText("Relación a/c",60,530,items);
+                canvas.drawText(mostrar_ac_de_diseño.getText().toString(),210,530,items);
+
+                canvas.drawText("Corrección de agua",60,545,items);
+                canvas.drawText(mostrar_correccion_de_agua.getText().toString(),210,545,items);
+
+
+                canvas.drawText("Diseño en Proporción de Peso",50,565,Titulos);
+
+                canvas.drawText(view_13_1.getText().toString(),60,580,items);
+                canvas.drawText(mostrar_cemento_paso13.getText().toString(),70,595,items);
+                canvas.drawText(view_13_2.getText().toString(),140,580,items);
+                canvas.drawText(mostrar_a_f_paso13.getText().toString(),160,595,items);
+                canvas.drawText(view_13_3.getText().toString(),220,580,items);
+                canvas.drawText(mostrar_a_g_paso13 .getText().toString(),250,595,items);
+                canvas.drawText(view_13_4.getText().toString(),320,580,items);
+                canvas.drawText(mostrar_agua_paso13.getText().toString(),327,595,items);
+                canvas.drawText(view_13_5.getText().toString(),380,580,items);
+                canvas.drawText(mostrar_aditivo_paso13.getText().toString(),384,595,items);
+
+                canvas.drawText("Diseño en Peso por Tanda de una Bolsa",50,615,Titulos);
+
+                canvas.drawText(view_14_1.getText().toString(),60,630,items);
+                canvas.drawText(mostrar_cemento_paso14.getText().toString(),200,630,items);
+                canvas.drawText(view_14_2.getText().toString(),60,645,items);
+                canvas.drawText(mostrar_a_f_paso14.getText().toString(),200,645,items);
+                canvas.drawText(view_14_3.getText().toString(),60,660,items);
+                canvas.drawText(mostrar_a_g_paso14.getText().toString(),200,660,items);
+                canvas.drawText(view_14_4.getText().toString(),60,675,items);
+                canvas.drawText(mostrar_agua_paso14.getText().toString(),200,675,items);
+                canvas.drawText(view_14_5.getText().toString(),60,690,items);
+                canvas.drawText(mostrar_aditivo_paso14.getText().toString(),200,690,items);
+
 
                 myPdfDocument.finishPage(myPage1);
 
@@ -2217,83 +2297,27 @@ public class MainActivity2 extends AppCompatActivity {
                 PdfDocument.Page myPage2 =myPdfDocument.startPage(myPageInfo2);
                 Canvas canvas2 = myPage2.getCanvas();
 
-                canvas2.drawText(titulo_12.getText().toString(),20,40,Titulos);
-                canvas2.drawText(view_12_1_0.getText().toString(),30,55,items);
-                canvas2.drawText(view_12_1_1.getText().toString(),30,70,items);
-                canvas2.drawText(mostrar_a_f_paso12.getText().toString(),300,70,items);
-                canvas2.drawText(view_12_1_2.getText().toString(),30,85,items);
-                canvas2.drawText(mostrar_a_g_paso12.getText().toString(),300,85,items);
+                canvas2.drawText("Dosificación",60,50,Titulos);
+                canvas2.drawText(view_15_1.getText().toString(),50,65,items);
+                canvas2.drawText(mostrar_mezcla_necesaria_paso15.getText().toString(),200,65,items);
+                canvas2.drawText(view_15_2.getText().toString(),50,80,items);
+                canvas2.drawText(mostrar_cemento_paso15.getText().toString(),200,80,items);
+                canvas2.drawText(view_15_3.getText().toString(),50,95,items);
+                canvas2.drawText(mostrar_a_f_paso15.getText().toString(),200,95,items);
+                canvas2.drawText(view_15_4.getText().toString(),50,110,items);
+                canvas2.drawText(mostrar_a_g_paso15.getText().toString(),200,110,items);
+                canvas2.drawText(view_15_5.getText().toString(),50,125,items);
+                canvas2.drawText(mostrar_agua_paso15.getText().toString(),200,125,items);
+                canvas2.drawText(view_15_6.getText().toString(),50,140,items);
+                canvas2.drawText(mostrar_aire_paso15.getText().toString(),200,140,items);
+                canvas2.drawText(view_15_7.getText().toString(),50,155,items);
+                canvas2.drawText(mostrar_aditivo_paso15.getText().toString(),200,155,items);
 
-                canvas2.drawText(view_12_2_0.getText().toString(),30,105,items);
-                canvas2.drawText(view_12_2_1.getText().toString(),30,120,items);
-                canvas2.drawText(mostrar_a_f_paso122.getText().toString(),300,120,items);
-                canvas2.drawText(view_12_2_2.getText().toString(),30,135,items);
-                canvas2.drawText(mostrar_a_g_paso122.getText().toString(),300,135,items);
-
-                canvas2.drawText(view_12_3_0.getText().toString(),30,155,items);
-                canvas2.drawText(view_12_3_1.getText().toString(),30,170,items);
-                canvas2.drawText(mostrar_a_f_paso123.getText().toString(),300,170,items);
-                canvas2.drawText(view_12_3_2.getText().toString(),30,185,items);
-                canvas2.drawText(mostrar_a_g_paso123.getText().toString(),300,185,items);
-                canvas2.drawText(view_12_3_3.getText().toString(),30,200,items);
-                canvas2.drawText(mostrar_correccion_de_agua.getText().toString(),300,200,items);
-                canvas2.drawText(view_12_3_4.getText().toString(),30,215,items);
-                canvas2.drawText(mostrar_agua_efectiva.getText().toString(),300,215,items);
-
-                canvas2.drawText(view_12_4_0.getText().toString(),30,235,items);
-                canvas2.drawText(view_12_4_1.getText().toString(),30,250,items);
-                canvas2.drawText(mostrar_cemento_paso12_4 .getText().toString(),300,250,items);
-                canvas2.drawText(view_12_4_2.getText().toString(),30,265,items);
-                canvas2.drawText(mostrar_agua_paso12_4.getText().toString(),300,265,items);
-                canvas2.drawText(view_12_4_3.getText().toString(),30,280,items);
-                canvas2.drawText(mostrar_aire_paso12_4.getText().toString(),300,280,items);
-                canvas2.drawText(view_12_4_4.getText().toString(),30,295,items);
-                canvas2.drawText(mostrar_aditivo_paso_12_4.getText().toString(),300,295,items);
-                canvas2.drawText(view_12_4_5.getText().toString(),30,310,items);
-                canvas2.drawText(mostrar_a_g_paso12_4.getText().toString(),300,310,items);
-                canvas2.drawText(view_12_4_6.getText().toString(),30,325,items);
-                canvas2.drawText(mostrar_a_f_paso12_4.getText().toString(),300,325,items);
-
-
-                canvas2.drawText(titulo_13.getText().toString(),30,345,items);
-                canvas2.drawText(view_13_1.getText().toString(),30,360,items);
-                canvas2.drawText(mostrar_cemento_paso13.getText().toString(),300,360,items);
-                canvas2.drawText(view_13_2.getText().toString(),30,375,items);
-                canvas2.drawText(mostrar_a_f_paso13.getText().toString(),300,375,items);
-                canvas2.drawText(view_13_3.getText().toString(),30,390,items);
-                canvas2.drawText(mostrar_a_g_paso13 .getText().toString(),300,390,items);
-                canvas2.drawText(view_13_4.getText().toString(),30,405,items);
-                canvas2.drawText(mostrar_agua_paso13.getText().toString(),300,405,items);
-                canvas2.drawText(view_13_5.getText().toString(),30,420,items);
-                canvas2.drawText(mostrar_aditivo_paso13.getText().toString(),300,420,items);
-
-                canvas2.drawText(titulo_14.getText().toString(),30,440,items);
-                canvas2.drawText(view_14_1.getText().toString(),30,455,items);
-                canvas2.drawText(mostrar_cemento_paso14.getText().toString(),300,455,items);
-                canvas2.drawText(view_14_2.getText().toString(),30,470,items);
-                canvas2.drawText(mostrar_a_f_paso14.getText().toString(),300,470,items);
-                canvas2.drawText(view_14_3.getText().toString(),30,485,items);
-                canvas2.drawText(mostrar_a_g_paso14.getText().toString(),300,485,items);
-                canvas2.drawText(view_14_4.getText().toString(),30,500,items);
-                canvas2.drawText(mostrar_agua_paso14.getText().toString(),300,500,items);
-                canvas2.drawText(view_14_5.getText().toString(),30,515,items);
-                canvas2.drawText(mostrar_aditivo_paso14.getText().toString(),300,515,items);
-
-                canvas2.drawText(titulo_15.getText().toString(),30,535,items);
-                canvas2.drawText(view_15_1.getText().toString(),30,550,items);
-                canvas2.drawText(mostrar_mezcla_necesaria_paso15.getText().toString(),300,550,items);
-                canvas2.drawText(view_15_2.getText().toString(),30,565,items);
-                canvas2.drawText(mostrar_cemento_paso15.getText().toString(),300,565,items);
-                canvas2.drawText(view_15_3.getText().toString(),30,580,items);
-                canvas2.drawText(mostrar_a_f_paso15.getText().toString(),300,580,items);
-                canvas2.drawText(view_15_4.getText().toString(),30,595,items);
-                canvas2.drawText(mostrar_a_g_paso15.getText().toString(),300,595,items);
-                canvas2.drawText(view_15_5.getText().toString(),30,610,items);
-                canvas2.drawText(mostrar_agua_paso15.getText().toString(),300,610,items);
-                canvas2.drawText(view_15_6.getText().toString(),30,625,items);
-                canvas2.drawText(mostrar_aire_paso15.getText().toString(),300,625,items);
-                canvas2.drawText(view_15_7.getText().toString(),30,640,items);
-                canvas2.drawText(mostrar_aditivo_paso15.getText().toString(),300,640,items);
+                canvas2.drawText("NOTA",60,180,Titulos);
+                canvas2.drawText("Éste diseño de mezcla está desarrollado por el comité - ACI, se utilizó" +
+                        " el reglamento nacional",50,195,items);
+                canvas2.drawText("de edificaciones (E - 060), la norma ACI 211 " +
+                        "318, ASTM C33 y la norma técnica peruana.",50,205,items);
 
                 myPdfDocument.finishPage(myPage2);
 

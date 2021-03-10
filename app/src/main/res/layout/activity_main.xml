@@ -50,15 +50,16 @@
                 android:id="@+id/titulo_prop_materiales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="-1mm"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:textStyle="bold"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="-1mm"
                 android:gravity="center"
+                android:text="Propiedades de los Materiales"
                 android:textColor="#ffffff"
                 android:textSize="17dp"
-                android:text="Propiedades de los Materiales"/>
+                android:textStyle="bold" />
 
 
             <TextView
@@ -234,7 +235,7 @@
                     android:textColor="@color/colorPrimaryDark" />
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/inputapeso_unitario_suelto"
+                        android:id="@+id/inputapeso_unitario_suelto_agregado_fino"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
@@ -648,7 +649,7 @@
                     android:textColor="@color/colorPrimaryDark"/>
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/inputmarca"
+                        android:id="@+id/inputmarca_aditivo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"

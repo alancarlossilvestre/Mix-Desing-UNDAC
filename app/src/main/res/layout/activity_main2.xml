@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/porce_dosif_fondo"
+    android:background="@drawable/fondo1"
     tools:context=".MainActivity2">
     <ScrollView
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Resistencia  Promedio Especificada (kg/cm2) "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                          />
 
@@ -80,7 +80,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Factor de Modificación de la SD "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                          />
 
@@ -109,7 +109,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- DS de la Constructora (kg/cm2)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                        />
 
@@ -140,7 +140,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Resistencia Promedio Modificado  (kg/cm2)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                          />
 
@@ -165,7 +165,7 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:text="Resistencia Promedio Requerida "
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="15dp"
                     android:textStyle="bold" />
 
@@ -182,7 +182,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- f'cr (kg/cm2)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                         />
 
@@ -232,7 +232,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- TMN "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                          />
 
@@ -284,7 +284,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Asentamiento  "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -333,7 +333,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Volumen  "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                          />
 
@@ -383,7 +383,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Porcentaje del Aire atrapado  "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                         />
 
@@ -431,7 +431,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Por Resistencia "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                        />
 
@@ -458,7 +458,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Por Durabilidad "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -485,7 +485,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Relación a/c de Diseño"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -534,7 +534,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Factor Cemento (kg)  "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -562,7 +562,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Bolsas (bls)  "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -609,7 +609,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- TMN"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -635,7 +635,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Volumen del Agregado Grueso"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -662,7 +662,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Peso Unitario Compactado (kg/m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -688,7 +688,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Cantidad de Agregado Grueso (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -735,7 +735,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Cemento (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -761,7 +761,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agua (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -788,7 +788,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Aire (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -814,7 +814,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado grueso (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -840,7 +840,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Otro (aditivo) (m3) "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -866,7 +866,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Suma "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -887,7 +887,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="1dp"
                     android:layout_weight="1"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textStyle="bold" />
             </LinearLayout>
             <TextView
@@ -924,7 +924,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Volumen (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -950,7 +950,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Peso (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -996,7 +996,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Cemento (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -1022,7 +1022,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agua (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1049,7 +1049,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Aire (%)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1075,7 +1075,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado fino(kg) "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -1101,7 +1101,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado grueso (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1127,7 +1127,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Otro (aditivo) (lts) "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1169,7 +1169,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Peso de agregados húmedos"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -1185,7 +1185,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Fino (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1212,7 +1212,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Grueso (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -1235,7 +1235,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Humedad Superficial"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -1251,7 +1251,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Fino (%)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1278,7 +1278,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Grueso (%)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -1301,7 +1301,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Aportes de Humedad"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -1317,7 +1317,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Fino (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1344,7 +1344,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Grueso (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1372,7 +1372,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Corrección de Agua (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -1400,7 +1400,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agua Efectiva (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -1423,7 +1423,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="valores Corregidos por Humedad"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -1439,7 +1439,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Cemento (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1465,7 +1465,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agua (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1491,7 +1491,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Aire (%)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1517,7 +1517,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Aditivo (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1543,7 +1543,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Grueso (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -1569,7 +1569,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Fino (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1614,7 +1614,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Cemento"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1640,7 +1640,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Fino "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1667,7 +1667,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Grueso "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1693,7 +1693,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agua "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -1719,7 +1719,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Aditivo "
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1765,7 +1765,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Cemento (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1792,7 +1792,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Fino (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1818,7 +1818,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Grueso (kg)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1844,7 +1844,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agua (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1870,7 +1870,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Aditivo (lts)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1915,7 +1915,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Mezcla Necesaria (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1941,7 +1941,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Cemento (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1968,7 +1968,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Fino (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -1994,7 +1994,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agregado Grueso (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -2020,7 +2020,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Agua (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -2046,7 +2046,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Aire (%)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView
@@ -2072,7 +2072,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:text="- Aditivo (m3)"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"/>
 
                     <TextView

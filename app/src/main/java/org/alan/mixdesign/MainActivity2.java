@@ -7,6 +7,9 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
@@ -22,6 +25,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -2092,7 +2096,27 @@ public class MainActivity2 extends AppCompatActivity {
         mostrar_aditivo_paso15.setText(String.format("%.3f", aditivo_paso11));
 
     }
+
+    private void showForgotDialog(Context c, String informacion,String Solicitante,
+                                  String obra, String ubicacion) {
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Forgot Password")
+                .setMessage("Enter your mobile number?")
+                .setView(taskEditText)
+                .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String informacion = String.valueOf(taskEditText.getText());
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
         public void createPDF(){
+
+
 
         btngenerar.setOnClickListener(new View.OnClickListener() {
 
@@ -2321,7 +2345,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                 myPdfDocument.finishPage(myPage2);
 
-                File file = new File(Environment.getExternalStorageDirectory(),"/FirstPDF.pdf");
+                File file = new File(Environment.getExternalStorageDirectory(),"Diseño_de_mezcla.pdf");
                 try{
                     myPdfDocument.writeTo(new FileOutputStream(file));
                 }catch (IOException e){

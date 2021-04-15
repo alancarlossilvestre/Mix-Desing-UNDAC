@@ -5,7 +5,7 @@
     android:id="@+id/pantalla_inicial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_t_d"
+    android:background="@drawable/fondo1"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -85,15 +85,15 @@
                 android:background="@drawable/border"
 
                 >
+
                 <TextView
                     android:id="@+id/marca"
                     android:layout_width="196dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
                     android:text="- Marca"
-                    />
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinner_select_marca"
@@ -102,7 +102,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:textStyle="bold"
-
+                    app:backgroundTint="#ffffff"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
 
                     />
                 <TextView
@@ -113,7 +116,7 @@
                     android:textStyle="bold"
                     android:autoSizeTextType="uniform"
                     android:text="- Peso Específico"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="15dp"/>
 
                 <LinearLayout
@@ -130,8 +133,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="5dp"
                         android:hint="kg/cm3"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textColor="@color/primaryTextColor"
+
                         android:textStyle="bold" />
 
                     <TextView
@@ -143,7 +146,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="5dp"
                         android:text="kg/m3"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="15dp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -155,7 +158,7 @@
                     android:layout_marginRight="1dp"
                     android:layout_marginBottom="1dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/primaryTextColor"
                     android:textStyle="bold"
                     android:text="- Tipo"
                     android:textSize="15dp"
@@ -169,8 +172,8 @@
                     android:layout_marginTop="10dp"
                     android:hint="Ingrese Tipo"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/tamaño_ingresar"/>
+                    android:textColor="@color/primaryTextColor"
+                    />
 
             </LinearLayout>
             <TextView
@@ -206,7 +209,7 @@
                     android:layout_marginBottom="1dp"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/primaryTextColor"
                     android:text="- Peso Específico" />
 
 
@@ -218,8 +221,8 @@
                         android:textStyle="bold"
                         android:inputType="numberDecimal"
                         android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/tamaño_ingresar"
-                        android:textColor="@color/colorPrimaryDark"/>
+
+                        android:textColor="@color/primaryTextColor"/>
 
 
                 <TextView
@@ -232,7 +235,7 @@
                     android:textSize="15dp"
                     android:text="- Peso unitario Suelto"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/primaryTextColor" />
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputapeso_unitario_suelto_agregado_fino"
@@ -242,10 +245,10 @@
                         android:layout_weight="1"
                         android:hint="kg/m3"
                         android:textStyle="bold"
-                        android:textSize="@dimen/tamaño_ingresar"
+
                         android:inputType="numberDecimal"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"  />
+                        android:textColor="@color/primaryTextColor"  />
 
                      <TextView
                     android:id="@+id/peso_unitario_compactado"
@@ -257,7 +260,7 @@
                     android:textSize="15dp"
                     android:text="- Peso Unitario Compactado"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/primaryTextColor" />
 
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -269,9 +272,9 @@
                         android:hint="kg/m3"
                         android:textStyle="bold"
                         android:inputType="numberDecimal"
-                        android:textSize="@dimen/tamaño_ingresar"
+
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"  />
+                        android:textColor="@color/primaryTextColor"  />
 
                 <TextView
                     android:id="@+id/absorcion"
@@ -283,7 +286,7 @@
                     android:textSize="15dp"
                     android:text="- Absorción"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/primaryTextColor" />
 
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -293,11 +296,11 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="A%"
-                        android:textSize="@dimen/tamaño_ingresar"
+
                         android:textStyle="bold"
                         android:inputType="numberDecimal"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"  />
+                        android:textColor="@color/primaryTextColor"  />
 
                     <TextView
                         android:id="@+id/contenido_humedad"
@@ -308,7 +311,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_marginTop="10dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/primaryTextColor"
                         android:text="- Humedad Natural" />
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -318,11 +321,11 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="H%"
-                        android:textSize="@dimen/tamaño_ingresar"
+
                         android:textStyle="bold"
                         android:inputType="numberDecimal"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"  />
+                        android:textColor="@color/primaryTextColor"  />
 
                     <TextView
                         android:id="@+id/modulo_finura"
@@ -334,7 +337,7 @@
                         android:textSize="15dp"
                         android:layout_marginTop="10dp"
                         android:text="- Modulo de Fineza (MF)"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/primaryTextColor" />
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputmodulo_finura_a_f"
@@ -343,10 +346,10 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:textStyle="bold"
-                        android:textSize="@dimen/tamaño_ingresar"
+
                         android:inputType="numberDecimal"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"  />
+                        android:textColor="@color/primaryTextColor"  />
             </LinearLayout>
 
 
@@ -383,7 +386,7 @@
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:text="- Peso Específico"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/primaryTextColor" />
 
 
 
@@ -396,9 +399,9 @@
                         android:hint="kg/m3"
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
-                        android:textSize="@dimen/tamaño_ingresar"
+
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"  />
+                        android:textColor="@color/primaryTextColor"  />
 
 
                 <TextView
@@ -411,7 +414,7 @@
                     android:textSize="15dp"
                     android:layout_marginTop="10dp"
                     android:text="- Peso Unitario Suelto"
-                    android:textColor="@color/colorPrimaryDark"  />
+                    android:textColor="@color/primaryTextColor"  />
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputapeso_unitario_suelto_agregado_grueso"
@@ -423,7 +426,7 @@
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"  />
+                        android:textColor="@color/primaryTextColor"  />
 
                 <TextView
                     android:id="@+id/peso_unitario_compactado_agregado_grueso"
@@ -435,7 +438,7 @@
                     android:layout_marginTop="10dp"
                     android:textSize="15dp"
                     android:text="- Peso Unitario Compactado"
-                    android:textColor="@color/colorPrimaryDark"  />
+                    android:textColor="@color/primaryTextColor"  />
 
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -448,7 +451,7 @@
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/primaryTextColor"/>
 
                 <TextView
                     android:id="@+id/peso_especifico_agregadogrueso"
@@ -459,7 +462,7 @@
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/primaryTextColor"
                     android:text="- Absorción" />
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -472,7 +475,7 @@
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/primaryTextColor"/>
 
 
                 <TextView
@@ -484,7 +487,7 @@
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/primaryTextColor"
                     android:text="- Humedad Natural" />
 
 
@@ -498,7 +501,7 @@
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/primaryTextColor"/>
 
 
                 <TextView
@@ -511,7 +514,7 @@
                     android:textSize="15dp"
                     android:layout_marginTop="10dp"
                     android:text="- Modulo de Fineza (MF)"
-                    android:textColor="@color/colorPrimaryDark"  />
+                    android:textColor="@color/primaryTextColor"  />
 
 
 
@@ -525,7 +528,7 @@
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
 
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/primaryTextColor"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/TextAgua"
@@ -558,7 +561,7 @@
                 android:textStyle="bold"
                 android:textSize="15dp"
 
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/primaryTextColor" />
 
             <Spinner
                 android:id="@+id/spinner_agua"
@@ -569,6 +572,9 @@
                 android:layout_marginRight="20dp"
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
+                app:backgroundTint="#ffffff"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:textColor="#ffffff"/>
             <TextView
                 android:id="@+id/peso_especifico_agua"
@@ -579,7 +585,7 @@
                 android:text="- Peso Específico"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/primaryTextColor" />
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -592,7 +598,7 @@
 
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/primaryTextColor"/>
         </LinearLayout>
             <TextView
                 android:id="@+id/Aditivo"
@@ -626,7 +632,7 @@
                     android:textSize="15dp"
                     android:text="- Se Usará Aditivo"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/primaryTextColor" />
 
                 <Spinner
                     android:id="@+id/spinner_uso_aditivo"
@@ -634,7 +640,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-
+                    app:backgroundTint="#ffffff"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
                     android:layout_marginLeft="10dp"
                     android:textColor="#ffffff"/>
 
@@ -646,7 +654,7 @@
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:text="- Marca"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputmarca_aditivo"
@@ -658,7 +666,7 @@
                         android:inputType="text"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/primaryTextColor"/>
 
                 <TextView
                     android:id="@+id/tipo_aditivo"
@@ -668,7 +676,7 @@
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:text="- Tipo"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputtipo_aditivo"
@@ -680,7 +688,7 @@
                         android:inputType="text"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/primaryTextColor"/>
 
                 <TextView
                     android:id="@+id/dosis_aditivo"
@@ -690,7 +698,7 @@
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:text="- Dosis"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/primaryTextColor" />
 
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -703,7 +711,7 @@
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/primaryTextColor"/>
 
                 <TextView
                     android:id="@+id/densidad_aditivo"
@@ -713,7 +721,7 @@
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:text="- Densidad"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputdensidad_aditivo"
@@ -725,7 +733,7 @@
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/primaryTextColor"/>
             </LinearLayout>
             <!--    <View
                 android:layout_height="2dip"
@@ -772,7 +780,7 @@
                 android:layout_marginBottom="1dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Resistencia del Diseño" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -783,7 +791,7 @@
                     android:inputType="numberDecimal"
                     android:hint="kg/cm2"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/primaryTextColor"/>
 
 
             <TextView
@@ -793,7 +801,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Nº de Ensayos Previos Realizados" />
 
 
@@ -805,7 +813,7 @@
                     android:textStyle="bold"
                     android:hint="N° De Ensayos"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/primaryTextColor"/>
             <!--- <Spinner
                  android:id="@+id/spinner_ensayos_previos"
                  android:layout_width="match_parent"
@@ -819,7 +827,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Desviación Estándar" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -830,7 +838,7 @@
                     android:textStyle="bold"
                     android:hint="Kg/cm2"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/primaryTextColor"/>
             <TextView
                 android:id="@+id/textView40"
                 android:layout_width="wrap_content"
@@ -840,7 +848,7 @@
                 android:textSize="15dp"
                 android:text="- Tipo De Diseño"
                 android:paddingLeft="10dp"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/primaryTextColor"/>
 
             <Spinner
                 android:id="@+id/spinner_tipo_de_diseño"
@@ -849,6 +857,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:paddingLeft="10dp"
+                app:backgroundTint="#ffffff"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:layout_weight="1" />
 
 
@@ -860,7 +871,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Asentamiento" />
 
             <Spinner
@@ -869,7 +880,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                app:backgroundTint="#ffffff"
+                android:ellipsize="marquee"
+                android:singleLine="true"/>
 
 
 
@@ -881,7 +895,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Especifíque tipo de estructura" />
 
             <Spinner
@@ -890,7 +904,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-
+                app:backgroundTint="#ffffff"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:paddingLeft="10dp" />
 
 
@@ -903,7 +919,7 @@
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Asentamiento De Preferencia   " />
 
             <TextView
@@ -928,7 +944,7 @@
                 android:textStyle="bold"
                 android:textSize="15dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Consolidación Por Vibración   " />
 
             <Spinner
@@ -937,7 +953,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-
+                app:backgroundTint="#ffffff"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:paddingLeft="10dp" />
 
             <TextView
@@ -948,7 +966,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Tamaño Maximo del Agregado" />
 
             <Spinner
@@ -957,7 +975,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-
+                app:backgroundTint="#ffffff"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:paddingLeft="10dp" />
 
             <TextView
@@ -968,7 +988,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Tipo De Exposición" />
 
             <Spinner
@@ -977,7 +997,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-
+                app:backgroundTint="#ffffff"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:paddingLeft="10dp" />
 
             <TextView
@@ -988,7 +1010,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Especifíque" />
 
             <Spinner
@@ -997,7 +1019,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-
+                app:backgroundTint="#ffffff"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:paddingLeft="10dp"/>
         </LinearLayout>
 
@@ -1039,7 +1063,7 @@
 
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primaryTextColor"
                 android:text="- Mezcla Necesaria" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -1051,7 +1075,7 @@
                     android:layout_marginTop="10dp"
                     android:hint="m3"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/primaryTextColor"/>
         </LinearLayout>
 
 
@@ -1063,7 +1087,7 @@
                     android:onClick="proceso_dosificacion"
                     android:gravity="center"
                     android:textColor="#ffffff"
-                    android:background="#3E4147"
+                    android:background="#292f54"
                     android:layout_margin="20dp"
                     android:text="Ir al Proceso De Dosificación"/>
 

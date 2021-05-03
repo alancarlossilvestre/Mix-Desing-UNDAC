@@ -2085,6 +2085,71 @@
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/cliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/primaryTextColor"
+            android:text="- Nombre del cliente" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre y Apellidos"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/primaryTextColor"/>
+        <TextView
+            android:id="@+id/obra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="- Nombre de la obra"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/primaryTextColor" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_obra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/primaryTextColor"  />
+        <TextView
+            android:id="@+id/ubicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="- Ubicación"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/primaryTextColor" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_ubicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/primaryTextColor"  />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/generar_pdf"
                 android:layout_width="match_parent"
@@ -2094,7 +2159,7 @@
                 android:background="#3E4147"
                 android:layout_margin="20dp"
                 android:text="Generar PDF"/>
-        </LinearLayout>
+
     </ScrollView>
     
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

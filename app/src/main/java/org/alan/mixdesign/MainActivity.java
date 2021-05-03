@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
      EditText tipo_cemento;
     double d_rel_agua_ceme_durabilidad;
+    String m_Text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

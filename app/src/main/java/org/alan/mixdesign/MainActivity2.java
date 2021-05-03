@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
@@ -76,6 +77,8 @@ public class MainActivity2 extends AppCompatActivity {
     String nombre_directorio = "Diseño de Mezcla";
     String nombre_documento = "informe.pdf";
     Button btngenerar;
+
+    TextInputEditText cliente, obra, ubucacion;
 
 
     @Override
@@ -161,6 +164,10 @@ public class MainActivity2 extends AppCompatActivity {
         mostrar_aditivo_paso15 = (TextView) findViewById(R.id.view_aditivo_paso15);
         mostrar_aire_paso15 = (TextView) findViewById(R.id.view_aire_paso15);
         mostrar_bolsas = (TextView) findViewById(R.id.viewbolsas);
+
+        cliente = (TextInputEditText) findViewById(R.id.input_cliente);
+        obra = (TextInputEditText) findViewById(R.id.input_obra);
+        ubucacion = (TextInputEditText) findViewById(R.id.input_ubicacion);
 
         mostrar_mezcla_necesaria_paso15 = (TextView) findViewById(R.id.view_mezcla_necearia_paso15);
 //---------------------------------------------------------------------------------------------------
@@ -2147,20 +2154,19 @@ public class MainActivity2 extends AppCompatActivity {
                 canvas.drawText("MÉTODO DEDISEÑO DE MEZCLA COMITÉ ACI 211 Y RNE",55,40 ,TituloPrincipal);
                 canvas.drawText("Información",50,60, Titulos);
 
-                canvas.drawText("Soliccitante:",60, 75,items);
-                canvas.drawText(mostrar_resistencia_promedio_requerida_especificada.getText().toString(),200,75,items);
+                canvas.drawText("Solicitante:",60, 75,items);
+                canvas.drawText(cliente.getText().toString(),200,75,items);
 
                 canvas.drawText("Obra:",60, 90,items);
-                canvas.drawText( mostrar_fact_modifi.getText().toString(),200,90,items );
+                canvas.drawText( obra.getText().toString(),200,90,items );
 
                 canvas.drawText("Ubicación:",60, 105,items);
-                canvas.drawText(mostrar_desviacion_estandar.getText().toString(),200,105,items);
+                canvas.drawText(ubucacion.getText().toString(),200,105,items);
 
                 canvas.drawText("Diseño de Mezcla",100, 120,items);
                 //double resistencia_de_diseño = valor_resis_dis;
                 String resistencia_de_diseño_string = String.valueOf(valor_resis_dis);
                 canvas.drawText( resistencia_de_diseño_string,230,120,items);
-
 
                 canvas.drawText("Requerimientos",50, 135,Titulos);
 

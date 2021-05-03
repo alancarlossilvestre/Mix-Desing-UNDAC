@@ -8,4 +8,5 @@
   <color name="fondo_transparente">#4BF6F6F6</color>
   <color name="my_spinner_text_color">#ffffff</color>
   <color name="splashscreen">#05043B</color>
+  <color name="hint">#A8FFFFFF</color>
 </resources>

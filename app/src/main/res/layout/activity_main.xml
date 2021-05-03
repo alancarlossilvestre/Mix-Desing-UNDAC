@@ -132,7 +132,10 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginBottom="5dp"
+                        android:textSize="@dimen/textoimput"
                         android:hint="kg/cm3"
+
+                        android:textColorHint="@color/hint"
                         android:textColor="@color/primaryTextColor"
 
                         android:textStyle="bold" />
@@ -147,7 +150,7 @@
                         android:layout_marginBottom="5dp"
                         android:text="kg/m3"
                         android:textColor="@color/primaryTextColor"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/textoimput"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -170,6 +173,9 @@
                     android:layout_weight="1"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
+                    android:textColorHint="@color/hint"
+
+                    android:textSize="@dimen/textoimput"
                     android:hint="Ingrese Tipo"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/primaryTextColor"
@@ -188,8 +194,6 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="16dp"
-
-
                 android:textColor="#ffffff"
                 />
             <LinearLayout
@@ -218,10 +222,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="kg/m3"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:textStyle="bold"
                         android:inputType="numberDecimal"
                         android:layout_marginLeft="10dp"
-
                         android:textColor="@color/primaryTextColor"/>
 
 
@@ -243,7 +248,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
+                        android:textSize="@dimen/textoimput"
                         android:hint="kg/m3"
+                        android:textColorHint="@color/hint"
                         android:textStyle="bold"
 
                         android:inputType="numberDecimal"
@@ -270,6 +277,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="kg/m3"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:textStyle="bold"
                         android:inputType="numberDecimal"
 
@@ -296,7 +305,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="A%"
-
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:textStyle="bold"
                         android:inputType="numberDecimal"
                         android:layout_marginLeft="10dp"
@@ -321,7 +331,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="H%"
-
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:textStyle="bold"
                         android:inputType="numberDecimal"
                         android:layout_marginLeft="10dp"
@@ -397,6 +408,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="kg/m3"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
 
@@ -423,6 +436,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="kg/m3"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -448,6 +463,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="kg/m3"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -472,6 +489,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="A%"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -498,6 +517,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="H%"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -595,7 +616,8 @@
                     android:textStyle="bold"
                     android:inputType="numberDecimal"
                     android:hint="kg/m3"
-
+                    android:textSize="@dimen/textoimput"
+                    android:textColorHint="@color/hint"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:textColor="@color/primaryTextColor"/>
@@ -663,6 +685,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="Ingrese la marca"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:inputType="text"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -685,6 +709,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="Ingrese el tipo"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:inputType="text"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -707,7 +733,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
+                        android:textSize="@dimen/textoimput"
                         android:hint="ml X bls de cemento"
+                        android:textColorHint="@color/hint"
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -730,6 +758,8 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:hint="kg/l"
+                        android:textSize="@dimen/textoimput"
+                        android:textColorHint="@color/hint"
                         android:inputType="numberDecimal"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -790,6 +820,8 @@
                     android:textStyle="bold"
                     android:inputType="numberDecimal"
                     android:hint="kg/cm2"
+                    android:textSize="@dimen/textoimput"
+                    android:textColorHint="@color/hint"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/primaryTextColor"/>
 
@@ -812,6 +844,8 @@
                     android:inputType="numberDecimal"
                     android:textStyle="bold"
                     android:hint="N° De Ensayos"
+                    android:textSize="@dimen/textoimput"
+                    android:textColorHint="@color/hint"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/primaryTextColor"/>
             <!--- <Spinner
@@ -837,6 +871,8 @@
                     android:inputType="numberDecimal"
                     android:textStyle="bold"
                     android:hint="Kg/cm2"
+                    android:textSize="@dimen/textoimput"
+                    android:textColorHint="@color/hint"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/primaryTextColor"/>
             <TextView
@@ -927,9 +963,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="kg/cm3"
+                android:textSize="@dimen/textoimput"
+                android:textColorHint="@color/hint"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff" />
@@ -1074,6 +1111,8 @@
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:hint="m3"
+                    android:textSize="@dimen/textoimput"
+                    android:textColorHint="@color/hint"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/primaryTextColor"/>
         </LinearLayout>

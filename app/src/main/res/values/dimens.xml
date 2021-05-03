@@ -6,4 +6,5 @@
     <dimen name="espacio_item_tipo_de_dato_paso7">200dp</dimen>
     <dimen name="height_cardview">250dp</dimen>
     <dimen name="cornerradius_cardview">4dp</dimen>
+    <dimen name="textoimput">15dp</dimen>
 </resources>

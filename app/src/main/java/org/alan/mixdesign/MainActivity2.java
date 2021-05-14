@@ -2,26 +2,33 @@ package org.alan.mixdesign;
 //-----------------------Dosificacion----------------------------
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ChangedPackages;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.fonts.Font;
 import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
 import android.text.Html;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.itextpdf.text.pdf.Type3Font;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
@@ -42,9 +50,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
+import static java.security.AccessController.getContext;
+
 public class MainActivity2 extends AppCompatActivity {
+
+    private templatePDF templatePDF;
+    private String []header_tabla1={"CEMENTO", "ADITIVO", "AGUA"};
+    private String []header_tabla2={"DESCRIPCIÓN", "UNIDAD", "A. FINO", "A. GRUESO"};
+    private String []header_tabla3={"Cemento", "Agregado fino",  "Agregado grueso", "agua", "aditivo"};
+    private String shortText= "Hola ";
+    private String longText="dkjbvkejfdbvldfsjbvjlsdfbvkjlsdbvakejsbvszdsajhvbajdsvcjhadsvcsasckjaxvbadsbvadsjjdsavjakdsd";
+
 
     private static final int STORAGE_CODE =  1000;
 
@@ -70,24 +89,36 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_aditivo_paso_12_4, mostrar_a_f_paso12_4, mostrar_a_g_paso12_4, mostrar_cemento_paso13, mostrar_a_f_paso13, mostrar_a_g_paso13,
             mostrar_agua_paso13, mostrar_aditivo_paso13, mostrar_cemento_paso14, mostrar_a_f_paso14, mostrar_a_g_paso14,
             mostrar_agua_paso14, mostrar_aditivo_paso14, mostrar_cemento_paso15, mostrar_a_f_paso15, mostrar_a_g_paso15,
+            nombre_cliente, nombre_obra, ubicacion_obra,
             mostrar_agua_paso15, mostrar_aditivo_paso15, mostrar_aire_paso15, mostrar_mezcla_necesaria_paso15, mostrar_bolsas;
     double valor_resis_dis1, valor_resis_dis2, d_valor_resis_dis1_F, fcr_a_c;
     double valor, aire_atrapado, d_cantidad_agre_grueso, v_f_c;
+    TextInputEditText cliente, obra, ubicacion;
 
     String nombre_directorio = "Diseño de Mezcla";
     String nombre_documento = "informe.pdf";
     Button btngenerar;
 
-    TextInputEditText cliente, obra, ubucacion;
+    public void alerta_completar(){
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
+        builder.setTitle("Aviso");
+        builder.setMessage("Para generar el documento PDF del proceso de dosificación, completa los datos del final, de lo contrario irá en blanco")
+                .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                })
+                .setCancelable(false).show();
 
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main2);
-
-        btngenerar = (Button) findViewById(R.id.generar_pdf);
-
+        alerta_completar();
 
         mostrar_fact_modifi = (TextView) findViewById(R.id.viewrfactor_de_modificacion);
         mostrar_desviacion_estandar = (TextView) findViewById(R.id.viewrdsde_la_constrtructora);
@@ -167,7 +198,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         cliente = (TextInputEditText) findViewById(R.id.input_cliente);
         obra = (TextInputEditText) findViewById(R.id.input_obra);
-        ubucacion = (TextInputEditText) findViewById(R.id.input_ubicacion);
+        ubicacion = (TextInputEditText) findViewById(R.id.input_ubicacion);
 
         mostrar_mezcla_necesaria_paso15 = (TextView) findViewById(R.id.view_mezcla_necearia_paso15);
 //---------------------------------------------------------------------------------------------------
@@ -270,10 +301,73 @@ public class MainActivity2 extends AppCompatActivity {
             view_15_6 = (TextView)findViewById(R.id.ire_paso15);
             view_15_7 = (TextView)findViewById(R.id.aditivo_paso15);
 
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE},PackageManager.PERMISSION_GRANTED);
+           nombre_cliente = (EditText)findViewById(R.id.input_cliente);
+           nombre_obra =  (TextInputEditText)findViewById(R.id.input_obra);
+           ubicacion_obra = (TextInputEditText)findViewById(R.id.input_ubicacion);
 
-        createPDF();
+            //btngenerar = (Button)findViewById(R.id.generar_pdf);
+          /*  btngenerar.setEnabled(false);
+            nombre_obra.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if( nombre_obra.length()!=0){
+                        btngenerar.setEnabled(true);
+
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            ubicacion_obra.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if( ubicacion_obra.length()!=0 ){
+                        btngenerar.setEnabled(true);
+
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            nombre_cliente.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if( nombre_cliente.length()!=0){
+                        btngenerar.setEnabled(true);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });*/
+
+
+        //createPDF();
 
 
         Intent intent = getIntent();
@@ -2101,32 +2195,99 @@ public class MainActivity2 extends AppCompatActivity {
         mostrar_aire_paso15.setText(String.format("%.2f", d_aire_paso15));
 
         mostrar_aditivo_paso15.setText(String.format("%.3f", aditivo_paso11));
+        templatePDF =  new templatePDF(getApplicationContext());
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE},PackageManager.PERMISSION_GRANTED);
+        verificarpermisos();
 
     }
 
-    private void showForgotDialog(Context c, String informacion,String Solicitante,
-                                  String obra, String ubicacion) {
-        final EditText taskEditText = new EditText(c);
-        AlertDialog dialog = new AlertDialog.Builder(c)
-                .setTitle("Forgot Password")
-                .setMessage("Enter your mobile number?")
-                .setView(taskEditText)
-                .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String informacion = String.valueOf(taskEditText.getText());
-                    }
-                })
-                .setNegativeButton("Cancel", null)
-                .create();
-        dialog.show();
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void verificarpermisos() {
+        int permiso_escritura = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permiso_escritura ==PackageManager.PERMISSION_GRANTED){
+            templatePDF.openDocument();
+            templatePDF.addMetaData("clientes", "Ventas", "Alan");
+
+            templatePDF.addTittles("MÉTODO DE DISEÑO DE MEZCLA COMITÉ ");
+
+            templatePDF.addTexto("Solicitante:  "+ cliente.getText().toString());
+            templatePDF.addTexto("Obra:         "+  obra.getText().toString());
+            templatePDF.addTexto("Ubicación:    "+  ubicacion.getText().toString());
+
+            templatePDF.addsubTittles("Diseño de mezcla:  "+ mostrar_resistencia_promedio_requerida_especificada.getText().toString() + "kg/cm2");
+
+            templatePDF.addTexto("Requerimientos:");
+            templatePDF.addTexto("Desviación estándar:         " + mostrar_desviacion_estandar.getText().toString());
+            templatePDF.addTexto("Tipo de diseño:              "+ getIntent().getStringExtra("selec_aire"));
+            templatePDF.addTexto("Asentamiento:                "+ getIntent().getStringExtra("asentamiento"));
+            templatePDF.addTexto("Tamaño máximo del agregado:  "+ getIntent().getStringExtra("TMN"));
+            templatePDF.addTexto("Exposición:                  "+ getIntent().getStringExtra("tipo_expo"));
+
+            //tabla1
+            templatePDF.createTable(header_tabla1,getTabla1());
+
+            templatePDF.addsubTittles("Parámetros Físicos:");
+            templatePDF.createTable(header_tabla2,getTabla2());
+
+            templatePDF.addsubTittles("Datos Obtenidos:");
+
+            templatePDF.addTexto("Resistencia promedio requerida:   "+mostrar_resistencia_promedio_requerida.getText());
+            templatePDF.addTexto("Contenido de agua :               "+mostrar_volumen_unitario_de_agua.getText());
+            templatePDF.addTexto("Contenido de aire :               "+mostrar_aire_atrapado.getText());
+            templatePDF.addTexto("Relación a/c :                    "+mostrar_ac_de_diseño.getText());
+            templatePDF.addTexto("Corrección de agua :              "+mostrar_correccion_de_agua.getText());
+
+            templatePDF.addsubTittles("Diseño en Proporción de Peso:");
+            templatePDF.createTable(header_tabla3,getTabla3());
+
+            templatePDF.closeDocument();
+
+            Toast.makeText(this, "permiso entregado", Toast.LENGTH_SHORT).show();
+
+        }else{
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_CODE);
+        }
+
     }
+
+    public void PDFView(View view ){
+        templatePDF.viewPDF_a();
+
+    }
+
+    private ArrayList<String []>getTabla1(){
+        ArrayList<String[]>rows = new ArrayList<>();
+        rows.add(new String[]{"tipo: "+getIntent().getStringExtra("tipo_de_cemento")+"\nMarca: "+  getIntent().getStringExtra("marca_de_cemento")
+                , "tipo: "+getIntent().getStringExtra("tipo_de_aditivo")+"\nMarca: "+  getIntent().getStringExtra("marca_de_aditivo")
+                ,getIntent().getStringExtra("tipo_de_agua")});
+        return rows;
+    }
+    private ArrayList<String []>getTabla2(){
+        ArrayList<String[]>rows = new ArrayList<>();
+        rows.add(new String[]{"Peso Específico", "Kg/m3", String.valueOf(getIntent().getDoubleExtra("p_e_a_f",0)), String.valueOf(getIntent().getDoubleExtra("d_peso_e_a_g",0))});
+        rows.add(new String[]{"Peso Unitario Suelto", "Kg/m3", String.valueOf(getIntent().getDoubleExtra("p_u_s_a_f",0)), String.valueOf(getIntent().getDoubleExtra("p_u_s_a_g",0))});
+        rows.add(new String[]{"Peso Unitario Compactado", "Kg/m3", String.valueOf(getIntent().getDoubleExtra("p_u_c_a_f",0)), String.valueOf(getIntent().getDoubleExtra("peso_sc_agre_grueso",0))});
+        rows.add(new String[]{"Absorción", "A%", String.valueOf(getIntent().getDoubleExtra("ab_a_f",0)), String.valueOf(getIntent().getDoubleExtra("ab_a_g",0))});
+        rows.add(new String[]{"Humendad Natural", "H%", String.valueOf(getIntent().getDoubleExtra("h_a_f",0)), String.valueOf(getIntent().getDoubleExtra("h_a_g",0))});
+        rows.add(new String[]{"Modulo de Fineza", "", String.valueOf(getIntent().getDoubleExtra("modulo_ag_grueso",0)),getIntent().getStringExtra("m_d_f_a_g")});
+
+        return rows;
+    }
+
+    private ArrayList<String []>getTabla3(){
+        ArrayList<String[]>rows = new ArrayList<>();
+        rows.add(new String[]{""});
+        return rows;
+    }
+
+/*
         public void createPDF(){
 
-
-
+        if (nombre_obra.equals("")){
+            btngenerar.setEnabled(false);
+        }
         btngenerar.setOnClickListener(new View.OnClickListener() {
-
             Intent intent = getIntent();
             double valor_resis_dis = intent.getDoubleExtra("resis diseño", 0);
             double valor_des_est = intent.getDoubleExtra("desviacion estandar", 0);
@@ -2137,21 +2298,24 @@ public class MainActivity2 extends AppCompatActivity {
                 Paint TituloPrincipal = new Paint();
                 Paint Titulos = new Paint();
                 Paint items = new Paint();
-
+                //Typeface tipo_de_fuente_titulo;
+                TituloPrincipal.setTypeface(ResourcesCompat.getFont(MainActivity2.this, R.font.titulo_2));
                 PdfDocument.PageInfo myPageInfo1 = new PdfDocument.PageInfo.Builder(500, 800, 1).create();
 
                 PdfDocument.Page myPage1 =myPdfDocument.startPage(myPageInfo1);
                 Canvas canvas = myPage1.getCanvas();
-
-
                 TituloPrincipal.setTextSize(15);
-                //TituloPrincipal.setTextAlign(Paint.Align.CENTER);
+
+                canvas.drawText("MÉTODO DE DISEÑO DE MEZCLA COMITÉ",100,40 ,TituloPrincipal);
+                canvas.drawText("ACI 211 Y RNE",100,50 ,TituloPrincipal);
+
+                TituloPrincipal.setTextAlign(Paint.Align.CENTER);
 
                 Titulos.setTextSize(10);
 
                 items.setTextSize(8);
 
-                canvas.drawText("MÉTODO DEDISEÑO DE MEZCLA COMITÉ ACI 211 Y RNE",55,40 ,TituloPrincipal);
+
                 canvas.drawText("Información",50,60, Titulos);
 
                 canvas.drawText("Solicitante:",60, 75,items);
@@ -2161,7 +2325,7 @@ public class MainActivity2 extends AppCompatActivity {
                 canvas.drawText( obra.getText().toString(),200,90,items );
 
                 canvas.drawText("Ubicación:",60, 105,items);
-                canvas.drawText(ubucacion.getText().toString(),200,105,items);
+                canvas.drawText(ubicacion.getText().toString(),200,105,items);
 
                 canvas.drawText("Diseño de Mezcla",100, 120,items);
                 //double resistencia_de_diseño = valor_resis_dis;
@@ -2362,5 +2526,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         }
+
+*/
 
 }

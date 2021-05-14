@@ -2086,7 +2086,29 @@
                 </LinearLayout>
             </LinearLayout>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/datos_de_la_obra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Datos de la obra"
+                android:layout_marginBottom="-1mm"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:padding="20dp"
+                android:background="@drawable/borde_cuadrado"
+                >
+
         <TextView
             android:id="@+id/cliente"
             android:layout_width="wrap_content"
@@ -2096,7 +2118,7 @@
             android:textStyle="bold"
             android:textSize="15dp"
             android:textColor="@color/primaryTextColor"
-            android:text="- Nombre del cliente" />
+            android:text=" Nombre del cliente:" />
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -2105,8 +2127,11 @@
             android:layout_height="wrap_content"
             android:hint="Nombre y Apellidos"
             android:textStyle="bold"
+            android:textColorHint="@color/hint"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/primaryTextColor"/>
+
         <TextView
             android:id="@+id/obra"
             android:layout_width="wrap_content"
@@ -2115,7 +2140,7 @@
             android:layout_marginBottom="1dp"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:text="- Nombre de la obra"
+            android:text="Nombre de la obra:"
             android:layout_marginTop="10dp"
             android:textColor="@color/primaryTextColor" />
 
@@ -2125,8 +2150,11 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="1dp"
             android:layout_weight="1"
+            android:textColorHint="@color/hint"
+            android:hint="Nombre de la obra"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
+            android:textSize="16dp"
             android:textColor="@color/primaryTextColor"  />
         <TextView
             android:id="@+id/ubicacion"
@@ -2136,7 +2164,7 @@
             android:layout_marginBottom="1dp"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:text="- Ubicación"
+            android:text="Ubicación:"
             android:layout_marginTop="10dp"
             android:textColor="@color/primaryTextColor" />
 
@@ -2145,12 +2173,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="1dp"
+            android:hint="Ubicación de la obra"
             android:layout_weight="1"
+            android:textColorHint="@color/hint"
             android:textStyle="bold"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/primaryTextColor"  />
 
+
+        </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
+                android:onClick="PDFView"
                 android:id="@+id/generar_pdf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -2159,7 +2193,7 @@
                 android:background="#3E4147"
                 android:layout_margin="20dp"
                 android:text="Generar PDF"/>
-
+        </LinearLayout>
     </ScrollView>
     
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         select_marca.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+          ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
                 String seleccion_opciones_marca = select_marca.getSelectedItem().toString();
 
                 if (seleccion_opciones_marca.equals("Andino") || seleccion_opciones_marca.equals("Selva") || seleccion_opciones_marca.equals("Quisqueya") ){
@@ -133,8 +136,10 @@ public class MainActivity extends AppCompatActivity {
         uso_aditivo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
                 String seleccion_aditivo = uso_aditivo.getSelectedItem().toString();
                 if (seleccion_aditivo.equals("No")){
+
                    alerta_aditivo();
                 }
             }
@@ -145,17 +150,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        String [] select_t_diseño= {"Con aire", "Sin aire"};
+        String [] select_t_diseño= { "Con aire", "Sin aire"};
         ArrayAdapter <String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, select_t_diseño);
         tipo_de_diseño.setAdapter(adapter3);
+        tipo_de_diseño.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+            }
 
-        String [] select_fuente = {"Potable", "No Potable"};
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        final String [] select_fuente = {"Potable", "No Potable"};
         ArrayAdapter <String> adapter101= new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, select_fuente);
         spinner_fuente_agua.setAdapter(adapter101);
+        spinner_fuente_agua.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+              ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+      });
 
         final String [] select_asentamiento = {"Seco", "Plastico", "Fluido", "No se tiene" };
         ArrayAdapter <String> adapter5 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, select_asentamiento);
         asentamiento.setAdapter(adapter5);
+        asentamiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         final String [] select_tipo_estructura = {"Zapatas y muros de cimentacion armados", "Cimentaciones simples, Cajones, subestructuras de muros",
                 "Vigas y muros armados", "Columnas de edificios", "Losas y pavimentos", "Concreto ciclopeo", "No es necesario"};
@@ -165,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String seleccion_opciones_marca = especifique_tipo_estructura.getSelectedItem().toString();
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
 
                 if (seleccion_opciones_marca.equals("Zapatas y muros de cimentacion armados") ||
                         seleccion_opciones_marca.equals( "Cimentaciones simples, Cajones, subestructuras de muros")
@@ -197,10 +236,32 @@ public class MainActivity extends AppCompatActivity {
         String [] select_consolidacion_vibracion = {"Si", "No"};
         ArrayAdapter <String> adapter8 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, select_consolidacion_vibracion);
         consolidacion_vibracion.setAdapter(adapter8);
+        consolidacion_vibracion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         String [] select_tamano_max_agregado = {"3/8''"," 1/2''", "3/4''","1''","1 1/2''","2''","3''","6''"};
         ArrayAdapter <String> adapter9 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,  select_tamano_max_agregado);
         tam_max_agregado.setAdapter(adapter9);
+        tam_max_agregado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         String [] select_tipo_de_exposicion = {"Baja permeabilidad", "Exposición al ataque de sulfatos", "Proceso de congelamiento de deshielo"
                 , "Proceso contra la corrosión del concreto","Ninguno"};
@@ -210,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
         tipo_de_exposicion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
                 String seleccion = tipo_de_exposicion.getSelectedItem().toString();
                 if (seleccion.equals("Baja permeabilidad")) {
 
@@ -240,6 +302,17 @@ public class MainActivity extends AppCompatActivity {
         String[] opciones_2 = {"Expuesto a agua dulce", "Expuesto a agua de mar o aguas solubles", "Expuesto a la acción de aguas cloacales"};
         ArrayAdapter<String> adaptader = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, opciones_2);
         especifique_tipo_expo_concreto.setAdapter(adaptader);
+        especifique_tipo_expo_concreto.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
     public void especifique_exposición_al_ataque_de_sulfatos(){
         String[] opciones_2 = {"Despreciable", "Moderada", "Severa", "Muy servera"};
@@ -547,9 +620,9 @@ public class MainActivity extends AppCompatActivity {
                     "3. Puedes acceder al proceso de dosificación obtenida por el método del comité ACI 211 una vez " +
                     "rellenado todos los datos correctamente presionando el botón " +
                     "Ir al proceso de dosificación.\n\n" +
-                    "4. En el proceso de dosificación podrás exportar los resultados a un formato PDF" +
-                    " el cual se guradará en la memoria externa de tu celular en la ubicación: \n\n\t  download/Diseño de mezcla/informe.pdf \n\n" +
-                    "5. Puedes ver las tablas de diseño dando click en el ícono de tablas en la parte superior de esta ventana.")
+                    "4. Puedes ver las tablas de diseño dando click en el ícono de tablas en la parte superior de esta ventana.\n\n"+
+                    "5. En el proceso de dosificación podrás exportar los resultados a un formato PDF" +
+                    " el cual se guardará en la memoria externa de tu celular en la ubicación: \n\n\t  download/Diseño de mezcla/informe.pdf" )
                     .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

@@ -22,8 +22,4 @@
     <style name="colorTransparente">
         <item name="color">@color/fondo_transparente</item>
     </style>
-    <style name="mySpinnerItemStyle" parent="Base.Widget.AppCompat.Spinner">
-        <item name="android:textColor">@color/my_spinner_text_color</item>
-    </style>
-    style="@android:style/Widget.Holo.Light.Spinner"
 </resources>

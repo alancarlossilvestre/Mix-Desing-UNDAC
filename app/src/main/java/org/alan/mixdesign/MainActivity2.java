@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.content.pm.ChangedPackages;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -37,17 +39,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.Type3Font;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,10 +61,13 @@ import static java.security.AccessController.getContext;
 
 public class MainActivity2 extends AppCompatActivity {
 
+
+
     private templatePDF templatePDF;
+    private String []Diseño_de_Mezcla={"Diseño de Mezcla"};
     private String []header_tabla1={"CEMENTO", "ADITIVO", "AGUA"};
     private String []header_tabla2={"DESCRIPCIÓN", "UNIDAD", "A. FINO", "A. GRUESO"};
-    private String []header_tabla3={"Cemento", "Agregado fino",  "Agregado grueso", "agua", "aditivo"};
+    private String []header_tabla3={"Cemento", "Agregado fino",  "Agregado grueso", "Agua", "Aditivo"};
     private String shortText= "Hola ";
     private String longText="dkjbvkejfdbvldfsjbvjlsdfbvkjlsdbvakejsbvszdsajhvbajdsvcjhadsvcsasckjaxvbadsbvadsjjdsavjakdsd";
 
@@ -93,32 +100,17 @@ public class MainActivity2 extends AppCompatActivity {
             mostrar_agua_paso15, mostrar_aditivo_paso15, mostrar_aire_paso15, mostrar_mezcla_necesaria_paso15, mostrar_bolsas;
     double valor_resis_dis1, valor_resis_dis2, d_valor_resis_dis1_F, fcr_a_c;
     double valor, aire_atrapado, d_cantidad_agre_grueso, v_f_c;
-    TextInputEditText cliente, obra, ubicacion;
 
-    String nombre_directorio = "Diseño de Mezcla";
-    String nombre_documento = "informe.pdf";
-    Button btngenerar;
+    Bitmap bmp;
 
-    public void alerta_completar(){
-        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
-        builder.setTitle("Aviso");
-        builder.setMessage("Para generar el documento PDF del proceso de dosificación, completa los datos del final, de lo contrario irá en blanco")
-                .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                })
-                .setCancelable(false).show();
-
-    }
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main2);
-        alerta_completar();
+
 
         mostrar_fact_modifi = (TextView) findViewById(R.id.viewrfactor_de_modificacion);
         mostrar_desviacion_estandar = (TextView) findViewById(R.id.viewrdsde_la_constrtructora);
@@ -196,9 +188,7 @@ public class MainActivity2 extends AppCompatActivity {
         mostrar_aire_paso15 = (TextView) findViewById(R.id.view_aire_paso15);
         mostrar_bolsas = (TextView) findViewById(R.id.viewbolsas);
 
-        cliente = (TextInputEditText) findViewById(R.id.input_cliente);
-        obra = (TextInputEditText) findViewById(R.id.input_obra);
-        ubicacion = (TextInputEditText) findViewById(R.id.input_ubicacion);
+
 
         mostrar_mezcla_necesaria_paso15 = (TextView) findViewById(R.id.view_mezcla_necearia_paso15);
 //---------------------------------------------------------------------------------------------------
@@ -305,70 +295,6 @@ public class MainActivity2 extends AppCompatActivity {
            nombre_obra =  (TextInputEditText)findViewById(R.id.input_obra);
            ubicacion_obra = (TextInputEditText)findViewById(R.id.input_ubicacion);
 
-            //btngenerar = (Button)findViewById(R.id.generar_pdf);
-          /*  btngenerar.setEnabled(false);
-            nombre_obra.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if( nombre_obra.length()!=0){
-                        btngenerar.setEnabled(true);
-
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
-
-            ubicacion_obra.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if( ubicacion_obra.length()!=0 ){
-                        btngenerar.setEnabled(true);
-
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
-
-            nombre_cliente.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if( nombre_cliente.length()!=0){
-                        btngenerar.setEnabled(true);
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });*/
-
-
-        //createPDF();
-
 
         Intent intent = getIntent();
 
@@ -384,6 +310,9 @@ public class MainActivity2 extends AppCompatActivity {
         double d_peso_sc_agre_grueso = intent.getDoubleExtra("d_peso_sc_agre_grueso", 0);
         double ac_durabildiad = intent.getDoubleExtra("valor_ac", 0.0);
         String espe_tipo_expo = intent.getStringExtra("espe_tipo_espo");
+        String cliente = intent.getStringExtra("cliente");
+        String obra = intent.getStringExtra("obra");
+        String ubicacion = intent.getStringExtra("ubicacion");
         double p_e_a_f = intent.getDoubleExtra("p_e_a_f", 0);
         double h_a_f = intent.getDoubleExtra("h_a_f", 0);
         double h_a_g = intent.getDoubleExtra("h_a_g", 0);
@@ -391,6 +320,8 @@ public class MainActivity2 extends AppCompatActivity {
         double ab_a_f = intent.getDoubleExtra("ab_a_f", 0);
         double aditivoxbls = intent.getDoubleExtra("aditivoxbls", 0);
         double p_e_aditivo = intent.getDoubleExtra("p_e_aditivo", 0);
+        String p_u_s_a_g = intent.getStringExtra("p_u_s_a_g");
+        String p_u_s_a_f =  intent.getStringExtra("p_u_s_a_f");
         double mezcla_necesaria = intent.getDoubleExtra("mezcla_necesaria", 0);
 
         double p_e_a_g = intent.getDoubleExtra("d_peso_e_a_g", 0);
@@ -2196,58 +2127,94 @@ public class MainActivity2 extends AppCompatActivity {
 
         mostrar_aditivo_paso15.setText(String.format("%.3f", aditivo_paso11));
         templatePDF =  new templatePDF(getApplicationContext());
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE},PackageManager.PERMISSION_GRANTED);
         verificarpermisos();
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void verificarpermisos() {
-        int permiso_escritura = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (permiso_escritura ==PackageManager.PERMISSION_GRANTED){
+  //      int permiso_escritura = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    //    if (permiso_escritura ==PackageManager.PERMISSION_GRANTED){
+
+      //      try {
+            //    templatePDF.addimage();
+        //    } catch (MalformedURLException e) {
+              //  e.printStackTrace();
+          //  }
+
             templatePDF.openDocument();
-            templatePDF.addMetaData("clientes", "Ventas", "Alan");
+            templatePDF.addMetaData("diseño de mezcla", "app", "Alan");
 
             templatePDF.addTittles("MÉTODO DE DISEÑO DE MEZCLA COMITÉ ");
+            templatePDF.addTittles("ACI 211 Y RNE");
 
-            templatePDF.addTexto("Solicitante:  "+ cliente.getText().toString());
-            templatePDF.addTexto("Obra:         "+  obra.getText().toString());
-            templatePDF.addTexto("Ubicación:    "+  ubicacion.getText().toString());
+            templatePDF.addTexto2("Informacion:  ");
 
-            templatePDF.addsubTittles("Diseño de mezcla:  "+ mostrar_resistencia_promedio_requerida_especificada.getText().toString() + "kg/cm2");
+            templatePDF.addTexto("Solicitante:  "+ getIntent().getStringExtra("cliente"));
+            templatePDF.addTexto("Obra:         "+ getIntent().getStringExtra("obra"));
+            templatePDF.addTexto("Ubicación:    "+ getIntent().getStringExtra("ubicacion"));
 
-            templatePDF.addTexto("Requerimientos:");
-            templatePDF.addTexto("Desviación estándar:         " + mostrar_desviacion_estandar.getText().toString());
-            templatePDF.addTexto("Tipo de diseño:              "+ getIntent().getStringExtra("selec_aire"));
-            templatePDF.addTexto("Asentamiento:                "+ getIntent().getStringExtra("asentamiento"));
-            templatePDF.addTexto("Tamaño máximo del agregado:  "+ getIntent().getStringExtra("TMN"));
-            templatePDF.addTexto("Exposición:                  "+ getIntent().getStringExtra("tipo_expo"));
+            templatePDF.addsubTittles("Diseño de mezcla:  "+ mostrar_resistencia_promedio_requerida_especificada.getText().toString() + " kg/cm2");
+
+
+            templatePDF.addTexto2("Requerimientos:");
+            templatePDF.addTexto("Desviación estándar:                       " + mostrar_desviacion_estandar.getText().toString());
+            templatePDF.addTexto("Tipo de diseño:                                " + getIntent().getStringExtra("selec_aire"));
+            templatePDF.addTexto("Asentamiento:                                 " + getIntent().getStringExtra("asentamiento"));
+            templatePDF.addTexto("Tamaño máximo del agregado:     " + getIntent().getStringExtra("TMN"));
+            templatePDF.addTexto("Exposición:                                     " + getIntent().getStringExtra("tipo_expo"));
 
             //tabla1
-            templatePDF.createTable(header_tabla1,getTabla1());
+            templatePDF.createTable1(header_tabla1,getTabla1());
 
-            templatePDF.addsubTittles("Parámetros Físicos:");
+            templatePDF.addTexto2("Parámetros Físicos:");
             templatePDF.createTable(header_tabla2,getTabla2());
 
-            templatePDF.addsubTittles("Datos Obtenidos:");
+            templatePDF.addTexto2("Datos Obtenidos:");
 
-            templatePDF.addTexto("Resistencia promedio requerida:   "+mostrar_resistencia_promedio_requerida.getText());
-            templatePDF.addTexto("Contenido de agua :               "+mostrar_volumen_unitario_de_agua.getText());
-            templatePDF.addTexto("Contenido de aire :               "+mostrar_aire_atrapado.getText());
-            templatePDF.addTexto("Relación a/c :                    "+mostrar_ac_de_diseño.getText());
-            templatePDF.addTexto("Corrección de agua :              "+mostrar_correccion_de_agua.getText());
+            templatePDF.addTexto("Resistencia promedio requerida:    "+mostrar_resistencia_promedio_requerida.getText());
+            templatePDF.addTexto("Contenido de agua:                         "+mostrar_volumen_unitario_de_agua.getText());
+            templatePDF.addTexto("Contenido de aire:                           "+mostrar_aire_atrapado.getText());
+            templatePDF.addTexto("Relación a/c:                                   "+mostrar_ac_de_diseño.getText());
+            templatePDF.addTexto("Corrección de agua:                       "+mostrar_correccion_de_agua.getText());
 
-            templatePDF.addsubTittles("Diseño en Proporción de Peso:");
+            templatePDF.addTexto2("Diseño en Proporción de Peso:");
             templatePDF.createTable(header_tabla3,getTabla3());
+
+            templatePDF.addTexto2("Diseño en Peso por Tanda de una Bolsa:");
+
+            templatePDF.addTexto("Cemento (kg):                      "+mostrar_cemento_paso14.getText().toString());
+            templatePDF.addTexto("Agregado Fino (kg):           "+mostrar_a_f_paso14.getText().toString());
+            templatePDF.addTexto("Agregado Grueso (kg):       "+mostrar_a_g_paso14.getText().toString());
+            templatePDF.addTexto("Agua (Lts):                          "+mostrar_agua_paso14.getText().toString());
+            templatePDF.addTexto("Aditivo (Lts):                       "+mostrar_aditivo_paso14.getText().toString());
+
+            templatePDF.addTexto2("Dosiﬁcación:");
+
+            templatePDF.addsubTittles("Mezcla Necesaria (m3):   "+mostrar_mezcla_necesaria_paso15.getText().toString());
+            templatePDF.addTexto("Cemento (m3):                    "+mostrar_cemento_paso15.getText().toString());
+            templatePDF.addTexto("Agregado Fino (m3) :          "+mostrar_a_f_paso15.getText().toString());
+            templatePDF.addTexto("Agregado Grueso (m3):       "+mostrar_a_g_paso15.getText().toString());
+            templatePDF.addTexto("Agua (m3):                           "+mostrar_agua_paso15.getText().toString());
+            templatePDF.addTexto("Aire (%):                              "+mostrar_aire_paso15.getText().toString());
+            templatePDF.addTexto("Aditivo (m3):                        "+mostrar_aditivo_paso15.getText().toString());
+
+            templatePDF.addTittles("NOTA:");
+
+            templatePDF.addTexto("Este diseño de mezcla está desarrollado por el comité - ACI, se utilizó el reglamento nacional de ediﬁcaciones (E - 060)," +
+                            " la norma ACI 211 y 318, ASTMC 33 y la norma "+
+                                        "técnica peruana. ");
+
+
 
             templatePDF.closeDocument();
 
-            Toast.makeText(this, "permiso entregado", Toast.LENGTH_SHORT).show();
 
-        }else{
+           // Toast.makeText(this, "permiso entregado", Toast.LENGTH_SHORT).show();
+
+       // }else{
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_CODE);
-        }
+        //}
 
     }
 
@@ -2258,16 +2225,16 @@ public class MainActivity2 extends AppCompatActivity {
 
     private ArrayList<String []>getTabla1(){
         ArrayList<String[]>rows = new ArrayList<>();
-        rows.add(new String[]{"tipo: "+getIntent().getStringExtra("tipo_de_cemento")+"\nMarca: "+  getIntent().getStringExtra("marca_de_cemento")
-                , "tipo: "+getIntent().getStringExtra("tipo_de_aditivo")+"\nMarca: "+  getIntent().getStringExtra("marca_de_aditivo")
+        rows.add(new String[]{"Tipo:   "+getIntent().getStringExtra("tipo_de_cemento")+"\nMarca: "+  getIntent().getStringExtra("marca_de_cemento")
+                , "Tipo:   "+getIntent().getStringExtra("tipo_de_aditivo")+"\nMarca: "+  getIntent().getStringExtra("marca_de_aditivo")
                 ,getIntent().getStringExtra("tipo_de_agua")});
         return rows;
     }
     private ArrayList<String []>getTabla2(){
         ArrayList<String[]>rows = new ArrayList<>();
         rows.add(new String[]{"Peso Específico", "Kg/m3", String.valueOf(getIntent().getDoubleExtra("p_e_a_f",0)), String.valueOf(getIntent().getDoubleExtra("d_peso_e_a_g",0))});
-        rows.add(new String[]{"Peso Unitario Suelto", "Kg/m3", String.valueOf(getIntent().getDoubleExtra("p_u_s_a_f",0)), String.valueOf(getIntent().getDoubleExtra("p_u_s_a_g",0))});
-        rows.add(new String[]{"Peso Unitario Compactado", "Kg/m3", String.valueOf(getIntent().getDoubleExtra("p_u_c_a_f",0)), String.valueOf(getIntent().getDoubleExtra("peso_sc_agre_grueso",0))});
+        rows.add(new String[]{"Peso Unitario Suelto", "Kg/m3", getIntent().getStringExtra("p_u_s_a_f"), getIntent().getStringExtra("p_u_s_a_g")});
+        rows.add(new String[]{"Peso Unitario C.", "Kg/m3", getIntent().getStringExtra("p_u_c_a_f"), getIntent().getStringExtra("d_peso_sc_agre_grueso")});
         rows.add(new String[]{"Absorción", "A%", String.valueOf(getIntent().getDoubleExtra("ab_a_f",0)), String.valueOf(getIntent().getDoubleExtra("ab_a_g",0))});
         rows.add(new String[]{"Humendad Natural", "H%", String.valueOf(getIntent().getDoubleExtra("h_a_f",0)), String.valueOf(getIntent().getDoubleExtra("h_a_g",0))});
         rows.add(new String[]{"Modulo de Fineza", "", String.valueOf(getIntent().getDoubleExtra("modulo_ag_grueso",0)),getIntent().getStringExtra("m_d_f_a_g")});
@@ -2277,256 +2244,11 @@ public class MainActivity2 extends AppCompatActivity {
 
     private ArrayList<String []>getTabla3(){
         ArrayList<String[]>rows = new ArrayList<>();
-        rows.add(new String[]{""});
+        rows.add(new String[]{mostrar_cemento_paso13.getText().toString(),mostrar_a_f_paso13.getText().toString(),
+                mostrar_a_g_paso13 .getText().toString(), mostrar_agua_paso13.getText().toString(),mostrar_aditivo_paso13.getText().toString()});
         return rows;
     }
 
-/*
-        public void createPDF(){
 
-        if (nombre_obra.equals("")){
-            btngenerar.setEnabled(false);
-        }
-        btngenerar.setOnClickListener(new View.OnClickListener() {
-            Intent intent = getIntent();
-            double valor_resis_dis = intent.getDoubleExtra("resis diseño", 0);
-            double valor_des_est = intent.getDoubleExtra("desviacion estandar", 0);
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                PdfDocument myPdfDocument = new PdfDocument();
-                Paint TituloPrincipal = new Paint();
-                Paint Titulos = new Paint();
-                Paint items = new Paint();
-                //Typeface tipo_de_fuente_titulo;
-                TituloPrincipal.setTypeface(ResourcesCompat.getFont(MainActivity2.this, R.font.titulo_2));
-                PdfDocument.PageInfo myPageInfo1 = new PdfDocument.PageInfo.Builder(500, 800, 1).create();
-
-                PdfDocument.Page myPage1 =myPdfDocument.startPage(myPageInfo1);
-                Canvas canvas = myPage1.getCanvas();
-                TituloPrincipal.setTextSize(15);
-
-                canvas.drawText("MÉTODO DE DISEÑO DE MEZCLA COMITÉ",100,40 ,TituloPrincipal);
-                canvas.drawText("ACI 211 Y RNE",100,50 ,TituloPrincipal);
-
-                TituloPrincipal.setTextAlign(Paint.Align.CENTER);
-
-                Titulos.setTextSize(10);
-
-                items.setTextSize(8);
-
-
-                canvas.drawText("Información",50,60, Titulos);
-
-                canvas.drawText("Solicitante:",60, 75,items);
-                canvas.drawText(cliente.getText().toString(),200,75,items);
-
-                canvas.drawText("Obra:",60, 90,items);
-                canvas.drawText( obra.getText().toString(),200,90,items );
-
-                canvas.drawText("Ubicación:",60, 105,items);
-                canvas.drawText(ubicacion.getText().toString(),200,105,items);
-
-                canvas.drawText("Diseño de Mezcla",100, 120,items);
-                //double resistencia_de_diseño = valor_resis_dis;
-                String resistencia_de_diseño_string = String.valueOf(valor_resis_dis);
-                canvas.drawText( resistencia_de_diseño_string,230,120,items);
-
-                canvas.drawText("Requerimientos",50, 135,Titulos);
-
-                canvas.drawText("Desviación estándar",60, 150,items);
-                //double desviacion_standar = valor_des_est;
-                String desviacion_standar = String.valueOf(valor_des_est);
-                canvas.drawText(desviacion_standar,200,150,items);
-
-                canvas.drawText("Tipo de diseño",60,165,items);
-                String aire = intent.getStringExtra("selec_aire");
-                canvas.drawText(aire,200,165,items);
-
-                canvas.drawText("Asentamiento",60,180,items);
-                String paso_valor_asentamiento = intent.getStringExtra("asentamiento");
-                canvas.drawText(paso_valor_asentamiento,200,180,items);
-
-                canvas.drawText("Tamaño maximo del agregado",60,195,items);
-                String TMN = intent.getStringExtra("TMN");
-                canvas.drawText(TMN,200,195,items);
-
-                canvas.drawText("Exposición",60,210,items);
-                String tipo_expo = intent.getStringExtra("tipo_expo");
-                canvas.drawText(tipo_expo,200,210,items);
-
-                canvas.drawText("CEMENTO",100,225,items);
-                canvas.drawText("Tipo",60,240,items);
-                String tipo_de_cemento = intent.getStringExtra("tipo_de_cemento");
-                canvas.drawText(tipo_de_cemento,200,240,items);
-
-                canvas.drawText("Marca",60,255,items);
-                String marca_de_cemento = intent.getStringExtra("marca_de_cemento");
-                canvas.drawText(marca_de_cemento,200,255,items);
-
-                canvas.drawText("ADITIVO",100,270,items);
-                canvas.drawText("Tipo",60,285,items);
-                String tipo_de_aditivo = intent.getStringExtra("tipo_de_aditivo");
-                canvas.drawText(tipo_de_aditivo,200,285,items);
-
-                canvas.drawText("Marca",60,300,items);
-                String marca_de_aditivo = intent.getStringExtra("marca_de_aditivo");
-                canvas.drawText(marca_de_aditivo,200,300,items);
-
-                canvas.drawText("AGUA",100,315,items);
-                String tipo_de_agua = intent.getStringExtra("tipo_de_agua");
-                canvas.drawText(tipo_de_agua,95,330,items);
-
-                canvas.drawText("Parámetros Físico",50,345,Titulos);
-
-                canvas.drawText("Descripción",60,360,items);
-                canvas.drawText("Unidad",185,360,items);
-                canvas.drawText("A. Fino",265,360,items);
-                canvas.drawText("A. Grueso",365,360,items);
-
-                canvas.drawText("Peso Específico",60,375,items);
-                canvas.drawText("Kg/m3",180,375,items);
-                double p_e_a_f = intent.getDoubleExtra("p_e_a_f", 0);
-                String s_p_e_a_f = String.valueOf(p_e_a_f);
-                canvas.drawText(s_p_e_a_f,260,375,items);
-
-                double p_e_a_g = intent.getDoubleExtra("d_peso_e_a_g", 0);
-                String s_p_e_a_g = String.valueOf(p_e_a_g);
-                canvas.drawText(s_p_e_a_g,360,375,items);
-
-                canvas.drawText("Peso Unitario Suelto",60,390,items);
-                canvas.drawText("Kg/m3",180,390,items);
-                String p_u_s_a_f = intent.getStringExtra("p_u_s_a_f");
-                canvas.drawText(p_u_s_a_f,260,390,items);
-
-                String p_u_s_a_g = intent.getStringExtra("p_u_s_a_g");
-                canvas.drawText(p_u_s_a_g,360,390,items);
-
-                canvas.drawText("Peso Unitario Compactado",60,405,items);
-                canvas.drawText("Kg/m3",180,405,items);
-                String peso_unit_com_agre_fino = intent.getStringExtra("p_u_c_a_f");
-                canvas.drawText(peso_unit_com_agre_fino,260,405,items);
-
-                String peso_unit_com_agre_grueso = intent.getStringExtra("peso_sc_agre_grueso");
-                canvas.drawText(peso_unit_com_agre_grueso,360,405,items);
-
-                canvas.drawText("Absorción",60,420,items);
-                canvas.drawText("A%",180,420,items);
-                double ab_a_f = intent.getDoubleExtra("ab_a_f", 0);
-                String s_ab_a_f = String.valueOf(ab_a_f);
-                canvas.drawText(s_ab_a_f,260,420,items);
-
-                double ab_a_g = intent.getDoubleExtra("ab_a_g", 0);
-                String s_ab_a_g = String.valueOf(ab_a_g);
-                canvas.drawText(s_ab_a_g,360,420,items);
-
-                canvas.drawText("Humedad Natural",60,435,items);
-                canvas.drawText("H%",180,435,items);
-                double h_a_f = intent.getDoubleExtra("h_a_f", 0);
-                String s_h_a_f = String.valueOf(h_a_f);
-                canvas.drawText(s_h_a_f,260,435,items);
-
-                double h_a_g = intent.getDoubleExtra("h_a_g", 0);
-                String s_h_a_g = String.valueOf(h_a_g);
-                canvas.drawText(s_h_a_g,360,435,items);
-
-                canvas.drawText("Módulo de Fineza",60,450,items);
-                canvas.drawText("H%",180,450,items);
-                double modulo_ag_grueso = intent.getDoubleExtra("modulo_ag_grueso", 0);
-                String s_modulo_ag_fino_ = String.valueOf(modulo_ag_grueso);
-                canvas.drawText(s_modulo_ag_fino_,260,450,items);
-
-                String m_d_f_a_g = intent.getStringExtra("m_d_f_a_g");
-                canvas.drawText(m_d_f_a_g,360,450,items);
-
-                canvas.drawText("Datos Obtenidos",50,470, Titulos);
-
-                canvas.drawText("Resistencia promedio requerida",60,485,items);
-                canvas.drawText(mostrar_resistencia_promedio_requerida.getText().toString(),210,485,items);
-
-                canvas.drawText("Contenido de agua",60,500,items);
-                canvas.drawText(mostrar_volumen_unitario_de_agua.getText().toString(),210,500,items);
-
-                canvas.drawText("Contenido de aire",60,515,items);
-                canvas.drawText(mostrar_aire_atrapado.getText().toString(),210,515,items);
-
-                canvas.drawText("Relación a/c",60,530,items);
-                canvas.drawText(mostrar_ac_de_diseño.getText().toString(),210,530,items);
-
-                canvas.drawText("Corrección de agua",60,545,items);
-                canvas.drawText(mostrar_correccion_de_agua.getText().toString(),210,545,items);
-
-
-                canvas.drawText("Diseño en Proporción de Peso",50,565,Titulos);
-
-                canvas.drawText(view_13_1.getText().toString(),60,580,items);
-                canvas.drawText(mostrar_cemento_paso13.getText().toString(),70,595,items);
-                canvas.drawText(view_13_2.getText().toString(),140,580,items);
-                canvas.drawText(mostrar_a_f_paso13.getText().toString(),160,595,items);
-                canvas.drawText(view_13_3.getText().toString(),220,580,items);
-                canvas.drawText(mostrar_a_g_paso13 .getText().toString(),250,595,items);
-                canvas.drawText(view_13_4.getText().toString(),320,580,items);
-                canvas.drawText(mostrar_agua_paso13.getText().toString(),327,595,items);
-                canvas.drawText(view_13_5.getText().toString(),380,580,items);
-                canvas.drawText(mostrar_aditivo_paso13.getText().toString(),384,595,items);
-
-                canvas.drawText("Diseño en Peso por Tanda de una Bolsa",50,615,Titulos);
-
-                canvas.drawText(view_14_1.getText().toString(),60,630,items);
-                canvas.drawText(mostrar_cemento_paso14.getText().toString(),200,630,items);
-                canvas.drawText(view_14_2.getText().toString(),60,645,items);
-                canvas.drawText(mostrar_a_f_paso14.getText().toString(),200,645,items);
-                canvas.drawText(view_14_3.getText().toString(),60,660,items);
-                canvas.drawText(mostrar_a_g_paso14.getText().toString(),200,660,items);
-                canvas.drawText(view_14_4.getText().toString(),60,675,items);
-                canvas.drawText(mostrar_agua_paso14.getText().toString(),200,675,items);
-                canvas.drawText(view_14_5.getText().toString(),60,690,items);
-                canvas.drawText(mostrar_aditivo_paso14.getText().toString(),200,690,items);
-
-
-                myPdfDocument.finishPage(myPage1);
-
-                PdfDocument.PageInfo myPageInfo2 = new PdfDocument.PageInfo.Builder(500, 800, 1).create();
-
-                PdfDocument.Page myPage2 =myPdfDocument.startPage(myPageInfo2);
-                Canvas canvas2 = myPage2.getCanvas();
-
-                canvas2.drawText("Dosificación",60,50,Titulos);
-                canvas2.drawText(view_15_1.getText().toString(),50,65,items);
-                canvas2.drawText(mostrar_mezcla_necesaria_paso15.getText().toString(),200,65,items);
-                canvas2.drawText(view_15_2.getText().toString(),50,80,items);
-                canvas2.drawText(mostrar_cemento_paso15.getText().toString(),200,80,items);
-                canvas2.drawText(view_15_3.getText().toString(),50,95,items);
-                canvas2.drawText(mostrar_a_f_paso15.getText().toString(),200,95,items);
-                canvas2.drawText(view_15_4.getText().toString(),50,110,items);
-                canvas2.drawText(mostrar_a_g_paso15.getText().toString(),200,110,items);
-                canvas2.drawText(view_15_5.getText().toString(),50,125,items);
-                canvas2.drawText(mostrar_agua_paso15.getText().toString(),200,125,items);
-                canvas2.drawText(view_15_6.getText().toString(),50,140,items);
-                canvas2.drawText(mostrar_aire_paso15.getText().toString(),200,140,items);
-                canvas2.drawText(view_15_7.getText().toString(),50,155,items);
-                canvas2.drawText(mostrar_aditivo_paso15.getText().toString(),200,155,items);
-
-                canvas2.drawText("NOTA",60,180,Titulos);
-                canvas2.drawText("Éste diseño de mezcla está desarrollado por el comité - ACI, se utilizó" +
-                        " el reglamento nacional",50,195,items);
-                canvas2.drawText("de edificaciones (E - 060), la norma ACI 211 " +
-                        "318, ASTM C33 y la norma técnica peruana.",50,205,items);
-
-                myPdfDocument.finishPage(myPage2);
-
-                File file = new File(Environment.getExternalStorageDirectory(),"Diseño_de_mezcla.pdf");
-                try{
-                    myPdfDocument.writeTo(new FileOutputStream(file));
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-                myPdfDocument.close();
-            }
-        });
-
-        }
-
-*/
 
 }

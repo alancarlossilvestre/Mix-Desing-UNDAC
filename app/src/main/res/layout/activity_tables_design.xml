@@ -174,7 +174,7 @@
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="10dp"
-                android:text="*el factor se usa cuando se tiene menos de 30 ensayos\ \n
+                android:text="*El factor se usa cuando se tiene menos de 30 ensayos\ \n
 *Fuente: Reglamento Nacional de Edificaciones"/>
 
             <TextView
@@ -219,7 +219,7 @@
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="10dp"
-                android:text="*la consistencia está en función al slump\ \n*Fuente: Ing. Flavio Abanto Castillo"/>
+                android:text="*La consistencia está en función al slump\ \n*Fuente: Ing. Flavio Abanto Castillo"/>
 
             <TextView
             android:id="@+id/titulo_tabla_05"

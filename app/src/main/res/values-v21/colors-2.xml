@@ -6,7 +6,7 @@
   <color name="primaryTextColor">#ffffff</color>
   <color name="colorAccent">#ffffff</color>
   <color name="fondo_transparente">#4BF6F6F6</color>
-
+  <color name="tabla">#78716F</color>78716F
   <color name="splashscreen">#05043B</color>
   <color name="hint">#A8FFFFFF</color>
 </resources>

@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
      TextView peso_especifico_cemento, asentamiento_preferencia;
 
+    TextInputEditText m_cliente, m_obra, m_ubicacion;
      TextInputEditText resistencia_del_diseño, desviacion_estandar, numero_de_ensayos, modulo_ag_grueso, peso_sc_agre_gru,humedad_a_f,
        peso_e_a_f, absorcion_ag_grueso, humendad_ag_grueso, absorcion_ag_fino, aditivo, densidad_aditivo, mezcla_necesaria, peso_e_a_g,
     marca_de_aditivo, inputtipo_aditivo, peso_unitario_compactado_a_f, modulo_finura_agregagdo_grueso_v,
@@ -93,13 +94,17 @@ public class MainActivity extends AppCompatActivity {
 
         inputapeso_unitario_suelto_agregado_grueso  = (TextInputEditText)findViewById(R.id.inputapeso_unitario_suelto_agregado_grueso);
 
+       m_cliente = (TextInputEditText) findViewById(R.id.input_cliente);
+        m_obra = (TextInputEditText) findViewById(R.id.input_obra);
+        m_ubicacion = (TextInputEditText) findViewById(R.id.input_ubicacion);
+
         String [] opciones_marca = {"Andino","Sol","Lima","Pacasmayo","Yura", "Selva", "Quisqueya", "Sur"};
         ArrayAdapter <String> adaptder1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,  opciones_marca);
         select_marca.setAdapter(adaptder1);
         select_marca.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-          ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+      ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
                 String seleccion_opciones_marca = select_marca.getSelectedItem().toString();
 
                 if (seleccion_opciones_marca.equals("Andino") || seleccion_opciones_marca.equals("Selva") || seleccion_opciones_marca.equals("Quisqueya") ){
@@ -156,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         tipo_de_diseño.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+             ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
             }
 
             @Override
@@ -171,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         spinner_fuente_agua.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-              ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+          ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
           }
 
           @Override
@@ -186,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         asentamiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+               ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
             }
 
             @Override
@@ -254,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         tam_max_agregado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+            ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
             }
 
             @Override
@@ -271,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
         tipo_de_exposicion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+             ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
                 String seleccion = tipo_de_exposicion.getSelectedItem().toString();
                 if (seleccion.equals("Baja permeabilidad")) {
 
@@ -417,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
         builder.setTitle("Aviso");
         builder.setMessage("Ya que el diseño de mezcla no lleva aditivo, por favor rellene los campos" +
-                " de dosis y densidad con el valor de cero, para el correcto funcionamiento de la applicación.")
+                " de dosis y densidad con el valor de cero, para el correcto funcionamiento de la aplicación.")
                 .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -484,13 +489,14 @@ public class MainActivity extends AppCompatActivity {
                 double d_modulo_ag_grueso = Double.parseDouble(str_modulo_ag_grueso);
 
                 String str_peso_sc_agre_gru = peso_sc_agre_gru.getText().toString();
-                double d_peso_sc_agre_grueso = Double.parseDouble(str_peso_sc_agre_gru);
+
 
                 String Especificacion = especifique_tipo_expo_concreto.getSelectedItem().toString();
 
                 String seleccion_expo = tipo_de_exposicion.getSelectedItem().toString();
 
             String peso_u_c_a_f = peso_unitario_compactado_a_f.getText().toString();
+
 
 
                 String s_p_e_a_f = peso_e_a_f.getText().toString();
@@ -527,8 +533,12 @@ public class MainActivity extends AppCompatActivity {
 
                  String m_d_f_a_g =   modulo_finura_agregagdo_grueso_v.getText().toString();
 
+                String cliente  = m_cliente.getText().toString();
+                String obra = m_obra.getText().toString();
+                String ubicacion= m_obra.getText().toString();
 
-                if ("Baja permeabilidad".equals(seleccion_expo) && d_resis_dis<260) {
+
+            if ("Baja permeabilidad".equals(seleccion_expo) && d_resis_dis<260) {
                    alerta_tipo_expo();
                 }
                 else if ("Exposición al ataque de sulfatos".equals(seleccion_expo) && d_resis_dis<280) {
@@ -566,7 +576,7 @@ public class MainActivity extends AppCompatActivity {
                 ir.putExtra("tipo_expo", tipo_expo);
                 ir.putExtra("modulo_ag_grueso",d_modulo_ag_grueso);
                 ir.putExtra("peso_sc_agre_grueso",str_peso_sc_agre_gru);
-                ir.putExtra("d_peso_sc_agre_grueso",d_peso_sc_agre_grueso);
+                ir.putExtra("d_peso_sc_agre_grueso",str_peso_sc_agre_gru);
                 ir.putExtra("espe_tipo_espo",Especificacion);
                 ir.putExtra("p_e_a_f",p_e_a_f);
                 ir.putExtra("h_a_f",h_a_f);
@@ -587,6 +597,9 @@ public class MainActivity extends AppCompatActivity {
                 ir.putExtra("m_d_f_a_g",m_d_f_a_g);
                 ir.putExtra("p_u_s_a_g",p_u_s_a_g);
                 ir.putExtra("p_u_s_a_f",p_u_s_a_f);
+                ir.putExtra("cliente",cliente);
+                ir.putExtra("obra",obra);
+                ir.putExtra("ubicacion",ubicacion);
 
                 startActivity(ir);
                 overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);

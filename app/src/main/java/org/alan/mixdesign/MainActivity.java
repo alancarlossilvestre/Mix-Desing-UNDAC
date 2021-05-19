@@ -532,6 +532,7 @@ public class MainActivity extends AppCompatActivity {
                 double d_p_c = Double.parseDouble(s_p_c);
 
                  String m_d_f_a_g =   modulo_finura_agregagdo_grueso_v.getText().toString();
+                double m_d_f_a_g_d =   Double.parseDouble(m_d_f_a_g);
 
                 String cliente  = m_cliente.getText().toString();
                 String obra = m_obra.getText().toString();
@@ -574,7 +575,7 @@ public class MainActivity extends AppCompatActivity {
                 ir.putExtra("asentamiento", asentamiento_val);
                 ir.putExtra("selec_aire", aire);
                 ir.putExtra("tipo_expo", tipo_expo);
-                ir.putExtra("modulo_ag_grueso",d_modulo_ag_grueso);
+                ir.putExtra("modulo_ag_grueso", m_d_f_a_g_d);
                 ir.putExtra("peso_sc_agre_grueso",str_peso_sc_agre_gru);
                 ir.putExtra("d_peso_sc_agre_grueso",str_peso_sc_agre_gru);
                 ir.putExtra("espe_tipo_espo",Especificacion);
@@ -629,13 +630,13 @@ public class MainActivity extends AppCompatActivity {
                     "  -  Agregado grueso.\n" +
                     "  -  Agregado fino .\n" +
                     "  -  Aditivo.\n\n" +
-                    "2. Se Completa las características del concreto deseado.\n\n" +
+                    "2. Se completa las características del concreto deseado.\n\n" +
                     "3. Puedes acceder al proceso de dosificación obtenida por el método del comité ACI 211 una vez " +
                     "rellenado todos los datos correctamente presionando el botón " +
                     "Ir al proceso de dosificación.\n\n" +
                     "4. Puedes ver las tablas de diseño dando click en el ícono de tablas en la parte superior de esta ventana.\n\n"+
                     "5. En el proceso de dosificación podrás exportar los resultados a un formato PDF" +
-                    " el cual se guardará en la memoria externa de tu celular en la ubicación: \n\n\t  download/Diseño de mezcla/informe.pdf" )
+                    " el cual se guardará en la memoria interna de tu celular en la ubicación: \n\n\t  Diseño demezcla/Diseño_de_mezcla.pdf" )
                     .setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

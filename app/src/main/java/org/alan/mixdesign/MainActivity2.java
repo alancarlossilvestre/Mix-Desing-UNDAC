@@ -307,7 +307,7 @@ public class MainActivity2 extends AppCompatActivity {
         String tipo_expo = intent.getStringExtra("tipo_expo");
         double modulo_ag_grueso = intent.getDoubleExtra("modulo_ag_grueso", 0);
         String peso_unit_com_agre_grueso = intent.getStringExtra("peso_sc_agre_grueso");
-        double d_peso_sc_agre_grueso = intent.getDoubleExtra("d_peso_sc_agre_grueso", 0);
+        double d_peso_sc_agre_grueso = Double.parseDouble(peso_unit_com_agre_grueso);
         double ac_durabildiad = intent.getDoubleExtra("valor_ac", 0.0);
         String espe_tipo_expo = intent.getStringExtra("espe_tipo_espo");
         String cliente = intent.getStringExtra("cliente");
@@ -327,7 +327,7 @@ public class MainActivity2 extends AppCompatActivity {
         double p_e_a_g = intent.getDoubleExtra("d_peso_e_a_g", 0);
 
         double d_p_c = intent.getDoubleExtra("d_p_c", 0);
-        //  Toast.makeText(this, " pasa  " +  mezcla_necesaria, Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, " pasa  " +  modulo_ag_grueso, Toast.LENGTH_LONG).show();
 
         //----------escribir desviacion estandar--------------------//
         String str_valor_des_est = String.valueOf(valor_des_est);
@@ -1495,11 +1495,11 @@ public class MainActivity2 extends AppCompatActivity {
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
-        if (TMN.equals("3/4''") && modulo_ag_grueso >= 3.00) {
-            v_f_c = 0.60;
-            mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
 
-            d_cantidad_agre_grueso = 0.60 * d_peso_sc_agre_grueso;
+        if (TMN.equals("3/4''") && modulo_ag_grueso >= 3.00 ) {
+            v_f_c = 0.62;
+            d_cantidad_agre_grueso = v_f_c*d_peso_sc_agre_grueso ;
+            mostrar_factor_cemento.setText(String.format("%.2f", v_f_c));
             String str_cantidad_agreg_grueso = String.valueOf(d_cantidad_agre_grueso);
             mostrar_cantidad_agregado_grueso.setText(String.format("%.2f", d_cantidad_agre_grueso));
         }
@@ -2148,7 +2148,7 @@ public class MainActivity2 extends AppCompatActivity {
             templatePDF.addTittles("MÉTODO DE DISEÑO DE MEZCLA COMITÉ ");
             templatePDF.addTittles("ACI 211 Y RNE");
 
-            templatePDF.addTexto2("Informacion:  ");
+            templatePDF.addTexto2("Información:  ");
 
             templatePDF.addTexto("Solicitante:  "+ getIntent().getStringExtra("cliente"));
             templatePDF.addTexto("Obra:         "+ getIntent().getStringExtra("obra"));
@@ -2189,7 +2189,7 @@ public class MainActivity2 extends AppCompatActivity {
             templatePDF.addTexto("Agua (Lts):                          "+mostrar_agua_paso14.getText().toString());
             templatePDF.addTexto("Aditivo (Lts):                       "+mostrar_aditivo_paso14.getText().toString());
 
-            templatePDF.addTexto2("Dosiﬁcación:");
+            templatePDF.addTexto2("Dosificación:");
 
             templatePDF.addsubTittles("Mezcla Necesaria (m3):   "+mostrar_mezcla_necesaria_paso15.getText().toString());
             templatePDF.addTexto("Cemento (m3):                    "+mostrar_cemento_paso15.getText().toString());
@@ -2201,7 +2201,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             templatePDF.addTittles("NOTA:");
 
-            templatePDF.addTexto("Este diseño de mezcla está desarrollado por el comité - ACI, se utilizó el reglamento nacional de ediﬁcaciones (E - 060)," +
+            templatePDF.addTexto("Este diseño de mezcla está desarrollado por el comité - ACI, se utilizó el Reglamento Nacional de Eiﬁcaciones (E - 060)," +
                             " la norma ACI 211 y 318, ASTMC 33 y la norma "+
                                         "técnica peruana. ");
 

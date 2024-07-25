@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 trigger:
-- master
+- azure-pipelines
 
 pool:
   vmImage: 'macos-latest'
@@ -18,3 +18,29 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
+
+#Copea el Archivo APK generado
+- task: CopyFiles@2
+  inputs:
+    contents: '**/build/outputs/**/*.apk'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy APK to staging directory'
+
+#publica los archivos APK como artefactos en el Build
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+  displayName: 'Publish Artifact'
+
+# Enviar el APK por Correo Electrónico
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    pip install secure-smtplib
+    echo 'Sending email with APK...'
+    python send_email.py
+  displayName: 'Send email with APK'

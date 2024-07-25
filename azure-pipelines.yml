@@ -32,15 +32,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
   displayName: 'Publish Artifact'
-
-# Enviar el APK por Correo Electrónico
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.x'
-    addToPath: true
-
-- script: |
-    pip install secure-smtplib
-    echo 'Sending email with APK...'
-    python send_email.py
-  displayName: 'Send email with APK'

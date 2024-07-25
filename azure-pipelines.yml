@@ -32,20 +32,4 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
   displayName: 'Publish Artifact'
-
-- script: |
-    echo "============Listing files in the drop directory:"
-    ls $(System.DefaultWorkingDirectory)/drop/
-    echo "################The path of the APK is:"
-    find $(System.DefaultWorkingDirectory)/drop/ -name '*.apk'
-  displayName: 'List APK file and path'
   
-- task: AppCenterDistribute@3
-  displayName: 'Distribución de APK Android'
-  inputs:
-    serverEndpoint: 'app-center'
-    appSlug: 'owner-name/mix-desing'
-    appFile: '$(System.DefaultWorkingDirectory)/drop/*.apk'  # Ruta al archivo APK
-    symbolsIncludeParentDirectory: false
-    releaseNotesInput: 'esto es una prueba'
-    isSilent: false
